@@ -1,7 +1,7 @@
 /*
  * icon.cpp
  *
- * Last modified: <2013/03/25 18:15:42 +0900> By Zumida
+ * Last modified: <2013/03/27 15:23:33 +0900> By Zumida
  */
 
 #include "icon.hpp"
@@ -10,24 +10,16 @@
 using namespace swo;
 
 Icon::Icon() {
-	handle = (HICON)LoadImage(
-		NULL, MAKEINTRESOURCE(IDI_APPLICATION), IMAGE_ICON,
-		0, 0, LR_DEFAULTSIZE | LR_SHARED);
+	Load(IDI_APPLICATION, IMAGE_ICON);
 }
 
-Icon::Icon(String iconName) {
-	handle = (HICON)LoadImage(
-		NULL, MAKEINTRESOURCE(iconName.c_str()), IMAGE_ICON,
-		0, 0, LR_DEFAULTSIZE | LR_SHARED);
-}
-
-Icon::Icon(const Icon& icon) {
-	handle = icon.handle;
+Icon::Icon(const String& iconName) {
+	Load(iconName, IMAGE_ICON);
 }
 
 Icon::~Icon() {
 }
 
 HICON Icon::getHandle(void) const {
-	return handle;
+	return (HICON)handle;
 }

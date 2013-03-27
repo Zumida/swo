@@ -1,23 +1,21 @@
 /*
  * icon.hpp
  *
- * Last modified: <2013/03/25 18:15:15 +0900> By Zumida
+ * Last modified: <2013/03/27 15:19:43 +0900> By Zumida
  */
 #ifndef ICON_HPP_INCLUDED
 #define ICON_HPP_INCLUDED
 
-#include "object.hpp"
+#include "image.hpp"
 
 namespace swo {
 
-	class Icon : public Object {
+	class Icon : public Image {
 	private:
-		HICON handle;
 
 	public:
 		Icon();
-		Icon(String iconName);
-		Icon(const Icon& icon);
+		Icon(const String& iconName);
 		virtual ~Icon();
 
 		HICON getHandle(void) const;
