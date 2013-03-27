@@ -7,10 +7,13 @@ SRCS = \
 	canvas.cpp \
 	rootcontrol.cpp \
 	control.cpp \
+	bitmap.cpp \
 	cursor.cpp \
 	icon.cpp \
+	menuitem.cpp \
 	menu.cpp \
 	imagelist.cpp \
+	image.cpp \
 	treeview.cpp \
 	eventlistener.cpp \
 	object.cpp \
