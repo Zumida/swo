@@ -1,7 +1,7 @@
 /*
  * menu.cpp
  *
- * Last modified: <2013/03/26 12:48:48 +0900> By Zumida
+ * Last modified: <2013/03/27 09:41:56 +0900> By Zumida
  */
 
 #include "menu.hpp"
@@ -17,4 +17,22 @@ Menu::~Menu() {
 
 HMENU Menu::getHandle(void) const {
 	return handle;
+}
+
+void Menu::add(const MenuItem& item) {
+	if (handle == NULL) {
+		handle = CreateMenu();
+	}
+	if (handle != NULL) {
+		InsertMenuItem(handle, item.getId(), FALSE, &item.getInfo());
+	}
+}
+
+void Menu::add(const int index, const MenuItem& item) {
+	if (handle == NULL) {
+		handle = CreateMenu();
+	}
+	if (handle != NULL) {
+		InsertMenuItem(handle, index, TRUE, &item.getInfo());
+	}
 }
