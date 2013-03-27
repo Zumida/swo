@@ -1,7 +1,7 @@
 /*
  * string.cpp
  *
- * Last modified: <2013/03/25 01:26:01 +0900> By Zumida
+ * Last modified: <2013/03/27 20:12:38 +0900> By Zumida
  */
 
 #include "string.hpp"
@@ -38,4 +38,5 @@ namespace swo {
 		return result;
 	}
 
+	String empty;
 };

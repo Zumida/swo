@@ -1,7 +1,7 @@
 /*
  * string.hpp
  *
- * Last modified: <2013/03/22 00:01:46 +0900> By Zumida
+ * Last modified: <2013/03/27 20:12:14 +0900> By Zumida
  */
 #ifndef STRING_HPP_INCLUDED
 #define STRING_HPP_INCLUDED
@@ -42,6 +42,7 @@ namespace swo {
 #define StdLog tlog
 
 	extern String toString(char *str);
+	extern String empty;
 
 };
 
