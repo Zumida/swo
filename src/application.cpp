@@ -1,7 +1,7 @@
 /*
  * application.cpp
  *
- * Last modified: <2013/03/25 13:47:09 +0900> By Zumida
+ * Last modified: <2013/03/27 09:17:12 +0900> By Zumida
  */
 
 #include "application.hpp"
@@ -29,14 +29,14 @@ void Application::remove(Object* object) {
 
 int Application::run(void) {
 
-	// ƒƒbƒZ[ƒWƒ‹[ƒv
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ«ãƒ¼ãƒ—
 	MSG msg;
 	for (;;) {
 		int result = GetMessage(&msg, NULL, 0, 0);
 
 		if (result == 0 || result == -1) break;
 
-		// ƒƒbƒZ[ƒW‚ğˆ—‚·‚é
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡¦ç†ã™ã‚‹
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}
