@@ -1,7 +1,7 @@
 /*
  * bitmap.cpp
  *
- * Last modified: <2013/03/27 15:22:13 +0900> By Zumida
+ * Last modified: <2013/04/02 00:53:36 +0900> By Zumida
  */
 
 #include "bitmap.hpp"
@@ -13,7 +13,7 @@ Bitmap::Bitmap() {
 }
 
 Bitmap::Bitmap(const String& bitmapName) {
-	Load(bitmapName, IMAGE_BITMAP);
+	load(bitmapName, IMAGE_BITMAP);
 }
 
 Bitmap::~Bitmap() {

@@ -1,7 +1,7 @@
 /*
  * image.cpp
  *
- * Last modified: <2013/03/27 15:05:32 +0900> By Zumida
+ * Last modified: <2013/04/02 00:53:23 +0900> By Zumida
  */
 
 #include "image.hpp"
@@ -22,7 +22,7 @@ Image::Image(const class Image& image) {
 Image::~Image() {
 }
 
-void Image::Load(const String& imageName, const int type) {
+void Image::load(const String& imageName, const int type) {
 	this->type   = type;
 	this->handle = LoadImage(
 		NULL, MAKEINTRESOURCE(imageName.c_str()), type,
