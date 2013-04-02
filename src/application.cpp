@@ -1,7 +1,7 @@
 /*
  * application.cpp
  *
- * Last modified: <2013/03/27 09:17:12 +0900> By Zumida
+ * Last modified: <2013/04/03 01:34:25 +0900> By Zumida
  */
 
 #include "application.hpp"
@@ -34,6 +34,7 @@ int Application::run(void) {
 	for (;;) {
 		int result = GetMessage(&msg, NULL, 0, 0);
 
+		// メッセージ取得失敗、終了メッセージ受信時はループ終了
 		if (result == 0 || result == -1) break;
 
 		// メッセージを処理する
