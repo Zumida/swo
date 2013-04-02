@@ -10,6 +10,11 @@ SRCS = \
 	bitmap.cpp \
 	cursor.cpp \
 	icon.cpp \
+	patternbrush.cpp \
+	hatchbrush.cpp \
+	solidbrush.cpp \
+	stockbrush.cpp \
+	brush.cpp \
 	menuitem.cpp \
 	menu.cpp \
 	imagelist.cpp \
