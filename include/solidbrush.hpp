@@ -1,7 +1,7 @@
 /*
  * solidbrush.hpp
  *
- * Last modified: <2013/04/02 09:40:45 +0900> By Zumida
+ * Last modified: <2013/04/02 18:16:52 +0900> By Zumida
  */
 #ifndef SOLIDBRUSH_HPP_INCLUDED
 #define SOLIDBRUSH_HPP_INCLUDED
@@ -19,7 +19,7 @@ namespace swo {
 		SolidBrush(int r, int g, int b);
 		virtual ~SolidBrush();
 
-		virtual void select(void);
+		virtual HGDIOBJ getHandle(void);
 	};
 
 };

@@ -1,7 +1,7 @@
 /*
  * patternbrush.cpp
  *
- * Last modified: <2013/04/02 09:46:13 +0900> By Zumida
+ * Last modified: <2013/04/02 18:21:03 +0900> By Zumida
  */
 
 #include "patternbrush.hpp"
@@ -13,9 +13,9 @@ PatternBrush::PatternBrush(const Bitmap& bmp) {
 }
 
 PatternBrush::~PatternBrush() {
-	trash();
 }
 
-void PatternBrush::select(void) {
-	handle = ::CreatePatternBrush(bmp->getHandle());
+HGDIOBJ PatternBrush::getHandle(void) {
+	if (handle == NULL) handle = ::CreatePatternBrush(bmp->getHandle());
+	return handle;
 }

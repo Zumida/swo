@@ -1,7 +1,7 @@
 /*
  * stockbrush.hpp
  *
- * Last modified: <2013/04/02 09:36:52 +0900> By Zumida
+ * Last modified: <2013/04/02 18:14:49 +0900> By Zumida
  */
 #ifndef STOCKBRUSH_HPP_INCLUDED
 #define STOCKBRUSH_HPP_INCLUDED
@@ -16,8 +16,9 @@ namespace swo {
 
 	public:
 		StockBrush(int stock);
+		virtual ~StockBrush();
 
-		virtual void select(void);
+		virtual HGDIOBJ getHandle(void);
 	};
 
 };

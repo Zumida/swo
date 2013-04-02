@@ -1,7 +1,7 @@
 /*
  * patternbrush.hpp
  *
- * Last modified: <2013/04/02 09:42:16 +0900> By Zumida
+ * Last modified: <2013/04/02 18:20:28 +0900> By Zumida
  */
 #ifndef PATTERNBRUSH_HPP_INCLUDED
 #define PATTERNBRUSH_HPP_INCLUDED
@@ -19,7 +19,7 @@ namespace swo {
 		PatternBrush(const Bitmap& bmp);
 		virtual ~PatternBrush();
 
-		virtual void select(void);
+		virtual HGDIOBJ getHandle(void);
 	};
 
 };

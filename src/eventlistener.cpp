@@ -1,7 +1,7 @@
 /*
  * eventlistener.cpp
  *
- * Last modified: <2013/03/25 17:20:53 +0900> By Zumida
+ * Last modified: <2013/04/02 19:23:12 +0900> By Zumida
  */
 #include <windows.h>
 #include <windowsx.h>
@@ -154,7 +154,7 @@ bool EventListener::wndproc(UINT msg, WPARAM wp, LPARAM lp) {
 		break;
 	case WM_ERASEBKGND:
 		{
-			Canvas cv((HDC)wp, handle);
+			Canvas cv(handle);
 			result = onEraseBackGround(cv);
 			break;
 		}
@@ -275,7 +275,7 @@ bool EventListener::wndproc(UINT msg, WPARAM wp, LPARAM lp) {
 	//case WM_NULL:
 	case WM_PAINT:
 		{
-			Canvas cv((HDC)wp, handle);
+			Canvas cv(handle);
 			result = onPaint(cv);
 			break;
 		}

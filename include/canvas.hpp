@@ -1,7 +1,7 @@
 /*
  * canvas.hpp
  *
- * Last modified: <2013/03/22 16:28:07 +0900> By Zumida
+ * Last modified: <2013/04/02 19:02:17 +0900> By Zumida
  */
 #ifndef CANVAS_HPP_INCLUDED
 #define CANVAS_HPP_INCLUDED
@@ -13,16 +13,19 @@ namespace swo {
 
 	class Canvas : public Object {
 	private:
+		HWND hWnd;
 		HDC hDc;
-		Rect rect;
+		PAINTSTRUCT ps;
 
 	public:
-		Canvas(HDC hDc, HWND hWnd);
-		Canvas(HDC hDc, const Rect& rect);
+		Canvas(HWND hWnd);
 		~Canvas();
 
 		const HDC getDc(void) const;
-		Rect& getRect(void);
+		const Rect& getRect(void) const;
+
+		void beginPaint(void);
+		void endPaint(void);
 	};
 
 };

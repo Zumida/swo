@@ -15,6 +15,10 @@ SRCS = \
 	solidbrush.cpp \
 	stockbrush.cpp \
 	brush.cpp \
+	custompen.cpp \
+	stockpen.cpp \
+	pen.cpp \
+	gdiobject.cpp \
 	menuitem.cpp \
 	menu.cpp \
 	imagelist.cpp \

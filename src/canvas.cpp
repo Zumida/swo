@@ -1,32 +1,38 @@
 /*
  * canvas.cpp
  *
- * Last modified: <2013/03/22 16:28:54 +0900> By Zumida
+ * Last modified: <2013/04/02 19:10:04 +0900> By Zumida
  */
 
 #include "canvas.hpp"
 
 using namespace swo;
 
-Canvas::Canvas(HDC hDc, HWND hWnd) {
-	this->hDc = hDc;
-	if (hWnd != NULL) {
-		::GetClientRect(hWnd , &rect);
-	}
-}
-
-Canvas::Canvas(HDC hDc, const Rect& rect) {
-	this->hDc = hDc;
-	this->rect = rect;
+Canvas::Canvas(HWND hWnd) {
+	this->hWnd = hWnd;
+	this->hDc = NULL;
 }
 
 Canvas::~Canvas() {
+	endPaint();
 }
 
 const HDC Canvas::getDc(void) const {
 	return hDc;
 }
 
-Rect& Canvas::getRect(void) {
-	return rect;
+const Rect& Canvas::getRect(void) const {
+	return ps.rcPaint;
 }
+
+void Canvas::beginPaint(void) {
+	hDc = BeginPaint(hWnd , &ps);
+}
+
+void Canvas::endPaint(void) {
+	if (hDc != NULL) {
+		EndPaint(hWnd , &ps);
+		hDc = NULL;
+	}
+}
+

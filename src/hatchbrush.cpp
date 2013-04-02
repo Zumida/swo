@@ -1,7 +1,7 @@
 /*
  * hatchbrush.cpp
  *
- * Last modified: <2013/04/02 09:36:29 +0900> By Zumida
+ * Last modified: <2013/04/02 18:22:33 +0900> By Zumida
  */
 
 #include "hatchbrush.hpp"
@@ -19,9 +19,9 @@ HatchBrush::HatchBrush(int style, int r, int g, int b) {
 }
 
 HatchBrush::~HatchBrush() {
-	trash();
 }
 
-void HatchBrush::select(void) {
-	handle = ::CreateHatchBrush(style, color);
+HGDIOBJ HatchBrush::getHandle(void) {
+	if (handle == NULL) handle = ::CreateHatchBrush(style, color);
+	return handle;
 }

@@ -1,7 +1,7 @@
 /*
  * stockbrush.cpp
  *
- * Last modified: <2013/04/02 09:47:43 +0900> By Zumida
+ * Last modified: <2013/04/02 18:16:23 +0900> By Zumida
  */
 
 #include "stockbrush.hpp"
@@ -12,6 +12,10 @@ StockBrush::StockBrush(int stock) {
 	this->stock = stock;
 }
 
-void StockBrush::select(void) {
-	handle = (HBRUSH)::GetStockObject(stock);
+StockBrush::~StockBrush() {
+}
+
+HGDIOBJ StockBrush::getHandle(void) {
+	if (handle == NULL) handle = ::GetStockObject(stock);
+	return handle;
 }

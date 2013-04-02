@@ -1,7 +1,7 @@
 /*
  * hatchbrush.hpp
  *
- * Last modified: <2013/04/02 09:31:42 +0900> By Zumida
+ * Last modified: <2013/04/02 18:21:26 +0900> By Zumida
  */
 #ifndef HATCHBRUSH_HPP_INCLUDED
 #define HATCHBRUSH_HPP_INCLUDED
@@ -20,7 +20,7 @@ namespace swo {
 		HatchBrush(int style, int r, int g, int b);
 		virtual ~HatchBrush();
 
-		virtual void select(void);
+		virtual HGDIOBJ getHandle(void);
 	};
 
 };

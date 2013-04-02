@@ -1,27 +1,21 @@
 /*
  * brush.hpp
  *
- * Last modified: <2013/04/02 09:18:24 +0900> By Zumida
+ * Last modified: <2013/04/02 18:13:53 +0900> By Zumida
  */
 #ifndef BRUSH_HPP_INCLUDED
 #define BRUSH_HPP_INCLUDED
 
-#include "object.hpp"
+#include "gdiobject.hpp"
 
 namespace swo {
 
-	class Brush : public Object {
-	protected:
-		HBRUSH handle;
-
+	class Brush : public GdiObject {
 	public:
 		Brush();
 		virtual ~Brush();
 
-		virtual void select(void) = 0;
-		virtual void trash(void);
-
-		HBRUSH getHandle(void) const;
+		HBRUSH getBrush(void);
 	};
 
 };

@@ -1,7 +1,7 @@
 /*
  * solidbrush.cpp
  *
- * Last modified: <2013/04/02 09:40:41 +0900> By Zumida
+ * Last modified: <2013/04/02 18:20:02 +0900> By Zumida
  */
 
 #include "solidbrush.hpp"
@@ -17,9 +17,9 @@ SolidBrush::SolidBrush(int r, int g, int b) {
 }
 
 SolidBrush::~SolidBrush() {
-	trash();
 }
 
-void SolidBrush::select(void) {
-	handle = ::CreateSolidBrush(color);
+HGDIOBJ SolidBrush::getHandle(void) {
+	if (handle == NULL) handle = ::CreateSolidBrush(color);
+	return handle;
 }
