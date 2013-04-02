@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/03/26 10:46:24 +0900> By Zumida
+ * Last modified: <2013/04/02 10:24:42 +0900> By Zumida
  */
 
 #include "form.hpp"
@@ -62,6 +62,7 @@ HWND Form::createHandle(void) {
 
 	} else {
 		// ウィンドウを作成する
+		// TODO : CreateWindowEx()
 		return CreateWindow(
 			wc.lpszClassName,      // ウィンドウクラス名
 			_T("Sample Program"),  // タイトルバーに表示する文字列
