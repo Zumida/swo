@@ -1,7 +1,7 @@
 /*
  * hatchbrush.hpp
  *
- * Last modified: <2013/04/02 07:04:10 +0900> By Zumida
+ * Last modified: <2013/04/02 09:31:42 +0900> By Zumida
  */
 #ifndef HATCHBRUSH_HPP_INCLUDED
 #define HATCHBRUSH_HPP_INCLUDED
@@ -21,7 +21,6 @@ namespace swo {
 		virtual ~HatchBrush();
 
 		virtual void select(void);
-		virtual void trash(void);
 	};
 
 };

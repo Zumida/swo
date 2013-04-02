@@ -1,7 +1,7 @@
 /*
  * solidbrush.hpp
  *
- * Last modified: <2013/04/02 07:02:14 +0900> By Zumida
+ * Last modified: <2013/04/02 09:40:45 +0900> By Zumida
  */
 #ifndef SOLIDBRUSH_HPP_INCLUDED
 #define SOLIDBRUSH_HPP_INCLUDED
@@ -20,7 +20,6 @@ namespace swo {
 		virtual ~SolidBrush();
 
 		virtual void select(void);
-		virtual void trash(void);
 	};
 
 };

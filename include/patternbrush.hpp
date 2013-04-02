@@ -1,7 +1,7 @@
 /*
  * patternbrush.hpp
  *
- * Last modified: <2013/04/02 07:06:30 +0900> By Zumida
+ * Last modified: <2013/04/02 09:42:16 +0900> By Zumida
  */
 #ifndef PATTERNBRUSH_HPP_INCLUDED
 #define PATTERNBRUSH_HPP_INCLUDED
@@ -20,7 +20,6 @@ namespace swo {
 		virtual ~PatternBrush();
 
 		virtual void select(void);
-		virtual void trash(void);
 	};
 
 };
