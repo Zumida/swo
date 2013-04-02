@@ -1,7 +1,7 @@
 /*
  * application.cpp
  *
- * Last modified: <2013/04/16 19:46:28 +0900> By Zumida
+ * Last modified: <2013/04/16 22:34:44 +0900> By Zumida
  */
 #include "define.hpp"
 #include "application.hpp"
