@@ -1,7 +1,7 @@
 /*
  * control.cpp
  *
- * Last modified: <2013/03/25 12:56:09 +0900> By Zumida
+ * Last modified: <2013/04/02 10:22:59 +0900> By Zumida
  */
 
 #include "control.hpp"
@@ -169,54 +169,3 @@ void Control::setBorder(bool border) {
 bool Control::operator < (const Control* control) {
 	return control != NULL && this->tab < control->tab;
 };
-
-/*
-LRESULT CALLBACK Control::WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) {
-
-	Control *lisner;
-
-	switch( msg )
-	{
-	case WM_CREATE:			// ウィンドウが作成されたとき
-		// ビットマップをファイルからロードする
-		hBitmap = (HBITMAP)LoadImage( NULL, _T("test.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE );
-		if( hBitmap == NULL ) {
-			MessageBox(
-				hWnd, _T("ビットマップのロードに失敗しました"), _T("エラー"),
-				MB_OK | MB_ICONWARNING
-				);
-			return 0;
-		}
-
-		// ウィンドウのデバイスコンテキストハンドルを取得する
-		hDC = GetDC( hWnd );
-		// メモリデバイスコンテキストを作成する
-		hCompatDC = CreateCompatibleDC( hDC );
-		// ロードしたビットマップを選択する
-		hPrevBitmap = (HBITMAP)SelectObject( hCompatDC, hBitmap );
-		// ウィンドウのデバイスコンテキストハンドルを解放する
-		ReleaseDC( hWnd, hDC );
-		return 0;
-
-	case WM_PAINT:  // 再描画するタイミング
-		// ビットマップをウィンドウに転送する（表示する）
-		hDC = BeginPaint(hWnd, &ps);
-		BitBlt( hDC, 0, 0, 240, 160, hCompatDC, 0, 0, SRCCOPY );
-		EndPaint(hWnd, &ps);
-		return 0;
-
-	case WM_DESTROY:        // ウィンドウが破棄されるとき
-		// 以前のビットマップに選択を戻す
-		SelectObject( hCompatDC, hPrevBitmap );
-		// ロードしたビットマップを削除する
-		DeleteObject( hBitmap );
-		// メモリデバイスコンテキストを削除する
-		DeleteDC( hCompatDC );
-
-		PostQuitMessage( 0 );
-		return 0;
-	}
-
-	return DefWindowProc( hWnd, msg, wp, lp );
-}
-*/
