@@ -1,9 +1,8 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/04/02 10:24:42 +0900> By Zumida
+ * Last modified: <2013/04/03 01:38:26 +0900> By Zumida
  */
-
 #include "form.hpp"
 #include "resource.hpp"
 
@@ -14,7 +13,6 @@ using namespace swo;
 #define WINDOW_HEIGHT (300)		// ウィンドウの高さ
 #define WINDOW_X ((GetSystemMetrics(SM_CXSCREEN) - WINDOW_WIDTH ) / 2)
 #define WINDOW_Y ((GetSystemMetrics(SM_CYSCREEN) - WINDOW_HEIGHT) / 2)
-
 
 static Icon defaultIcon;
 static Cursor defaultCursor;
