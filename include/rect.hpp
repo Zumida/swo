@@ -1,7 +1,7 @@
 /*
  * rect.hpp
  *
- * Last modified: <2013/03/21 22:45:26 +0900> By Zumida
+ * Last modified: <2013/04/09 02:04:35 +0900> By Zumida
  */
 #ifndef RECT_HPP_INCLUDED
 #define RECT_HPP_INCLUDED
@@ -11,6 +11,13 @@
 namespace swo {
 
 	typedef RECT Rect;
+
+	typedef struct WindowRect {
+		int left;
+		int top;
+		int width;
+		int height;
+	} WindowRect;
 
 };
 
