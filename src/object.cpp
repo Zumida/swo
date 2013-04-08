@@ -1,7 +1,7 @@
 /*
  * object.cpp
  *
- * Last modified: <2013/03/21 09:49:19 +0900> By Zumida
+ * Last modified: <2013/04/09 01:57:36 +0900> By Zumida
  */
 
 #include "object.hpp"
@@ -17,7 +17,7 @@ Object::Object() {
 Object::~Object() {
 }
 
-String Object::getName(void) {
+String Object::getClassName(void) {
 	const std::type_info & id_p = typeid(*this);
 	int status;
 
@@ -27,7 +27,7 @@ String Object::getName(void) {
 String Object::toString(void) {
 	StringStream ss;
 
-	ss << this << _T("@") << getName() << std::endl;
+	ss << this << _T("@") << getClassName() << std::endl;
 
 	return ss.str();
 }
