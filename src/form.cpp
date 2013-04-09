@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/04/03 01:38:26 +0900> By Zumida
+ * Last modified: <2013/04/09 21:31:23 +0900> By Zumida
  */
 #include "form.hpp"
 #include "resource.hpp"
@@ -13,9 +13,6 @@ using namespace swo;
 #define WINDOW_HEIGHT (300)		// ウィンドウの高さ
 #define WINDOW_X ((GetSystemMetrics(SM_CXSCREEN) - WINDOW_WIDTH ) / 2)
 #define WINDOW_Y ((GetSystemMetrics(SM_CYSCREEN) - WINDOW_HEIGHT) / 2)
-
-static Icon defaultIcon;
-static Cursor defaultCursor;
 
 Form::Form() {
 	initialize();
@@ -30,51 +27,39 @@ Form::~Form() {
 }
 
 void Form::initialize(void) {
-	icon   = NULL;
-	cursor = NULL;
+	icon        = NULL;
+	cursor      = NULL;
+	background  = NULL;
+	menu        = NULL;
+	rect.left   = WINDOW_X;
+	rect.top    = WINDOW_Y;
+	rect.width  = WINDOW_WIDTH;
+	rect.height = WINDOW_HEIGHT;
 }
 
 HWND Form::createHandle(void) {
-	WNDCLASSEX wc;
+	HWND hparent = (getParent() != NULL)? getParent()->getHandle(): NULL;
+	HMENU hmenu = (menu != NULL)? menu->getHandle(): NULL;
 
-	if (icon   == NULL) icon   = &defaultIcon;
-	if (cursor == NULL) cursor = &defaultCursor;
-
-	// ウィンドウクラスの情報を設定
-	wc.cbSize = sizeof(wc);                 // 構造体サイズ
-	wc.style = CS_HREDRAW | CS_VREDRAW;     // スタイル
-	wc.lpfnWndProc = WndProc;               // ウィンドウプロシージャ
-	wc.cbClsExtra = 0;                      // 拡張情報１
-	wc.cbWndExtra = 0;                      // 拡張情報２
-	wc.hInstance = ::GetModuleHandle(NULL); // インスタンスハンドル
-	wc.hIcon   = icon->getHandle();         // アイコン
-	wc.hIconSm = wc.hIcon;                  // 小アイコン
-	wc.hCursor = cursor->getHandle();       // マウスカーソル
-	wc.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH); // ウィンドウ背景
-	wc.lpszMenuName  = NULL;                // メニュー名
-	wc.lpszClassName = _T("Default Class Name");// ウィンドウクラス名
-
-	// ウィンドウクラスを登録する
-	if (RegisterClassEx(&wc) == 0) {
-		return NULL;
-
-	} else {
-		// ウィンドウを作成する
-		// TODO : CreateWindowEx()
-		return CreateWindow(
-			wc.lpszClassName,      // ウィンドウクラス名
-			_T("Sample Program"),  // タイトルバーに表示する文字列
-			WS_OVERLAPPEDWINDOW,   // ウィンドウの種類
-			WINDOW_X,              // ウィンドウを表示する位置（X座標）
-			WINDOW_Y,              // ウィンドウを表示する位置（Y座標）
-			WINDOW_WIDTH,          // ウィンドウの幅
-			WINDOW_HEIGHT,         // ウィンドウの高さ
-			NULL,                  // 親ウィンドウのウィンドウハンドル
-			NULL,                  // メニューハンドル
-			wc.hInstance,          // インスタンスハンドル
-			NULL                   // その他の作成データ
+	// ウィンドウを作成する
+	// TODO : CreateWindowEx()
+	HWND hwnd = CreateWindow(
+		className.c_str(),       // ウィンドウクラス名
+		text.c_str(),            // タイトルバーに表示する文字列
+		WS_OVERLAPPEDWINDOW,     // ウィンドウの種類
+		rect.left,               // ウィンドウを表示する位置（X座標）
+		rect.top,                // ウィンドウを表示する位置（Y座標）
+		rect.width,              // ウィンドウの幅
+		rect.height,             // ウィンドウの高さ
+		hparent,                 // 親ウィンドウのウィンドウハンドル
+		hmenu,                   // メニューハンドル
+		::GetModuleHandle(NULL), // インスタンスハンドル
+		NULL                     // その他の作成データ
 		);
-	}
+
+	// TODO : アイコン他の設定
+
+	return hwnd;
 }
 
 bool Form::onDestroy(void) {
@@ -87,9 +72,9 @@ bool Form::onDestroy(void) {
 }
 
 void Form::setIcon(const Icon& icon) {
-	this->icon = &icon;
+	this->icon = const_cast<Icon*>(&icon);
 }
 
 void Form::setCursor(const Cursor& cursor) {
-	this->cursor = &cursor;
+	this->cursor = const_cast<Cursor*>(&cursor);
 }
