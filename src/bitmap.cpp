@@ -1,11 +1,10 @@
 /*
  * bitmap.cpp
  *
- * Last modified: <2013/04/02 00:53:36 +0900> By Zumida
+ * Last modified: <2013/04/09 18:50:33 +0900> By Zumida
  */
 
 #include "bitmap.hpp"
-#include "resource.hpp"
 
 using namespace swo;
 
