@@ -1,3 +1,7 @@
+#
+# Makefile for libswo.a
+#
+
 TARGET = ..\lib\libswo.a
 
 SRCS = \
