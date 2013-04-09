@@ -25,6 +25,7 @@ SRCS = \
 	image.cpp \
 	treeview.cpp \
 	eventlistener.cpp \
+	windowclass.cpp \
 	object.cpp \
 	string.cpp
 
