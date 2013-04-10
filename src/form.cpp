@@ -1,18 +1,12 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/04/10 23:06:50 +0900> By Zumida
+ * Last modified: <2013/04/11 05:48:59 +0900> By Zumida
  */
+#include "define.hpp"
 #include "form.hpp"
-#include "resource.hpp"
 
 using namespace swo;
-
-// 定数
-#define WINDOW_WIDTH  (400)		// ウィンドウの幅
-#define WINDOW_HEIGHT (300)		// ウィンドウの高さ
-#define WINDOW_X ((GetSystemMetrics(SM_CXSCREEN) - WINDOW_WIDTH ) / 2)
-#define WINDOW_Y ((GetSystemMetrics(SM_CYSCREEN) - WINDOW_HEIGHT) / 2)
 
 Form::Form() {
 	initialize();
@@ -35,6 +29,7 @@ void Form::initialize(void) {
 	rect.top    = WINDOW_Y;
 	rect.width  = WINDOW_WIDTH;
 	rect.height = WINDOW_HEIGHT;
+	className   = WINDOW_CLASSNAME;
 }
 
 HWND Form::createHandle(void) {
