@@ -1,11 +1,10 @@
 /*
  * cursor.cpp
  *
- * Last modified: <2013/04/02 00:54:04 +0900> By Zumida
+ * Last modified: <2013/04/09 18:50:13 +0900> By Zumida
  */
 
 #include "cursor.hpp"
-#include "resource.hpp"
 
 using namespace swo;
 

@@ -1,11 +1,10 @@
 /*
  * icon.cpp
  *
- * Last modified: <2013/04/02 00:54:19 +0900> By Zumida
+ * Last modified: <2013/04/09 18:49:38 +0900> By Zumida
  */
 
 #include "icon.hpp"
-#include "resource.hpp"
 
 using namespace swo;
 

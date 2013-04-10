@@ -1,17 +1,16 @@
 /*
  * application.hpp
  *
- * Last modified: <2013/03/25 18:58:31 +0900> By Zumida
+ * Last modified: <2013/04/09 18:56:47 +0900> By Zumida
  */
 #ifndef APPLICATION_HPP_INCLUDED
 #define APPLICATION_HPP_INCLUDED
 
-#include "eventlistener.hpp"
 #include "control.hpp"
 
 namespace swo {
 
-	class Application : public EventListener {
+	class Application : public Object {
 	private:
 		Objects objects;
 
