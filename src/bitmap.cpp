@@ -1,7 +1,7 @@
 /*
  * bitmap.cpp
  *
- * Last modified: <2013/04/09 18:50:33 +0900> By Zumida
+ * Last modified: <2013/04/11 06:27:59 +0900> By Zumida
  */
 
 #include "bitmap.hpp"
@@ -21,3 +21,5 @@ Bitmap::~Bitmap() {
 HBITMAP Bitmap::getHandle(void) const {
 	return handle;
 }
+
+const Bitmap Bitmap::empty;

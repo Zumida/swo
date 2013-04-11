@@ -1,7 +1,7 @@
 /*
  * control.cpp
  *
- * Last modified: <2013/04/03 01:37:27 +0900> By Zumida
+ * Last modified: <2013/04/11 09:10:28 +0900> By Zumida
  */
 #include "control.hpp"
 #include <algorithm>
@@ -34,8 +34,9 @@ Control::~Control() {
 	}
 
 	while (!childs.empty()) {
-		delete *childs.end();
+		Control* child = childs.back();
 		childs.pop_back();
+		delete child;
 	}
 
 	if (getHandle() != NULL) {

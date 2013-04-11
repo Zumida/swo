@@ -1,20 +1,28 @@
 /*
  * application.cpp
  *
- * Last modified: <2013/04/03 01:34:25 +0900> By Zumida
+ * Last modified: <2013/04/11 09:09:47 +0900> By Zumida
  */
-
+#include "define.hpp"
 #include "application.hpp"
+#include "windowclass.hpp"
 
 using namespace swo;
 
 Application::Application() {
+	if (WindowClass::find(WINDOW_CLASSNAME) == NULL) {
+		WindowClass& wc = createObject<WindowClass>();
+		wc.setClassName(WINDOW_CLASSNAME);
+		wc.setWndProc(EventListener::WndProc);
+		WindowClass::add(wc);
+	}
 }
 
 Application::~Application() {
 	while (!objects.empty()) {
-		delete *objects.end();
+		Object* object = objects.back();
 		objects.pop_back();
+		delete object;
 	}
 }
 

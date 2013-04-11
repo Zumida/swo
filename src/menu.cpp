@@ -1,7 +1,7 @@
 /*
  * menu.cpp
  *
- * Last modified: <2013/03/27 09:41:56 +0900> By Zumida
+ * Last modified: <2013/04/11 06:28:14 +0900> By Zumida
  */
 
 #include "menu.hpp"
@@ -36,3 +36,5 @@ void Menu::add(const int index, const MenuItem& item) {
 		InsertMenuItem(handle, index, TRUE, &item.getInfo());
 	}
 }
+
+const Menu Menu::empty;

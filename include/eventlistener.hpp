@@ -1,7 +1,7 @@
 /*
  * eventlistener.hpp
  *
- * Last modified: <2013/03/25 16:59:48 +0900> By Zumida
+ * Last modified: <2013/04/11 06:36:38 +0900> By Zumida
  */
 #ifndef EVENTLISTENER_HPP_INCLUDED
 #define EVENTLISTENER_HPP_INCLUDED
@@ -83,10 +83,6 @@ namespace swo {
 		virtual bool onMouseHover(int fwKeys, int x, int y) {return false;}
 		virtual bool onMouseLeave(void) {return false;}
 
-		static LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
-		static void addListener(HWND hWnd, class EventListener* listener);
-		static void removeListener(HWND hWnd);
-
 	public:
 		EventListener();
 		virtual ~EventListener();
@@ -94,6 +90,9 @@ namespace swo {
 		HWND getHandle(void) const;
 
 		static EventListener* findListener(HWND hWnd);
+		static void addListener(HWND hWnd, class EventListener* listener);
+		static void removeListener(HWND hWnd);
+		static LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
 	};
 
 };

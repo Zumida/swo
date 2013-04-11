@@ -1,15 +1,14 @@
 /*
  * windowclass.cpp
  *
- * Last modified: <2013/04/09 21:27:47 +0900> By Zumida
+ * Last modified: <2013/04/11 05:57:51 +0900> By Zumida
  */
 #include <map>
 #include "windowclass.hpp"
-#include "resource.hpp"
 
 using namespace swo;
 
-typedef std::map<String, class WindowClass> WndClassMap;
+typedef std::map<String, class WindowClass*> WndClassMap;
 
 static WndClassMap wndClassMap;
 
@@ -22,6 +21,9 @@ WindowClass::WindowClass() {
 }
 
 WindowClass::~WindowClass() {
+	if (!className.empty()) {
+		UnregisterClass(className.c_str(), ::GetModuleHandle(NULL));
+	}
 }
 
 void WindowClass::setClassName(const String& className) {
@@ -67,6 +69,7 @@ void WindowClass::add(class WindowClass& wndClass) {
 	// 小アイコン
 	if (wndClass.smallIcon != NULL)
 		wc.hIconSm = wndClass.smallIcon->getHandle();
+	if (wc.hIconSm == NULL) wc.hIconSm = wc.hIcon;
 
 	// マウスカーソル
 	if (wndClass.cursor != NULL)
@@ -82,12 +85,12 @@ void WindowClass::add(class WindowClass& wndClass) {
 
 	// ウィンドウクラスを登録する
 	if (RegisterClassEx(&wc) != 0) {
-		wndClassMap.insert(std::make_pair(wndClass.className, wndClass));
+		wndClassMap.insert(std::make_pair(wndClass.className, &wndClass));
 	}
 }
 
 class WindowClass* WindowClass::find(const String& className) {
 	WndClassMap::iterator it = wndClassMap.find(className);
 
-	return (it == wndClassMap.end())? NULL: &it->second;
+	return (it == wndClassMap.end())? NULL: it->second;
 }
