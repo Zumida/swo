@@ -1,7 +1,7 @@
 /*
  * form.hpp
  *
- * Last modified: <2013/04/09 21:31:49 +0900> By Zumida
+ * Last modified: <2013/04/12 23:58:30 +0900> By Zumida
  */
 #ifndef FORM_HPP_INCLUDED
 #define FORM_HPP_INCLUDED
@@ -19,10 +19,10 @@ namespace swo {
 		String className;
 		String text;
 		WindowRect rect;
-		Icon *icon;
-		Cursor *cursor;
-		Brush *background;
-		Menu *menu;
+		Icon* icon;
+		Cursor* cursor;
+		Brush* background;
+		Menu* menu;
 
 		void initialize(void);
 
@@ -33,7 +33,7 @@ namespace swo {
 	public:
 		Form();
 		Form(Control* parent);
-		virtual ~Form();
+		~Form();
 
 		void setIcon(const Icon& icon);
 		void setCursor(const Cursor& cursor);

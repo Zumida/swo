@@ -1,7 +1,7 @@
 /*
  * control.hpp
  *
- * Last modified: <2013/03/25 13:25:46 +0900> By Zumida
+ * Last modified: <2013/04/12 22:00:35 +0900> By Zumida
  */
 #ifndef CONTROL_HPP_INCLUDED
 #define CONTROL_HPP_INCLUDED
@@ -33,7 +33,7 @@ namespace swo {
 	public:
 		Control();
 		Control(Control* parent);
-		virtual ~Control();
+		~Control();
 
 		void update(void);
 		void sync(void);

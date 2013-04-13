@@ -1,9 +1,8 @@
 /*
  * menu.cpp
  *
- * Last modified: <2013/04/11 06:28:14 +0900> By Zumida
+ * Last modified: <2013/04/12 20:47:30 +0900> By Zumida
  */
-
 #include "menu.hpp"
 
 using namespace swo;

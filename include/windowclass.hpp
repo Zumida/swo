@@ -1,7 +1,7 @@
 /*
  * windowclass.hpp
  *
- * Last modified: <2013/04/09 21:23:30 +0900> By Zumida
+ * Last modified: <2013/04/12 21:48:30 +0900> By Zumida
  */
 #ifndef WINDOWCLASS_HPP_INCLUDED
 #define WINDOWCLASS_HPP_INCLUDED
@@ -20,15 +20,15 @@ namespace swo {
 	private:
 		String className;
 		String menuName;
-		Icon *icon;
-		Icon *smallIcon;
-		Cursor *cursor;
-		Brush *background;
+		Icon* icon;
+		Icon* smallIcon;
+		Cursor* cursor;
+		Brush* background;
 		FuncWndProc wndProc;
 
 	public:
 		WindowClass();
-		virtual ~WindowClass();
+		~WindowClass();
 
 		void setClassName(const String& className);
 		void setIcon(const Icon& icon);

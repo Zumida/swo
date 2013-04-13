@@ -1,9 +1,8 @@
 /*
  * object.cpp
  *
- * Last modified: <2013/04/09 01:57:36 +0900> By Zumida
+ * Last modified: <2013/04/12 20:48:25 +0900> By Zumida
  */
-
 #include "object.hpp"
 
 #include <typeinfo>

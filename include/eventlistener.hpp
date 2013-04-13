@@ -1,7 +1,7 @@
 /*
  * eventlistener.hpp
  *
- * Last modified: <2013/04/11 06:36:38 +0900> By Zumida
+ * Last modified: <2013/04/12 22:01:14 +0900> By Zumida
  */
 #ifndef EVENTLISTENER_HPP_INCLUDED
 #define EVENTLISTENER_HPP_INCLUDED
@@ -85,7 +85,7 @@ namespace swo {
 
 	public:
 		EventListener();
-		virtual ~EventListener();
+		~EventListener();
 
 		HWND getHandle(void) const;
 

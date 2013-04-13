@@ -1,7 +1,7 @@
 /*
  * imagelist.hpp
  *
- * Last modified: <2013/03/21 09:37:22 +0900> By Zumida
+ * Last modified: <2013/04/12 22:23:18 +0900> By Zumida
  */
 #ifndef IMAGELIST_HPP_INCLUDED
 #define IMAGELIST_HPP_INCLUDED
@@ -16,7 +16,7 @@ namespace swo {
 
 	public:
 		ImageList();
-		virtual ~ImageList();
+		~ImageList();
 
 		void addIcon();
 	};

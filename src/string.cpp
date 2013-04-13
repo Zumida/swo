@@ -1,9 +1,8 @@
 /*
  * string.cpp
  *
- * Last modified: <2013/03/27 20:12:38 +0900> By Zumida
+ * Last modified: <2013/04/12 07:14:49 +0900> By Zumida
  */
-
 #include "string.hpp"
 #include <windows.h>
 #include <string.h>

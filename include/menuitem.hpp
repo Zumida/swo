@@ -1,7 +1,7 @@
 /*
  * menuitem.hpp
  *
- * Last modified: <2013/03/27 20:22:35 +0900> By Zumida
+ * Last modified: <2013/04/12 22:23:57 +0900> By Zumida
  */
 #ifndef MENUITEM_HPP_INCLUDED
 #define MENUITEM_HPP_INCLUDED
@@ -43,7 +43,7 @@ namespace swo {
 
 	public:
 		MenuItem();
-		virtual ~MenuItem();
+		~MenuItem();
 
 		void setType(const MenuItemType type);
 		MenuItemType getType(void) const;

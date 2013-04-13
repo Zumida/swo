@@ -1,9 +1,8 @@
 /*
  * canvas.cpp
  *
- * Last modified: <2013/04/02 19:10:04 +0900> By Zumida
+ * Last modified: <2013/04/12 07:14:55 +0900> By Zumida
  */
-
 #include "canvas.hpp"
 
 using namespace swo;

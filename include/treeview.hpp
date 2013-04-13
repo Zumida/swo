@@ -1,7 +1,7 @@
 /*
  * treeview.hpp
  *
- * Last modified: <2013/03/21 09:39:56 +0900> By Zumida
+ * Last modified: <2013/04/13 21:12:05 +0900> By Zumida
  */
 #ifndef TREEVIEW_HPP_INCLUDED
 #define TREEVIEW_HPP_INCLUDED
@@ -20,7 +20,7 @@ namespace swo {
 
 	public:
 		TreeView();
-		virtual ~TreeView();
+		~TreeView();
 	};
 
 };

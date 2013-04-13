@@ -1,9 +1,8 @@
 /*
  * dragdrop.cpp
  *
- * Last modified: <2013/03/22 16:31:30 +0900> By Zumida
+ * Last modified: <2013/04/12 07:14:07 +0900> By Zumida
  */
-
 #include "dragdrop.hpp"
 
 using namespace swo;
