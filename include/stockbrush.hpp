@@ -1,7 +1,7 @@
 /*
  * stockbrush.hpp
  *
- * Last modified: <2013/04/02 18:14:49 +0900> By Zumida
+ * Last modified: <2013/04/12 22:27:50 +0900> By Zumida
  */
 #ifndef STOCKBRUSH_HPP_INCLUDED
 #define STOCKBRUSH_HPP_INCLUDED
@@ -15,10 +15,13 @@ namespace swo {
 		int stock;
 
 	public:
-		StockBrush(int stock);
-		virtual ~StockBrush();
+		StockBrush();
+		StockBrush(const int stock);
+		~StockBrush();
 
-		virtual HGDIOBJ getHandle(void);
+		Brush& set(const int stock);
+		HGDIOBJ getHandle(void);
+		void trash(void);
 	};
 
 };

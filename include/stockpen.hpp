@@ -1,7 +1,7 @@
 /*
  * stockpen.hpp
  *
- * Last modified: <2013/04/02 18:12:09 +0900> By Zumida
+ * Last modified: <2013/04/12 22:39:46 +0900> By Zumida
  */
 #ifndef STOCKPEN_HPP_INCLUDED
 #define STOCKPEN_HPP_INCLUDED
@@ -15,10 +15,12 @@ namespace swo {
 		int stock;
 
 	public:
-		StockPen(int stock);
-		virtual ~StockPen();
+		StockPen();
+		StockPen(const int stock);
+		~StockPen();
 
-		virtual HGDIOBJ getHandle(void);
+		Pen& set(const int stock);
+		HGDIOBJ getHandle(void);
 	};
 
 };

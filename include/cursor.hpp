@@ -1,7 +1,7 @@
 /*
  * cursor.hpp
  *
- * Last modified: <2013/03/27 14:30:11 +0900> By Zumida
+ * Last modified: <2013/04/12 21:49:23 +0900> By Zumida
  */
 #ifndef CURSOR_HPP_INCLUDED
 #define CURSOR_HPP_INCLUDED
@@ -15,9 +15,10 @@ namespace swo {
 
 	public:
 		Cursor();
-		Cursor(const String& cursorName);
-		virtual ~Cursor();
+		Cursor(const String& name);
+		~Cursor();
 
+		Cursor& set(const String& name);
 		HCURSOR getHandle(void) const;
 	};
 

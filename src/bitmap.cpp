@@ -1,9 +1,8 @@
 /*
  * bitmap.cpp
  *
- * Last modified: <2013/04/11 06:27:59 +0900> By Zumida
+ * Last modified: <2013/04/12 22:46:08 +0900> By Zumida
  */
-
 #include "bitmap.hpp"
 
 using namespace swo;
@@ -11,11 +10,16 @@ using namespace swo;
 Bitmap::Bitmap() {
 }
 
-Bitmap::Bitmap(const String& bitmapName) {
-	load(bitmapName, IMAGE_BITMAP);
+Bitmap::Bitmap(const String& name) {
+	Image::load(name, IMAGE_BITMAP);
 }
 
 Bitmap::~Bitmap() {
+}
+
+Bitmap& Bitmap::set(const String& name) {
+	Image::load(name, IMAGE_BITMAP);
+	return *this;
 }
 
 HBITMAP Bitmap::getHandle(void) const {

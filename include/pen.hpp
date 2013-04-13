@@ -1,7 +1,7 @@
 /*
  * pen.hpp
  *
- * Last modified: <2013/04/02 18:10:37 +0900> By Zumida
+ * Last modified: <2013/04/12 22:25:48 +0900> By Zumida
  */
 #ifndef PEN_HPP_INCLUDED
 #define PEN_HPP_INCLUDED
@@ -13,7 +13,7 @@ namespace swo {
 	class Pen : public GdiObject {
 	public:
 		Pen();
-		virtual ~Pen();
+		~Pen();
 
 		HPEN getPen(void);
 	};

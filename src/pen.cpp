@@ -1,9 +1,8 @@
 /*
  * pen.cpp
  *
- * Last modified: <2013/04/02 18:10:52 +0900> By Zumida
+ * Last modified: <2013/04/12 20:48:46 +0900> By Zumida
  */
-
 #include "pen.hpp"
 
 using namespace swo;

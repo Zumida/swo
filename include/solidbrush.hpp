@@ -1,7 +1,7 @@
 /*
  * solidbrush.hpp
  *
- * Last modified: <2013/04/02 18:16:52 +0900> By Zumida
+ * Last modified: <2013/04/12 22:26:57 +0900> By Zumida
  */
 #ifndef SOLIDBRUSH_HPP_INCLUDED
 #define SOLIDBRUSH_HPP_INCLUDED
@@ -15,11 +15,12 @@ namespace swo {
 		COLORREF color;
 
 	public:
-		SolidBrush(COLORREF color);
-		SolidBrush(int r, int g, int b);
-		virtual ~SolidBrush();
+		SolidBrush();
+		SolidBrush(const COLORREF color);
+		~SolidBrush();
 
-		virtual HGDIOBJ getHandle(void);
+		Brush& set(const COLORREF color);
+		HGDIOBJ getHandle(void);
 	};
 
 };

@@ -1,7 +1,7 @@
 /*
  * image.hpp
  *
- * Last modified: <2013/04/02 00:52:55 +0900> By Zumida
+ * Last modified: <2013/04/12 22:23:04 +0900> By Zumida
  */
 #ifndef IMAGE_HPP_INCLUDED
 #define IMAGE_HPP_INCLUDED
@@ -18,7 +18,7 @@ namespace swo {
 	public:
 		Image();
 		Image(const class Image& image);
-		virtual ~Image();
+		~Image();
 
 		void load(const String& name, const int type);
 		HANDLE getHandle(void) const;

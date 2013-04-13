@@ -1,22 +1,25 @@
 /*
  * icon.cpp
  *
- * Last modified: <2013/04/09 18:49:38 +0900> By Zumida
+ * Last modified: <2013/04/13 00:02:11 +0900> By Zumida
  */
-
 #include "icon.hpp"
 
 using namespace swo;
 
 Icon::Icon() {
-	load(IDI_APPLICATION, IMAGE_ICON);
 }
 
-Icon::Icon(const String& iconName) {
-	load(iconName, IMAGE_ICON);
+Icon::Icon(const String& name) {
+	Image::load(name, IMAGE_ICON);
 }
 
 Icon::~Icon() {
+}
+
+Icon& Icon::set(const String& name) {
+	Image::load(name, IMAGE_ICON);
+	return *this;
 }
 
 HICON Icon::getHandle(void) const {

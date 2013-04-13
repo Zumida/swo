@@ -1,7 +1,7 @@
 /*
  * custompen.hpp
  *
- * Last modified: <2013/04/02 18:09:17 +0900> By Zumida
+ * Last modified: <2013/04/12 21:57:41 +0900> By Zumida
  */
 #ifndef CUSTOMPEN_HPP_INCLUDED
 #define CUSTOMPEN_HPP_INCLUDED
@@ -17,11 +17,12 @@ namespace swo {
 		COLORREF color;
 
 	public:
-		CustomPen(int style, int width, COLORREF color);
-		CustomPen(int style, int width, int r, int g, int b);
-		virtual ~CustomPen();
+		CustomPen();
+		CustomPen(const int style, const int width, const COLORREF color);
+		~CustomPen();
 
-		virtual HGDIOBJ getHandle(void);
+		Pen& set(const int style, const int width, const COLORREF color);
+		HGDIOBJ getHandle(void);
 	};
 
 };

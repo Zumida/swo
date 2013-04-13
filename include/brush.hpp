@@ -1,7 +1,7 @@
 /*
  * brush.hpp
  *
- * Last modified: <2013/04/02 18:13:53 +0900> By Zumida
+ * Last modified: <2013/04/12 21:59:59 +0900> By Zumida
  */
 #ifndef BRUSH_HPP_INCLUDED
 #define BRUSH_HPP_INCLUDED
@@ -13,7 +13,7 @@ namespace swo {
 	class Brush : public GdiObject {
 	public:
 		Brush();
-		virtual ~Brush();
+		~Brush();
 
 		HBRUSH getBrush(void);
 	};

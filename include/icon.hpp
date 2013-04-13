@@ -1,7 +1,7 @@
 /*
  * icon.hpp
  *
- * Last modified: <2013/03/27 15:19:43 +0900> By Zumida
+ * Last modified: <2013/04/12 22:06:46 +0900> By Zumida
  */
 #ifndef ICON_HPP_INCLUDED
 #define ICON_HPP_INCLUDED
@@ -15,9 +15,10 @@ namespace swo {
 
 	public:
 		Icon();
-		Icon(const String& iconName);
-		virtual ~Icon();
+		Icon(const String& name);
+		~Icon();
 
+		Icon& set(const String& name);
 		HICON getHandle(void) const;
 	};
 

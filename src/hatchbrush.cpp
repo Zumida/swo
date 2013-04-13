@@ -1,24 +1,29 @@
 /*
  * hatchbrush.cpp
  *
- * Last modified: <2013/04/02 18:22:33 +0900> By Zumida
+ * Last modified: <2013/04/13 00:00:29 +0900> By Zumida
  */
-
 #include "hatchbrush.hpp"
 
 using namespace swo;
 
-HatchBrush::HatchBrush(int style, COLORREF color) {
+HatchBrush::HatchBrush() {
+	this->style = 0;
+	this->color = 0;
+}
+
+HatchBrush::HatchBrush(const int style, const COLORREF color) {
 	this->style = style;
 	this->color = color;
 }
 
-HatchBrush::HatchBrush(int style, int r, int g, int b) {
-	this->style = style;
-	this->color = RGB(r, g, b);
+HatchBrush::~HatchBrush() {
 }
 
-HatchBrush::~HatchBrush() {
+Brush& HatchBrush::set(const int style, const COLORREF color) {
+	this->style = style;
+	this->color = color;
+	return *this;
 }
 
 HGDIOBJ HatchBrush::getHandle(void) {
