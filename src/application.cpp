@@ -1,19 +1,24 @@
 /*
  * application.cpp
  *
- * Last modified: <2013/04/11 07:01:46 +0900> By Zumida
+ * Last modified: <2013/04/13 22:02:36 +0900> By Zumida
  */
 #include "define.hpp"
 #include "application.hpp"
 #include "windowclass.hpp"
+#include "syscolorbrush.hpp"
 
 using namespace swo;
 
 Application::Application() {
 	if (WindowClass::find(WINDOW_CLASSNAME) == NULL) {
 		WindowClass& wc = createObject<WindowClass>();
+		Brush& bs = createObject<SysColorBrush>().set(0);
+
 		wc.setClassName(WINDOW_CLASSNAME);
+		wc.setBackground(bs);
 		wc.setWndProc(EventListener::WndProc);
+
 		WindowClass::add(wc);
 	}
 }

@@ -1,7 +1,7 @@
 /*
  * application.hpp
  *
- * Last modified: <2013/04/09 18:56:47 +0900> By Zumida
+ * Last modified: <2013/04/12 21:59:34 +0900> By Zumida
  */
 #ifndef APPLICATION_HPP_INCLUDED
 #define APPLICATION_HPP_INCLUDED
@@ -18,7 +18,7 @@ namespace swo {
 
 	public:
 		Application();
-		virtual ~Application();
+		~Application();
 
 		int run(void);
 
