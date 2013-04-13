@@ -18,6 +18,7 @@ SRCS = \
 	hatchbrush.cpp \
 	solidbrush.cpp \
 	stockbrush.cpp \
+	syscolorbrush.cpp \
 	brush.cpp \
 	custompen.cpp \
 	stockpen.cpp \
