@@ -17,7 +17,7 @@ Usage
    Perform initial setting of widget.  
 
 3. Appicationクラスのインスタンスのrun()にてWindowsメッセージを処理する。  
-   Process a Windows message in run() of the instance of an Appication class.  
+   Process a Windows message in run() of the Appication class instance.  
 
 main.cpp
 
@@ -37,7 +37,7 @@ main.cpp
 	}
 
 	#ifndef wWinMain
-	int main(const int argc, const char** argv) {
+	int main(const int argc, const char* argv[]) {
 		::_tsetlocale(LC_ALL, L"");
 		
 		return _tWinMain(::GetModuleHandle(NULL), NULL, ::GetCommandLine(), SW_SHOW);
