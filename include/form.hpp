@@ -1,7 +1,7 @@
 /*
  * form.hpp
  *
- * Last modified: <2013/04/12 23:58:30 +0900> By Zumida
+ * Last modified: <2013/04/17 07:10:08 +0900> By Zumida
  */
 #ifndef FORM_HPP_INCLUDED
 #define FORM_HPP_INCLUDED
@@ -13,6 +13,12 @@
 #include "menu.hpp"
 
 namespace swo {
+	enum FormType {
+		DialogModalFrame,
+		OverLappedWindow,
+		PaletteWindow,
+		ToolWindow
+	};
 
 	class Form : public Control {
 	private:
@@ -42,6 +48,14 @@ namespace swo {
 		void setText(const String& text);
 		void setRect(const WindowRect& rect);
 		void setMenu(const Menu& menu);
+
+		void setAcceptFiles(const bool enabled);
+		void setAppWindow(const bool enabled);
+		void setFormType(const FormType formType);
+		void setMdiChild(const bool enabled);
+		void setActivate(const bool enabled);
+		void setTopMost(const bool enabled);
+		void setTransparent(const bool enabled);
 	};
 
 };
