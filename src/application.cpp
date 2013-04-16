@@ -1,7 +1,7 @@
 /*
  * application.cpp
  *
- * Last modified: <2013/04/14 07:04:02 +0900> By Zumida
+ * Last modified: <2013/04/16 19:46:28 +0900> By Zumida
  */
 #include "define.hpp"
 #include "application.hpp"
@@ -45,9 +45,28 @@ int Application::run(void) {
 	// メッセージループ
 	MSG msg;
 	for (;;) {
-		int result = GetMessage(&msg, NULL, 0, 0);
+		// 更新予約コントロールを更新
+		for (Objects::iterator it = objects.begin();
+			 it != objects.end(); ) {
+
+			Control* c = dynamic_cast<Control*>(*it);
+			if (c != NULL) {
+				if (c->isTerminated()) {
+					it = objects.erase(it);
+					delete c;
+					continue;
+				}
+
+				if (c->isUpdated()) {
+					c->refresh();
+				}
+			}
+
+			it++;
+		}
 
 		// メッセージ取得失敗、終了メッセージ受信時はループ終了
+		int result = GetMessage(&msg, NULL, 0, 0);
 		if (result == 0 || result == -1) break;
 
 		// メッセージを処理する

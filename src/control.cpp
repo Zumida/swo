@@ -1,7 +1,7 @@
 /*
  * control.cpp
  *
- * Last modified: <2013/04/14 07:00:38 +0900> By Zumida
+ * Last modified: <2013/04/16 19:48:32 +0900> By Zumida
  */
 #include "control.hpp"
 #include <algorithm>
@@ -40,39 +40,29 @@ Control::~Control() {
 	}
 
 	if (getHandle() != NULL) {
-		DestroyWindow(getHandle());
+		::DestroyWindow(getHandle());
 		setHandle(NULL);
 	}
 }
 
 void Control::initialize(void) {
+	terminated = false;
 	updated = true;
 	parent = NULL;
 	childs.clear();
 }
 
-void Control::update(void) {
+void Control::renew(void) {
 	updated = true;
+
+	if (getHandle() != NULL) {
+		::DestroyWindow(getHandle());
+		setHandle(NULL);
+	}
 }
 
-void Control::sync(bool isOwner) {
-	if (updated) {
-		updated = false;
-		childs.sort();
-
-		HWND handle = getHandle();
-		if (handle != NULL && isOwner) ::DestroyWindow(handle);
-
-		handle = createHandle();
-		setHandle(handle);
-	}
-
-	for (Controls::iterator it = childs.begin();
-		 it != childs.end();
-		 it++) {
-
-		(*it)->sync(false);
-	}
+void Control::update(void) {
+	updated = true;
 }
 
 void Control::refresh(bool isOwner) {
@@ -95,12 +85,12 @@ void Control::refresh(bool isOwner) {
 	}
 }
 
-void Control::sync() {
-	sync(true);
-}
-
 void Control::refresh() {
 	refresh(true);
+}
+
+void Control::terminate(void) {
+	terminated = true;
 }
 
 Control* Control::getParent(void) {
@@ -129,7 +119,7 @@ void Control::removeChild(Control* child) {
 
 void Control::show(void) {
 	visible = true;
-	sync();
+	refresh();
 
 	HWND hWnd = getHandle();
 	if (hWnd != NULL) {
@@ -148,7 +138,7 @@ void Control::hide(void) {
 	}
 }
 
-int Control::getTab(void) {
+int Control::getTab(void) const {
 	return tab;
 }
 
@@ -157,13 +147,21 @@ void Control::setTab(int tab) {
 	update();
 }
 
-bool Control::hasBorder(void) {
+bool Control::hasBorder(void) const {
 	return border;
 }
 
 void Control::setBorder(bool border) {
 	this->border = border;
 	update();
+}
+
+bool Control::isUpdated(void) const {
+	return updated;
+}
+
+bool Control::isTerminated(void) const {
+	return terminated;
 }
 
 bool Control::operator < (const Control* control) {

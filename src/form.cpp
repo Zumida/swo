@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/04/11 05:48:59 +0900> By Zumida
+ * Last modified: <2013/04/16 17:30:18 +0900> By Zumida
  */
 #include "define.hpp"
 #include "form.hpp"
@@ -72,4 +72,24 @@ void Form::setIcon(const Icon& icon) {
 
 void Form::setCursor(const Cursor& cursor) {
 	this->cursor = const_cast<Cursor*>(&cursor);
+}
+
+void Form::setBackground(const Brush& brush) {
+	this->background = const_cast<Brush*>(&brush);
+}
+
+void Form::setClassName(const String& className) {
+	this->className = className;
+}
+
+void Form::setText(const String& text) {
+	this->text = text;
+}
+
+void Form::setRect(const WindowRect& rect) {
+	this->rect = rect;
+}
+
+void Form::setMenu(const Menu& menu) {
+	this->menu = const_cast<Menu*>(&menu);
 }

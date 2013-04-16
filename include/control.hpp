@@ -1,7 +1,7 @@
 /*
  * control.hpp
  *
- * Last modified: <2013/04/12 22:00:35 +0900> By Zumida
+ * Last modified: <2013/04/16 19:43:12 +0900> By Zumida
  */
 #ifndef CONTROL_HPP_INCLUDED
 #define CONTROL_HPP_INCLUDED
@@ -22,9 +22,9 @@ namespace swo {
 		bool visible;
 		bool border;
 		bool updated;
+		bool terminated;
 
 		void initialize(void);
-		void sync(bool isOwner);
 		void refresh(bool isOwner);
 
 	protected:
@@ -35,9 +35,10 @@ namespace swo {
 		Control(Control* parent);
 		~Control();
 
+		void renew(void);
 		void update(void);
-		void sync(void);
 		void refresh(void);
+		void terminate(void);
 
 		Control* getParent(void);
 		void setParent(Control* parent);
@@ -48,11 +49,14 @@ namespace swo {
 		void show(void);
 		void hide(void);
 
-		int getTab(void);
+		int getTab(void) const;
 		void setTab(int tab);
 
-		bool hasBorder(void);
+		bool hasBorder(void) const;
 		void setBorder(bool border);
+
+		bool isUpdated(void) const;
+		bool isTerminated(void) const;
 
 		bool operator < (const Control* control);
 	};
