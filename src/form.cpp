@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/04/16 22:32:45 +0900> By Zumida
+ * Last modified: <2013/04/17 00:20:29 +0900> By Zumida
  */
 #include "define.hpp"
 #include "form.hpp"
@@ -35,10 +35,11 @@ void Form::initialize(void) {
 HWND Form::createHandle(void) {
 	HWND hparent = (getParent() != NULL)? getParent()->getHandle(): NULL;
 	HMENU hmenu = (menu != NULL)? menu->getHandle(): NULL;
+	int exStyle = WS_EX_LEFT | WS_EX_LTRREADING | WS_EX_RIGHTSCROLLBAR;
 
 	// ウィンドウを作成する
-	// TODO : CreateWindowEx()
-	HWND hwnd = CreateWindow(
+	HWND hwnd = CreateWindowEx(
+		exStyle,
 		className.c_str(),       // ウィンドウクラス名
 		text.c_str(),            // タイトルバーに表示する文字列
 		WS_OVERLAPPEDWINDOW,     // ウィンドウの種類
@@ -52,9 +53,10 @@ HWND Form::createHandle(void) {
 		NULL                     // その他の作成データ
 		);
 
-	// TODO : アイコン他の設定
-
 	return hwnd;
+}
+
+void Form::reset(void) {
 }
 
 bool Form::onDestroy(void) {
