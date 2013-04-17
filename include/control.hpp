@@ -1,7 +1,7 @@
 /*
  * control.hpp
  *
- * Last modified: <2013/04/17 12:41:16 +0900> By Zumida
+ * Last modified: <2013/04/18 02:19:57 +0900> By Zumida
  */
 #ifndef CONTROL_HPP_INCLUDED
 #define CONTROL_HPP_INCLUDED
@@ -42,7 +42,7 @@ namespace swo {
 		ControlEdge edge;
 
 		virtual HWND createHandle(void) = 0;
-		virtual void reset(void);
+		virtual void resetAttribute(void) = 0;
 
 	public:
 		Control();

@@ -1,7 +1,7 @@
 /*
  * form.hpp
  *
- * Last modified: <2013/04/17 12:40:14 +0900> By Zumida
+ * Last modified: <2013/04/18 02:20:35 +0900> By Zumida
  */
 #ifndef FORM_HPP_INCLUDED
 #define FORM_HPP_INCLUDED
@@ -34,6 +34,7 @@ namespace swo {
 
 	protected:
 		HWND createHandle(void);
+		void resetAttribute(void);
 		bool onDestroy(void);
 
 	public:

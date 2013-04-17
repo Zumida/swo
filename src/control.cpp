@@ -1,7 +1,7 @@
 /*
  * control.cpp
  *
- * Last modified: <2013/04/17 14:05:05 +0900> By Zumida
+ * Last modified: <2013/04/18 02:49:07 +0900> By Zumida
  */
 #include "control.hpp"
 #include <algorithm>
@@ -67,16 +67,21 @@ void Control::update(void) {
 
 void Control::refresh(bool isOwner) {
 	updated = false;
-	childs.sort();
 
 	HWND handle = getHandle();
-	if (handle != NULL && isOwner) ::DestroyWindow(handle);
+	if (handle != NULL && isOwner) {
+		::DestroyWindow(handle);
+		handle = NULL;
+	}
 
-	tout << "createHandle()" << std::endl;
-	handle = createHandle();
-	tout << "handle=" << handle << std::endl;
-	setHandle(handle);
+	if (handle == NULL) {
+		handle = createHandle();
+		setHandle(handle);
+	}
 
+	resetAttribute();
+
+	childs.sort();
 	for (Controls::iterator it = childs.begin();
 		 it != childs.end();
 		 it++) {
