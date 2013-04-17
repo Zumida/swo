@@ -1,7 +1,7 @@
 /*
  * bitmap.cpp
  *
- * Last modified: <2013/04/12 22:46:08 +0900> By Zumida
+ * Last modified: <2013/04/17 14:05:16 +0900> By Zumida
  */
 #include "bitmap.hpp"
 

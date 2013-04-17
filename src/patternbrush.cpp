@@ -1,7 +1,7 @@
 /*
  * patternbrush.cpp
  *
- * Last modified: <2013/04/13 01:07:26 +0900> By Zumida
+ * Last modified: <2013/04/17 14:03:48 +0900> By Zumida
  */
 #include "patternbrush.hpp"
 

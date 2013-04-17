@@ -1,7 +1,7 @@
 /*
  * control.hpp
  *
- * Last modified: <2013/04/17 07:06:07 +0900> By Zumida
+ * Last modified: <2013/04/17 12:41:16 +0900> By Zumida
  */
 #ifndef CONTROL_HPP_INCLUDED
 #define CONTROL_HPP_INCLUDED

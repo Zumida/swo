@@ -1,7 +1,7 @@
 /*
  * hatchbrush.cpp
  *
- * Last modified: <2013/04/13 00:00:29 +0900> By Zumida
+ * Last modified: <2013/04/17 14:04:29 +0900> By Zumida
  */
 #include "hatchbrush.hpp"
 

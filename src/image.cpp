@@ -1,7 +1,7 @@
 /*
  * image.cpp
  *
- * Last modified: <2013/04/12 22:22:57 +0900> By Zumida
+ * Last modified: <2013/04/17 14:04:20 +0900> By Zumida
  */
 #include "image.hpp"
 #include "resource.hpp"

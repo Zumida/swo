@@ -1,7 +1,7 @@
 /*
  * object.hpp
  *
- * Last modified: <2013/04/09 01:56:56 +0900> By Zumida
+ * Last modified: <2013/04/17 12:38:49 +0900> By Zumida
  */
 #ifndef OBJECT_HPP_INCLUDED
 #define OBJECT_HPP_INCLUDED

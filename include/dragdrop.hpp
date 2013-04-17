@@ -1,7 +1,7 @@
 /*
  * dragdrop.hpp
  *
- * Last modified: <2013/03/22 11:30:28 +0900> By Zumida
+ * Last modified: <2013/04/17 12:40:31 +0900> By Zumida
  */
 #ifndef DRAGDROP_HPP_INCLUDED
 #define DRAGDROP_HPP_INCLUDED

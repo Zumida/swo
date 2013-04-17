@@ -1,7 +1,7 @@
 /*
  * solidbrush.hpp
  *
- * Last modified: <2013/04/12 22:26:57 +0900> By Zumida
+ * Last modified: <2013/04/17 12:37:35 +0900> By Zumida
  */
 #ifndef SOLIDBRUSH_HPP_INCLUDED
 #define SOLIDBRUSH_HPP_INCLUDED

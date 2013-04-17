@@ -1,7 +1,7 @@
 /*
  * cursor.hpp
  *
- * Last modified: <2013/04/12 21:49:23 +0900> By Zumida
+ * Last modified: <2013/04/17 12:41:00 +0900> By Zumida
  */
 #ifndef CURSOR_HPP_INCLUDED
 #define CURSOR_HPP_INCLUDED

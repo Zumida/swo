@@ -1,7 +1,7 @@
 /*
  * rect.hpp
  *
- * Last modified: <2013/04/09 02:04:35 +0900> By Zumida
+ * Last modified: <2013/04/17 12:38:14 +0900> By Zumida
  */
 #ifndef RECT_HPP_INCLUDED
 #define RECT_HPP_INCLUDED

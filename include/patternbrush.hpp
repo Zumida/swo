@@ -1,7 +1,7 @@
 /*
  * patternbrush.hpp
  *
- * Last modified: <2013/04/13 01:06:27 +0900> By Zumida
+ * Last modified: <2013/04/17 12:38:42 +0900> By Zumida
  */
 #ifndef PATTERNBRUSH_HPP_INCLUDED
 #define PATTERNBRUSH_HPP_INCLUDED

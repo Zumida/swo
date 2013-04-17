@@ -1,7 +1,7 @@
 /*
  * stockpen.cpp
  *
- * Last modified: <2013/04/13 21:10:07 +0900> By Zumida
+ * Last modified: <2013/04/17 13:52:58 +0900> By Zumida
  */
 #include "stockpen.hpp"
 

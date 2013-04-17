@@ -1,7 +1,7 @@
 /*
  * gdiobject.cpp
  *
- * Last modified: <2013/04/02 19:07:37 +0900> By Zumida
+ * Last modified: <2013/04/17 14:04:33 +0900> By Zumida
  */
 #include "gdiobject.hpp"
 

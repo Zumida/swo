@@ -1,7 +1,7 @@
 /*
  * stockbrush.cpp
  *
- * Last modified: <2013/04/13 21:08:30 +0900> By Zumida
+ * Last modified: <2013/04/17 14:02:21 +0900> By Zumida
  */
 #include "stockbrush.hpp"
 

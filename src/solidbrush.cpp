@@ -1,7 +1,7 @@
 /*
  * solidbrush.cpp
  *
- * Last modified: <2013/04/13 01:10:50 +0900> By Zumida
+ * Last modified: <2013/04/17 14:02:44 +0900> By Zumida
  */
 #include "solidbrush.hpp"
 

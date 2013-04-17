@@ -1,7 +1,7 @@
 /*
  * syscolorbrush.cpp
  *
- * Last modified: <2013/04/13 21:11:28 +0900> By Zumida
+ * Last modified: <2013/04/17 13:52:39 +0900> By Zumida
  */
 #include "syscolorbrush.hpp"
 

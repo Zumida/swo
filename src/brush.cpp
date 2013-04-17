@@ -1,7 +1,7 @@
 /*
  * brush.cpp
  *
- * Last modified: <2013/04/12 07:13:44 +0900> By Zumida
+ * Last modified: <2013/04/17 14:05:12 +0900> By Zumida
  */
 #include "brush.hpp"
 

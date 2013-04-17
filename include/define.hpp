@@ -1,7 +1,7 @@
 /*
  * define.hpp
  *
- * Last modified: <2013/04/11 05:48:50 +0900> By Zumida
+ * Last modified: <2013/04/17 12:40:40 +0900> By Zumida
  */
 #ifndef DEFINE_HPP_INCLUDED
 #define DEFINE_HPP_INCLUDED

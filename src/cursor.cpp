@@ -1,7 +1,7 @@
 /*
  * cursor.cpp
  *
- * Last modified: <2013/04/12 23:54:52 +0900> By Zumida
+ * Last modified: <2013/04/17 14:05:00 +0900> By Zumida
  */
 #include "cursor.hpp"
 

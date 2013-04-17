@@ -1,7 +1,7 @@
 /*
  * control.cpp
  *
- * Last modified: <2013/04/16 22:34:07 +0900> By Zumida
+ * Last modified: <2013/04/17 14:05:05 +0900> By Zumida
  */
 #include "control.hpp"
 #include <algorithm>

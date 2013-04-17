@@ -1,7 +1,7 @@
 /*
  * windowclass.hpp
  *
- * Last modified: <2013/04/12 21:48:30 +0900> By Zumida
+ * Last modified: <2013/04/17 12:36:17 +0900> By Zumida
  */
 #ifndef WINDOWCLASS_HPP_INCLUDED
 #define WINDOWCLASS_HPP_INCLUDED

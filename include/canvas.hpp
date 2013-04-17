@@ -1,7 +1,7 @@
 /*
  * canvas.hpp
  *
- * Last modified: <2013/04/02 19:02:17 +0900> By Zumida
+ * Last modified: <2013/04/17 12:43:05 +0900> By Zumida
  */
 #ifndef CANVAS_HPP_INCLUDED
 #define CANVAS_HPP_INCLUDED

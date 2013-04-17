@@ -1,7 +1,7 @@
 /*
  * syscolorbrush.hpp
  *
- * Last modified: <2013/04/12 22:40:25 +0900> By Zumida
+ * Last modified: <2013/04/17 12:36:44 +0900> By Zumida
  */
 #ifndef SYSCOLORBRUSH_HPP_INCLUDED
 #define SYSCOLORBRUSH_HPP_INCLUDED
