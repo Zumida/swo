@@ -1,7 +1,7 @@
 /*
  * control.cpp
  *
- * Last modified: <2013/04/18 02:49:07 +0900> By Zumida
+ * Last modified: <2013/04/22 00:36:34 +0900> By Zumida
  */
 #include "control.hpp"
 #include <algorithm>
@@ -49,6 +49,7 @@ void Control::initialize(void) {
 	terminated = false;
 	updated = true;
 	parent = NULL;
+	exStyle = WS_EX_LEFT | WS_EX_LTRREADING | WS_EX_RIGHTSCROLLBAR;
 	childs.clear();
 }
 
@@ -152,21 +153,20 @@ void Control::setTab(int tab) {
 	update();
 }
 
-bool Control::hasBorder(void) const {
-	return border;
-}
-
-void Control::setBorder(bool border) {
-	this->border = border;
-	update();
-}
-
 bool Control::isUpdated(void) const {
 	return updated;
 }
 
 bool Control::isTerminated(void) const {
 	return terminated;
+}
+
+void Control::setExStyle(const int exStyle) {
+	this->exStyle = exStyle;
+}
+
+int Control::getExStyle(void) const {
+	return exStyle;
 }
 
 bool Control::operator < (const Control* control) {

@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/04/17 14:04:43 +0900> By Zumida
+ * Last modified: <2013/04/22 00:35:44 +0900> By Zumida
  */
 #include "define.hpp"
 #include "form.hpp"
@@ -35,7 +35,6 @@ void Form::initialize(void) {
 HWND Form::createHandle(void) {
 	HWND hparent = (getParent() != NULL)? getParent()->getHandle(): NULL;
 	HMENU hmenu = (menu != NULL)? menu->getHandle(): NULL;
-	int exStyle = WS_EX_LEFT | WS_EX_LTRREADING | WS_EX_RIGHTSCROLLBAR;
 
 	// ウィンドウを作成する
 	HWND hwnd = CreateWindowEx(
@@ -56,7 +55,8 @@ HWND Form::createHandle(void) {
 	return hwnd;
 }
 
-void Form::reset(void) {
+void Form::resetAttribute(void) {
+	// ウィンドウハンドル生成後に設定可能な属性を設定
 }
 
 bool Form::onDestroy(void) {

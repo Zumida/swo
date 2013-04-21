@@ -1,7 +1,7 @@
 /*
  * control.hpp
  *
- * Last modified: <2013/04/18 02:19:57 +0900> By Zumida
+ * Last modified: <2013/04/22 00:30:39 +0900> By Zumida
  */
 #ifndef CONTROL_HPP_INCLUDED
 #define CONTROL_HPP_INCLUDED
@@ -13,17 +13,6 @@ namespace swo {
 
 	typedef std::list<class Control*> Controls;
 
-	enum ControlEdge {
-		Nothing,
-		Client,
-		Static,
-		Window,
-		ClientWindow,
-		ClientStatic,
-		WindowStatic,
-		ClientWindowStatic
-	};
-
 	class Control : public EventListener {
 	private:
 		Control* parent;
@@ -31,7 +20,6 @@ namespace swo {
 
 		int tab;
 		bool visible;
-		bool border;
 		bool updated;
 		bool terminated;
 
@@ -39,7 +27,7 @@ namespace swo {
 		void refresh(bool isOwner);
 
 	protected:
-		ControlEdge edge;
+		int exStyle;
 
 		virtual HWND createHandle(void) = 0;
 		virtual void resetAttribute(void) = 0;
@@ -66,14 +54,11 @@ namespace swo {
 		int getTab(void) const;
 		void setTab(int tab);
 
-		bool hasBorder(void) const;
-		void setBorder(bool border);
-
 		bool isUpdated(void) const;
 		bool isTerminated(void) const;
 
-		void setControlParent(const bool enabled);
-		void setControlEdge(const ControlEdge edge);
+		void setExStyle(const int exStyle);
+		int getExStyle(void) const;
 
 		bool operator < (const Control* control);
 	};
