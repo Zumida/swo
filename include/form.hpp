@@ -1,15 +1,13 @@
 /*
  * form.hpp
  *
- * Last modified: <2013/04/23 01:38:42 +0900> By Zumida
+ * Last modified: <2013/05/06 01:01:00 +0900> By Zumida
  */
 #ifndef FORM_HPP_INCLUDED
 #define FORM_HPP_INCLUDED
 
 #include "control.hpp"
 #include "icon.hpp"
-#include "cursor.hpp"
-#include "brush.hpp"
 #include "menu.hpp"
 
 namespace swo {
@@ -21,20 +19,16 @@ namespace swo {
 	};
 
 	class Form : public Control {
-	private:
+	protected:
 		String className;
+		int style;
+		int exStyle;
 		String text;
-		WindowRect rect;
 		Icon* icon;
-		Cursor* cursor;
-		Brush* background;
 		Menu* menu;
 
 		void initialize(void);
-
-	protected:
 		HWND createHandle(void);
-		void resetAttribute(void);
 		bool onDestroy(void);
 
 	public:
@@ -42,24 +36,37 @@ namespace swo {
 		Form(Control* parent);
 		~Form();
 
-		void setIcon(const Icon& icon);
-		void setCursor(const Cursor& cursor);
-		void setBackground(const Brush& brush);
 		void setClassName(const String& className);
+		String& getClassName(void);
+
+		void setStyle(const int style);
+		int getStyle(void) const;
+		void setExStyle(const int exStyle);
+		int getExStyle(void) const;
+
 		void setText(const String& text);
-		void setRect(const WindowRect& rect);
+		String& getText(void);
+		void setIcon(const Icon& icon);
+		Icon& getIcon(void);
 		void setMenu(const Menu& menu);
+		Menu& getMenu(void);
 
 		void setAcceptFiles(const bool enabled=true);
+		bool isAcceptFiles(void) const;
 		void setAppWindow(const bool enabled=true);
+		bool isAppWindow(void) const;
 		void setControlParent(const bool enabled=true);
+		bool isControlParent(void) const;
 		void setFormType(const FormType formType);
+		FormType getFormType(void) const;
 		void setMdiChild(const bool enabled=true);
+		bool isMdiChild(void) const;
 		void setNoActivate(const bool enabled=true);
+		bool isNoActivate(void) const;
 		void setTopMost(const bool enabled=true);
+		bool isTopMost(void);
 		void setTransparent(const bool enabled=true);
-		
-		void setSwpFlags(const int swpFlags);
+		bool isTransparent(void);
 
 		void setActiveWindow(void);
 		void setForegroundWindow(void);

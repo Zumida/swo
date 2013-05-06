@@ -1,7 +1,7 @@
 /*
  * cursor.hpp
  *
- * Last modified: <2013/04/17 12:41:00 +0900> By Zumida
+ * Last modified: <2013/05/06 01:08:14 +0900> By Zumida
  */
 #ifndef CURSOR_HPP_INCLUDED
 #define CURSOR_HPP_INCLUDED
@@ -11,8 +11,6 @@
 namespace swo {
 
 	class Cursor : public Image {
-	private:
-
 	public:
 		Cursor();
 		Cursor(const String& name);

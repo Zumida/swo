@@ -1,7 +1,7 @@
 /*
  * control.cpp
  *
- * Last modified: <2013/04/22 00:36:34 +0900> By Zumida
+ * Last modified: <2013/05/07 07:09:25 +0900> By Zumida
  */
 #include "control.hpp"
 #include <algorithm>
@@ -46,19 +46,39 @@ Control::~Control() {
 }
 
 void Control::initialize(void) {
-	terminated = false;
-	updated = true;
-	parent = NULL;
-	exStyle = WS_EX_LEFT | WS_EX_LTRREADING | WS_EX_RIGHTSCROLLBAR;
+	parent      = NULL;
 	childs.clear();
+
+	rect.left   = 0;
+	rect.top    = 0;
+	rect.width  = 0;
+	rect.height = 0;
+	background  = NULL;
+	cursor      = NULL;
+
+	tab         = 0;
+	visible     = false;
+	updated     = true;
+	terminated  = false;
+}
+
+void Control::setAttributes(void) {
 }
 
 void Control::renew(void) {
 	updated = true;
 
-	if (getHandle() != NULL) {
-		::DestroyWindow(getHandle());
+	HWND handle = getHandle();
+	if (handle != NULL) {
+		::DestroyWindow(handle);
 		setHandle(NULL);
+	}
+
+	for (Controls::iterator it = childs.begin();
+		 it != childs.end();
+		 it++) {
+
+		(*it)->setHandle(NULL);
 	}
 }
 
@@ -66,33 +86,24 @@ void Control::update(void) {
 	updated = true;
 }
 
-void Control::refresh(bool isOwner) {
+void Control::refresh(void) {
 	updated = false;
 
 	HWND handle = getHandle();
-	if (handle != NULL && isOwner) {
-		::DestroyWindow(handle);
-		handle = NULL;
-	}
-
 	if (handle == NULL) {
 		handle = createHandle();
 		setHandle(handle);
 	}
 
-	resetAttribute();
+	setAttributes();
 
 	childs.sort();
 	for (Controls::iterator it = childs.begin();
 		 it != childs.end();
 		 it++) {
 
-		(*it)->refresh(false);
+		(*it)->refresh();
 	}
-}
-
-void Control::refresh() {
-	refresh(true);
 }
 
 void Control::terminate(void) {
@@ -144,13 +155,39 @@ void Control::hide(void) {
 	}
 }
 
-int Control::getTab(void) const {
-	return tab;
+void Control::setRect(const WindowRect& rect) {
+	this->rect = rect;
+}
+
+WindowRect& Control::getRect(void) {
+	return rect;
+}
+
+void Control::setBackground(const Brush& brush) {
+	this->background = const_cast<Brush*>(&brush);
+	update();
+}
+
+Brush& Control::getBackground(void) {
+	return *background;
+}
+
+void Control::setCursor(const Cursor& cursor) {
+	this->cursor = const_cast<Cursor*>(&cursor);
+	update();
+}
+
+Cursor& Control::getCursor(void) {
+	return *cursor;
 }
 
 void Control::setTab(int tab) {
 	this->tab = tab;
 	update();
+}
+
+int Control::getTab(void) const {
+	return tab;
 }
 
 bool Control::isUpdated(void) const {
@@ -159,14 +196,6 @@ bool Control::isUpdated(void) const {
 
 bool Control::isTerminated(void) const {
 	return terminated;
-}
-
-void Control::setExStyle(const int exStyle) {
-	this->exStyle = exStyle;
-}
-
-int Control::getExStyle(void) const {
-	return exStyle;
 }
 
 bool Control::operator < (const Control* control) {

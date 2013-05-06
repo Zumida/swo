@@ -1,7 +1,7 @@
 /*
  * image.cpp
  *
- * Last modified: <2013/04/17 14:04:20 +0900> By Zumida
+ * Last modified: <2013/05/06 21:57:11 +0900> By Zumida
  */
 #include "image.hpp"
 #include "resource.hpp"
@@ -25,6 +25,13 @@ void Image::load(const String& name, const int type) {
 	this->type   = type;
 	this->handle = LoadImage(
 		NULL, MAKEINTRESOURCE(name.c_str()), type,
+		0, 0, LR_DEFAULTSIZE | LR_SHARED);
+}
+
+void Image::load(const TCHAR* id, const int type) {
+	this->type   = type;
+	this->handle = LoadImage(
+		NULL, id, type,
 		0, 0, LR_DEFAULTSIZE | LR_SHARED);
 }
 

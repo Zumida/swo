@@ -1,7 +1,7 @@
 /*
  * menu.hpp
  *
- * Last modified: <2013/04/17 12:39:18 +0900> By Zumida
+ * Last modified: <2013/05/06 22:16:52 +0900> By Zumida
  */
 #ifndef MENU_HPP_INCLUDED
 #define MENU_HPP_INCLUDED
@@ -12,7 +12,7 @@
 namespace swo {
 
 	class Menu : public Object {
-	private:
+	protected:
 		HMENU handle;
 
 	public:

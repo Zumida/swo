@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/04/22 00:35:44 +0900> By Zumida
+ * Last modified: <2013/05/06 01:01:52 +0900> By Zumida
  */
 #include "define.hpp"
 #include "form.hpp"
@@ -21,15 +21,15 @@ Form::~Form() {
 }
 
 void Form::initialize(void) {
-	icon        = NULL;
-	cursor      = NULL;
-	background  = NULL;
-	menu        = NULL;
+	className   = WINDOW_CLASSNAME;
 	rect.left   = WINDOW_X;
 	rect.top    = WINDOW_Y;
 	rect.width  = WINDOW_WIDTH;
 	rect.height = WINDOW_HEIGHT;
-	className   = WINDOW_CLASSNAME;
+	icon        = NULL;
+	menu        = NULL;
+	style       = 0;
+	exStyle     = WS_EX_LEFT | WS_EX_LTRREADING | WS_EX_RIGHTSCROLLBAR;
 }
 
 HWND Form::createHandle(void) {
@@ -55,10 +55,6 @@ HWND Form::createHandle(void) {
 	return hwnd;
 }
 
-void Form::resetAttribute(void) {
-	// ウィンドウハンドル生成後に設定可能な属性を設定
-}
-
 bool Form::onDestroy(void) {
 	if (getParent() == NULL) {
 		::PostQuitMessage(0);
@@ -68,30 +64,50 @@ bool Form::onDestroy(void) {
 	}
 }
 
-void Form::setIcon(const Icon& icon) {
-	this->icon = const_cast<Icon*>(&icon);
-}
-
-void Form::setCursor(const Cursor& cursor) {
-	this->cursor = const_cast<Cursor*>(&cursor);
-}
-
-void Form::setBackground(const Brush& brush) {
-	this->background = const_cast<Brush*>(&brush);
-}
-
 void Form::setClassName(const String& className) {
 	this->className = className;
+}
+
+String& Form::getClassName(void) {
+	return className;
+}
+
+void Form::setStyle(const int style) {
+	this->style = style;
+}
+
+int Form::getStyle(void) const {
+	return style;
+}
+
+void Form::setExStyle(const int exStyle) {
+	this->exStyle = exStyle;
+}
+
+int Form::getExStyle(void) const {
+	return exStyle;
 }
 
 void Form::setText(const String& text) {
 	this->text = text;
 }
 
-void Form::setRect(const WindowRect& rect) {
-	this->rect = rect;
+String& Form::getText(void) {
+	return text;
+}
+
+void Form::setIcon(const Icon& icon) {
+	this->icon = const_cast<Icon*>(&icon);
+}
+
+Icon& Form::getIcon(void) {
+	return *icon;
 }
 
 void Form::setMenu(const Menu& menu) {
 	this->menu = const_cast<Menu*>(&menu);
+}
+
+Menu& Form::getMenu(void) {
+	return *menu;
 }

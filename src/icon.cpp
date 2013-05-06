@@ -1,7 +1,7 @@
 /*
  * icon.cpp
  *
- * Last modified: <2013/04/17 14:04:24 +0900> By Zumida
+ * Last modified: <2013/05/06 16:04:36 +0900> By Zumida
  */
 #include "icon.hpp"
 

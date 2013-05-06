@@ -1,7 +1,7 @@
 /*
  * object.hpp
  *
- * Last modified: <2013/04/17 12:38:49 +0900> By Zumida
+ * Last modified: <2013/05/06 22:17:35 +0900> By Zumida
  */
 #ifndef OBJECT_HPP_INCLUDED
 #define OBJECT_HPP_INCLUDED
@@ -16,10 +16,6 @@ namespace swo {
 	typedef std::list<class Object*> Objects;
 
 	class Object {
-	private:
-
-	protected:
-
 	public:
 		Object();
 		virtual ~Object();

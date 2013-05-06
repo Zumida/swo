@@ -1,7 +1,7 @@
 /*
  * menuitem.hpp
  *
- * Last modified: <2013/04/17 12:38:57 +0900> By Zumida
+ * Last modified: <2013/05/06 22:17:23 +0900> By Zumida
  */
 #ifndef MENUITEM_HPP_INCLUDED
 #define MENUITEM_HPP_INCLUDED
@@ -33,7 +33,7 @@ namespace swo {
 	};
 
 	class MenuItem : public Object {
-	private:
+	protected:
 		MENUITEMINFO mii;
 		const class Menu *subMenu;
 		const Bitmap *checkedImage;

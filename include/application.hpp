@@ -1,7 +1,7 @@
 /*
  * application.hpp
  *
- * Last modified: <2013/04/17 12:35:49 +0900> By Zumida
+ * Last modified: <2013/05/03 21:01:00 +0900> By Zumida
  */
 #ifndef APPLICATION_HPP_INCLUDED
 #define APPLICATION_HPP_INCLUDED
@@ -11,10 +11,8 @@
 namespace swo {
 
 	class Application : public Object {
-	private:
-		Objects objects;
-
 	protected:
+		Objects objects;
 
 	public:
 		Application();

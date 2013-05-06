@@ -1,7 +1,7 @@
 /*
  * windowclass.hpp
  *
- * Last modified: <2013/04/17 12:36:17 +0900> By Zumida
+ * Last modified: <2013/05/07 07:16:47 +0900> By Zumida
  */
 #ifndef WINDOWCLASS_HPP_INCLUDED
 #define WINDOWCLASS_HPP_INCLUDED
@@ -17,7 +17,7 @@ namespace swo {
 	typedef LRESULT CALLBACK (*FuncWndProc)(HWND, UINT, WPARAM, LPARAM);
 
 	class WindowClass : public Object {
-	private:
+	protected:
 		String className;
 		String menuName;
 		Icon* icon;
