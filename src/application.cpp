@@ -1,9 +1,8 @@
 /*
  * application.cpp
  *
- * Last modified: <2013/05/13 22:34:24 +0900> By Zumida
+ * Last modified: <2013/05/14 00:13:53 +0900> By Zumida
  */
-#include "define.hpp"
 #include "application.hpp"
 
 using namespace swo;
