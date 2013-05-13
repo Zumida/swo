@@ -1,31 +1,17 @@
 /*
  * application.cpp
  *
- * Last modified: <2013/05/07 07:13:56 +0900> By Zumida
+ * Last modified: <2013/05/13 22:34:24 +0900> By Zumida
  */
 #include "define.hpp"
 #include "application.hpp"
-#include "windowclass.hpp"
 
 using namespace swo;
 
 Application::Application() {
-	if (WindowClass::find(WINDOW_CLASSNAME) == NULL) {
-		WindowClass& wc = createObject<WindowClass>();
-
-		wc.setClassName(WINDOW_CLASSNAME);
-		wc.setWndProc(EventListener::WndProc);
-
-		WindowClass::add(wc);
-	}
 }
 
 Application::~Application() {
-	while (!objects.empty()) {
-		Object* object = objects.back();
-		objects.pop_back();
-		delete object;
-	}
 }
 
 void Application::add(Object* object) {
@@ -71,5 +57,18 @@ int Application::run(void) {
 		DispatchMessage(&msg);
 	}
 
+	// 登録されたオブジェクトを破棄
+	while (!objects.empty()) {
+		Object* object = objects.back();
+		objects.pop_back();
+		delete object;
+	}
+
 	return static_cast<int>(msg.wParam);
+}
+
+Application Application::instance;
+
+Application& Application::getInstance(void) {
+	return instance;
 }

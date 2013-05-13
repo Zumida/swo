@@ -1,10 +1,12 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/05/06 01:01:52 +0900> By Zumida
+ * Last modified: <2013/05/13 22:38:27 +0900> By Zumida
  */
 #include "define.hpp"
 #include "form.hpp"
+#include "application.hpp"
+#include "windowclass.hpp"
 
 using namespace swo;
 
@@ -21,6 +23,16 @@ Form::~Form() {
 }
 
 void Form::initialize(void) {
+	if (WindowClass::find(WINDOW_CLASSNAME) == NULL) {
+		Application& app = Application::getInstance();
+		WindowClass& wc = app.createObject<WindowClass>();
+
+		wc.setClassName(WINDOW_CLASSNAME);
+		wc.setWndProc(EventListener::WndProc);
+
+		WindowClass::add(wc);
+	}
+
 	className   = WINDOW_CLASSNAME;
 	rect.left   = WINDOW_X;
 	rect.top    = WINDOW_Y;
