@@ -1,7 +1,7 @@
 /*
  * custompen.cpp
  *
- * Last modified: <2013/04/17 14:04:56 +0900> By Zumida
+ * Last modified: <2013/05/13 18:15:05 +0900> By Zumida
  */
 #include "custompen.hpp"
 
@@ -22,9 +22,8 @@ CustomPen::CustomPen(const int style, const int width, const COLORREF color) {
 CustomPen::~CustomPen() {
 }
 
-HGDIOBJ CustomPen::getHandle(void) {
-	if (handle == NULL) handle = ::CreatePen(style, width, color);
-	return handle;
+void CustomPen::refresh(void) {
+	handle = ::CreatePen(style, width, color);
 }
 
 Pen& CustomPen::set(const int style, const int width, const COLORREF color) {

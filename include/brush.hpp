@@ -1,7 +1,7 @@
 /*
  * brush.hpp
  *
- * Last modified: <2013/04/17 12:43:14 +0900> By Zumida
+ * Last modified: <2013/05/13 18:03:58 +0900> By Zumida
  */
 #ifndef BRUSH_HPP_INCLUDED
 #define BRUSH_HPP_INCLUDED
@@ -15,7 +15,7 @@ namespace swo {
 		Brush();
 		~Brush();
 
-		HBRUSH getBrush(void);
+		HBRUSH getHandle(void);
 	};
 
 };

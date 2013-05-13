@@ -1,9 +1,10 @@
 /*
  * pen.cpp
  *
- * Last modified: <2013/04/17 14:03:10 +0900> By Zumida
+ * Last modified: <2013/05/13 18:19:45 +0900> By Zumida
  */
 #include "pen.hpp"
+#include "pointer.hpp"
 
 using namespace swo;
 
@@ -13,6 +14,6 @@ Pen::Pen() {
 Pen::~Pen() {
 }
 
-HPEN Pen::getPen(void) {
-	return (HPEN)getHandle();
+HPEN Pen::getHandle(void) {
+	return pointer_cast<HPEN>(GdiObject::getHandle());
 }

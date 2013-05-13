@@ -1,7 +1,7 @@
 /*
  * syscolorbrush.cpp
  *
- * Last modified: <2013/04/17 13:52:39 +0900> By Zumida
+ * Last modified: <2013/05/13 18:21:10 +0900> By Zumida
  */
 #include "syscolorbrush.hpp"
 
@@ -23,9 +23,8 @@ Brush& SysColorBrush::set(const int index) {
 	return *this;
 }
 
-HGDIOBJ SysColorBrush::getHandle(void) {
-	if (handle == NULL) handle = ::GetSysColorBrush(index);
-	return handle;
+void SysColorBrush::refresh(void) {
+	handle = ::GetSysColorBrush(index);
 }
 
 void SysColorBrush::trash(void) {

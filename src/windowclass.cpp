@@ -1,7 +1,7 @@
 /*
  * windowclass.cpp
  *
- * Last modified: <2013/04/17 13:51:56 +0900> By Zumida
+ * Last modified: <2013/05/13 18:23:20 +0900> By Zumida
  */
 #include <map>
 #include "windowclass.hpp"
@@ -77,7 +77,7 @@ void WindowClass::add(class WindowClass& wndClass) {
 
 	// ウィンドウ背景
 	if (wndClass.background != NULL)
-		wc.hbrBackground = wndClass.background->getBrush();
+		wc.hbrBackground = wndClass.background->getHandle();
 
 	// メニュー名
 	if (!wndClass.menuName.empty())

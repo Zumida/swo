@@ -1,7 +1,7 @@
 /*
  * stockpen.cpp
  *
- * Last modified: <2013/04/17 13:52:58 +0900> By Zumida
+ * Last modified: <2013/05/13 18:20:47 +0900> By Zumida
  */
 #include "stockpen.hpp"
 
@@ -23,7 +23,6 @@ Pen& StockPen::set(int stock) {
 	return *this;
 }
 
-HGDIOBJ StockPen::getHandle(void) {
-	if (handle == NULL) handle = ::GetStockObject(stock);
-	return handle;
+void StockPen::refresh(void) {
+	handle = ::GetStockObject(stock);
 }

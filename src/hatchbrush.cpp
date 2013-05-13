@@ -1,7 +1,7 @@
 /*
  * hatchbrush.cpp
  *
- * Last modified: <2013/04/17 14:04:29 +0900> By Zumida
+ * Last modified: <2013/05/13 18:15:27 +0900> By Zumida
  */
 #include "hatchbrush.hpp"
 
@@ -26,7 +26,6 @@ Brush& HatchBrush::set(const int style, const COLORREF color) {
 	return *this;
 }
 
-HGDIOBJ HatchBrush::getHandle(void) {
-	if (handle == NULL) handle = ::CreateHatchBrush(style, color);
-	return handle;
+void HatchBrush::refresh(void) {
+	handle = ::CreateHatchBrush(style, color);
 }

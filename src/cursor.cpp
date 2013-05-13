@@ -1,9 +1,10 @@
 /*
  * cursor.cpp
  *
- * Last modified: <2013/04/17 14:05:00 +0900> By Zumida
+ * Last modified: <2013/05/13 17:57:51 +0900> By Zumida
  */
 #include "cursor.hpp"
+#include "pointer.hpp"
 
 using namespace swo;
 
@@ -23,5 +24,5 @@ Cursor& Cursor::set(const String& name) {
 }
 
 HCURSOR Cursor::getHandle(void) const {
-	return (HCURSOR)handle;
+	return pointer_cast<HCURSOR>(handle);
 }

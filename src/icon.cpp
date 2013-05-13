@@ -1,9 +1,10 @@
 /*
  * icon.cpp
  *
- * Last modified: <2013/05/06 16:04:36 +0900> By Zumida
+ * Last modified: <2013/05/13 18:16:06 +0900> By Zumida
  */
 #include "icon.hpp"
+#include "pointer.hpp"
 
 using namespace swo;
 
@@ -23,5 +24,5 @@ Icon& Icon::set(const String& name) {
 }
 
 HICON Icon::getHandle(void) const {
-	return (HICON)handle;
+	return pointer_cast<HICON>(handle);
 }

@@ -1,7 +1,7 @@
 /*
  * gdiobject.cpp
  *
- * Last modified: <2013/04/17 14:04:33 +0900> By Zumida
+ * Last modified: <2013/05/13 18:02:31 +0900> By Zumida
  */
 #include "gdiobject.hpp"
 
@@ -13,6 +13,11 @@ GdiObject::GdiObject() {
 
 GdiObject::~GdiObject() {
 	trash();
+}
+
+HGDIOBJ GdiObject::getHandle(void) {
+	if (handle == NULL) refresh();
+	return handle;
 }
 
 void GdiObject::trash(void) {
