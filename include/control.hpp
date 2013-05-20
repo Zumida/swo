@@ -1,7 +1,7 @@
 /*
  * control.hpp
  *
- * Last modified: <2013/05/07 07:04:37 +0900> By Zumida
+ * Last modified: <2013/05/20 23:24:29 +0900> By Zumida
  */
 #ifndef CONTROL_HPP_INCLUDED
 #define CONTROL_HPP_INCLUDED
@@ -31,7 +31,7 @@ namespace swo {
 
 		void initialize(void);
 		virtual HWND createHandle(void) = 0;
-		virtual void setAttributes(void);
+		virtual void setAttributes(HWND handle);
 
 	public:
 		Control();

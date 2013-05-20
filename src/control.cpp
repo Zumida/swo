@@ -1,7 +1,7 @@
 /*
  * control.cpp
  *
- * Last modified: <2013/05/07 07:09:25 +0900> By Zumida
+ * Last modified: <2013/05/21 00:12:12 +0900> By Zumida
  */
 #include "control.hpp"
 #include <algorithm>
@@ -62,11 +62,20 @@ void Control::initialize(void) {
 	terminated  = false;
 }
 
-void Control::setAttributes(void) {
+void Control::setAttributes(HWND handle) {
+	UINT uFlags = SWP_SHOWWINDOW|SWP_DRAWFRAME|SWP_NOZORDER|SWP_SHOWWINDOW
+		| (visible ? SWP_SHOWWINDOW: SWP_HIDEWINDOW);
+
+	::SetWindowPos(handle, NULL,
+				   rect.left, rect.top,
+				   rect.width, rect.height,
+				   uFlags);
+
+	
 }
 
 void Control::renew(void) {
-	updated = true;
+	update();
 
 	HWND handle = getHandle();
 	if (handle != NULL) {
@@ -80,6 +89,8 @@ void Control::renew(void) {
 
 		(*it)->setHandle(NULL);
 	}
+
+	refresh();
 }
 
 void Control::update(void) {
@@ -95,7 +106,7 @@ void Control::refresh(void) {
 		setHandle(handle);
 	}
 
-	setAttributes();
+	setAttributes(handle);
 
 	childs.sort();
 	for (Controls::iterator it = childs.begin();
