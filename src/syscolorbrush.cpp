@@ -1,7 +1,7 @@
 /*
  * syscolorbrush.cpp
  *
- * Last modified: <2013/05/13 18:21:10 +0900> By Zumida
+ * Last modified: <2013/05/22 07:12:25 +0900> By Zumida
  */
 #include "syscolorbrush.hpp"
 
@@ -21,6 +21,10 @@ SysColorBrush::~SysColorBrush() {
 Brush& SysColorBrush::set(const int index) {
 	this->index = index;
 	return *this;
+}
+
+int SysColorBrush::getIndex(void) const {
+	return index;
 }
 
 void SysColorBrush::refresh(void) {
