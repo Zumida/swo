@@ -12,8 +12,8 @@ SRCS = \
 	rootcontrol.cpp \
 	control.cpp \
 	bitmap.cpp \
+	syscursor.cpp \
 	cursor.cpp \
-	sysicon.cpp \
 	icon.cpp \
 	patternbrush.cpp \
 	hatchbrush.cpp \
