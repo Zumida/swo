@@ -1,12 +1,14 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/05/13 22:38:27 +0900> By Zumida
+ * Last modified: <2013/05/22 07:18:31 +0900> By Zumida
  */
 #include "define.hpp"
 #include "form.hpp"
 #include "application.hpp"
 #include "windowclass.hpp"
+#include "syscursor.hpp"
+#include "syscolorbrush.hpp"
 
 using namespace swo;
 
@@ -26,8 +28,11 @@ void Form::initialize(void) {
 	if (WindowClass::find(WINDOW_CLASSNAME) == NULL) {
 		Application& app = Application::getInstance();
 		WindowClass& wc = app.createObject<WindowClass>();
+		Brush& sb = app.createObject<SysColorBrush>().set(COLOR_WINDOW);
 
 		wc.setClassName(WINDOW_CLASSNAME);
+		wc.setCursor(SysCursor::Arrow);
+		wc.setBackground(sb);
 		wc.setWndProc(EventListener::WndProc);
 
 		WindowClass::add(wc);

@@ -1,10 +1,11 @@
 /*
  * windowclass.cpp
  *
- * Last modified: <2013/05/13 18:23:20 +0900> By Zumida
+ * Last modified: <2013/05/23 06:07:13 +0900> By Zumida
  */
 #include <map>
 #include "windowclass.hpp"
+#include "syscolorbrush.hpp"
 
 using namespace swo;
 
@@ -76,8 +77,14 @@ void WindowClass::add(class WindowClass& wndClass) {
 		wc.hCursor = wndClass.cursor->getHandle();
 
 	// ウィンドウ背景
-	if (wndClass.background != NULL)
-		wc.hbrBackground = wndClass.background->getHandle();
+	if (wndClass.background != NULL) {
+		SysColorBrush* sb = dynamic_cast<SysColorBrush*>(wndClass.background);
+		if (sb != NULL) {
+			wc.hbrBackground = (HBRUSH)(sb->getIndex() + 1);
+		} else {
+			wc.hbrBackground = wndClass.background->getHandle();
+		}
+	}
 
 	// メニュー名
 	if (!wndClass.menuName.empty())

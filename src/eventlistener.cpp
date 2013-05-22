@@ -1,7 +1,7 @@
 /*
  * eventlistener.cpp
  *
- * Last modified: <2013/04/17 14:04:48 +0900> By Zumida
+ * Last modified: <2013/05/22 06:15:16 +0900> By Zumida
  */
 #include <windows.h>
 #include <windowsx.h>
@@ -457,6 +457,6 @@ LRESULT CALLBACK EventListener::WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM l
 
 	if (listener != NULL && listener->wndproc(msg, wp, lp)) return 0;
 
-	return DefWindowProc(hWnd, msg, wp, lp);
+	return ::DefWindowProc(hWnd, msg, wp, lp);
 }
 
