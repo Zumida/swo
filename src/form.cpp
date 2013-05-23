@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/05/22 07:18:31 +0900> By Zumida
+ * Last modified: <2013/05/24 06:52:13 +0900> By Zumida
  */
 #include "define.hpp"
 #include "form.hpp"
@@ -45,12 +45,12 @@ void Form::initialize(void) {
 	rect.height = WINDOW_HEIGHT;
 	icon        = NULL;
 	menu        = NULL;
-	style       = 0;
+	style       = WS_OVERLAPPEDWINDOW;
 	exStyle     = WS_EX_LEFT | WS_EX_LTRREADING | WS_EX_RIGHTSCROLLBAR;
 }
 
 HWND Form::createHandle(void) {
-	HWND hparent = (getParent() != NULL)? getParent()->getHandle(): NULL;
+	HWND hparent = (getParent() != NULL)? getParent()->getHandle(): HWND_DESKTOP;
 	HMENU hmenu = (menu != NULL)? menu->getHandle(): NULL;
 
 	// ウィンドウを作成する
