@@ -1,7 +1,7 @@
 /*
  * form.hpp
  *
- * Last modified: <2013/05/06 01:01:00 +0900> By Zumida
+ * Last modified: <2013/05/24 06:11:43 +0900> By Zumida
  */
 #ifndef FORM_HPP_INCLUDED
 #define FORM_HPP_INCLUDED
@@ -11,13 +11,6 @@
 #include "menu.hpp"
 
 namespace swo {
-	enum FormType {
-		DialogModalFrame,
-		OverLappedWindow,
-		PaletteWindow,
-		ToolWindow
-	};
-
 	class Form : public Control {
 	protected:
 		String className;
@@ -32,6 +25,20 @@ namespace swo {
 		bool onDestroy(void);
 
 	public:
+		enum FormType {
+			DialogModalFrame,
+			OverLappedWindow,
+			PaletteWindow,
+			ToolWindow
+		};
+
+		enum WindowOrder {
+			Normal,
+			Bottom,
+			Top,
+			TopMost
+		};
+
 		Form();
 		Form(Control* parent);
 		~Form();
