@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/05/24 06:52:13 +0900> By Zumida
+ * Last modified: <2013/06/03 01:56:32 +0900> By Zumida
  */
 #include "define.hpp"
 #include "form.hpp"
@@ -58,7 +58,7 @@ HWND Form::createHandle(void) {
 		exStyle,
 		className.c_str(),       // ウィンドウクラス名
 		text.c_str(),            // タイトルバーに表示する文字列
-		WS_OVERLAPPEDWINDOW,     // ウィンドウの種類
+		style,                   // ウィンドウの種類
 		rect.left,               // ウィンドウを表示する位置（X座標）
 		rect.top,                // ウィンドウを表示する位置（Y座標）
 		rect.width,              // ウィンドウの幅

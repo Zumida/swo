@@ -1,21 +1,25 @@
 /*
  * control.hpp
  *
- * Last modified: <2013/05/20 23:24:29 +0900> By Zumida
+ * Last modified: <2013/06/03 01:46:34 +0900> By Zumida
  */
 #ifndef CONTROL_HPP_INCLUDED
 #define CONTROL_HPP_INCLUDED
 
 #include <list>
-#include "eventlistener.hpp"
+#include "object.hpp"
 #include "cursor.hpp"
 #include "brush.hpp"
+#include "rect.hpp"
 
 namespace swo {
 
 	typedef std::list<class Control*> Controls;
 
-	class Control : public EventListener {
+	class Control : public Object {
+	private:
+		HWND handle;
+
 	protected:
 		Control* parent;
 		Controls childs;
@@ -30,13 +34,17 @@ namespace swo {
 		bool terminated;
 
 		void initialize(void);
+
 		virtual HWND createHandle(void) = 0;
+		virtual void setHandle(HWND handle);
 		virtual void setAttributes(HWND handle);
 
 	public:
 		Control();
 		Control(Control* parent);
 		~Control();
+
+		HWND getHandle(void) const;
 
 		void renew(void);
 		void update(void);

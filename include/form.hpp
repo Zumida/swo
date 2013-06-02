@@ -1,17 +1,17 @@
 /*
  * form.hpp
  *
- * Last modified: <2013/05/24 06:11:43 +0900> By Zumida
+ * Last modified: <2013/06/03 01:58:59 +0900> By Zumida
  */
 #ifndef FORM_HPP_INCLUDED
 #define FORM_HPP_INCLUDED
 
-#include "control.hpp"
+#include "eventlistener.hpp"
 #include "icon.hpp"
 #include "menu.hpp"
 
 namespace swo {
-	class Form : public Control {
+	class Form : public EventListener {
 	protected:
 		String className;
 		int style;

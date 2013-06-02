@@ -1,7 +1,7 @@
 /*
  * control.cpp
  *
- * Last modified: <2013/05/21 00:12:12 +0900> By Zumida
+ * Last modified: <2013/06/03 01:42:56 +0900> By Zumida
  */
 #include "control.hpp"
 #include <algorithm>
@@ -46,6 +46,7 @@ Control::~Control() {
 }
 
 void Control::initialize(void) {
+	handle      = NULL;
 	parent      = NULL;
 	childs.clear();
 
@@ -62,6 +63,14 @@ void Control::initialize(void) {
 	terminated  = false;
 }
 
+void Control::setHandle(HWND handle) {
+	this->handle = handle;
+}
+
+HWND Control::getHandle(void) const {
+	return handle;
+}
+
 void Control::setAttributes(HWND handle) {
 	UINT uFlags = SWP_SHOWWINDOW|SWP_DRAWFRAME|SWP_NOZORDER|SWP_SHOWWINDOW
 		| (visible ? SWP_SHOWWINDOW: SWP_HIDEWINDOW);
@@ -70,8 +79,6 @@ void Control::setAttributes(HWND handle) {
 				   rect.left, rect.top,
 				   rect.width, rect.height,
 				   uFlags);
-
-	
 }
 
 void Control::renew(void) {

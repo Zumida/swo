@@ -1,25 +1,20 @@
 /*
  * eventlistener.hpp
  *
- * Last modified: <2013/04/17 12:40:23 +0900> By Zumida
+ * Last modified: <2013/06/03 02:13:01 +0900> By Zumida
  */
 #ifndef EVENTLISTENER_HPP_INCLUDED
 #define EVENTLISTENER_HPP_INCLUDED
 
 #include <map>
 #include <windows.h>
-#include "object.hpp"
+#include "control.hpp"
 #include "dragdrop.hpp"
 #include "canvas.hpp"
 
 namespace swo {
 
-	typedef std::map<HWND, class EventListener*> WndMap;
-
-	class EventListener : public Object {
-	private:
-		HWND handle;
-
+	class EventListener : public Control {
 	protected:
 		void setHandle(HWND handle);
 
@@ -87,11 +82,9 @@ namespace swo {
 		EventListener();
 		~EventListener();
 
-		HWND getHandle(void) const;
-
-		static EventListener* findListener(HWND hWnd);
-		static void addListener(HWND hWnd, class EventListener* listener);
-		static void removeListener(HWND hWnd);
+		static EventListener* findListener(const HWND hWnd);
+		static void addListener(const HWND hWnd, const class EventListener* listener);
+		static void removeListener(const HWND hWnd);
 		static LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
 	};
 

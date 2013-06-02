@@ -1,7 +1,7 @@
 /*
  * eventlistener.cpp
  *
- * Last modified: <2013/05/22 06:15:16 +0900> By Zumida
+ * Last modified: <2013/06/03 02:17:11 +0900> By Zumida
  */
 #include <windows.h>
 #include <windowsx.h>
@@ -39,33 +39,31 @@
 
 using namespace swo;
 
+typedef std::map<HWND, EventListener*> WndMap;
+
 static WndMap wndMap;
 
 EventListener::EventListener() {
-	handle = NULL;
 }
 
 EventListener::~EventListener() {
-	setHandle(NULL);
 }
 
 void EventListener::setHandle(HWND handle) {
-	if (this->handle != NULL) {
-		removeListener(this->handle);
+	HWND current = Control::getHandle();
+	if (current != NULL) {
+		removeListener(current);
 	}
 
-	this->handle = handle;
+	Control::setHandle(handle);
 	if (handle != NULL) {
 		addListener(handle, this);
 	}
 }
 
-HWND EventListener::getHandle(void) const {
-	return handle;
-}
-
-void EventListener::addListener(HWND hWnd, EventListener* listener) {
-	wndMap.insert(std::make_pair(hWnd, listener));
+void EventListener::addListener(const HWND hWnd, const EventListener* listener) {
+	wndMap.insert(std::make_pair(const_cast<HWND>(hWnd),
+								 const_cast<EventListener*>(listener)));
 }
 
 void EventListener::removeListener(HWND hWnd) {
@@ -154,7 +152,7 @@ bool EventListener::wndproc(UINT msg, WPARAM wp, LPARAM lp) {
 		break;
 	case WM_ERASEBKGND:
 		{
-			Canvas cv(handle);
+			Canvas cv(getHandle());
 			result = onEraseBackGround(cv);
 			break;
 		}
@@ -275,7 +273,7 @@ bool EventListener::wndproc(UINT msg, WPARAM wp, LPARAM lp) {
 	//case WM_NULL:
 	case WM_PAINT:
 		{
-			Canvas cv(handle);
+			Canvas cv(getHandle());
 			result = onPaint(cv);
 			break;
 		}
