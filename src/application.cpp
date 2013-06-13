@@ -1,7 +1,7 @@
 /*
  * application.cpp
  *
- * Last modified: <2013/05/14 00:13:53 +0900> By Zumida
+ * Last modified: <2013/06/14 06:23:55 +0900> By Zumida
  */
 #include "application.hpp"
 
@@ -14,12 +14,25 @@ Application::~Application() {
 }
 
 void Application::add(Object* object) {
-	objects.push_back(object);
+	Control* control = dynamic_cast<Control*>(object);
+
+	if (control != NULL) {
+		controls.push_back(control);
+	} else {
+		objects.push_back(object);
+	}
 }
 
 void Application::remove(Object* object) {
-	objects.remove(object);
-	delete object;
+	Control* control = dynamic_cast<Control*>(object);
+
+	if (control != NULL) {
+		controls.remove(control);
+		delete control;
+	} else {
+		objects.remove(object);
+		delete object;
+	}
 }
 
 int Application::run(void) {
@@ -28,22 +41,17 @@ int Application::run(void) {
 	MSG msg;
 	for (;;) {
 		// 更新予約コントロールを更新
-		for (Objects::iterator it = objects.begin();
-			 it != objects.end(); ) {
-
-			Control* c = dynamic_cast<Control*>(*it);
-			if (c != NULL) {
-				if (c->isTerminated()) {
-					it = objects.erase(it);
-					delete c;
-					continue;
-				}
-
-				if (c->isUpdated()) {
-					c->refresh();
-				}
+		for (Controls::iterator it = controls.begin();
+			 it != controls.end(); ) {
+			Control* c = *it;
+			if (c->isTerminated()) {
+				it = controls.erase(it);
+				delete c;
+				continue;
 			}
-
+			if (c->isUpdated()) {
+				c->refresh();
+			}
 			it++;
 		}
 
@@ -54,6 +62,13 @@ int Application::run(void) {
 		// メッセージを処理する
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
+	}
+
+	// 登録されたコントロールを破棄
+	while (!controls.empty()) {
+		Control* control = controls.back();
+		controls.pop_back();
+		delete control;
 	}
 
 	// 登録されたオブジェクトを破棄

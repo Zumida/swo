@@ -1,7 +1,7 @@
 /*
  * application.hpp
  *
- * Last modified: <2013/05/13 22:40:48 +0900> By Zumida
+ * Last modified: <2013/06/14 06:15:14 +0900> By Zumida
  */
 #ifndef APPLICATION_HPP_INCLUDED
 #define APPLICATION_HPP_INCLUDED
@@ -14,6 +14,7 @@ namespace swo {
 	private:
 		static class Application instance;
 		Objects objects;
+		Controls controls;
 
 		Application();
 		~Application();
