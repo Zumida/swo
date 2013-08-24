@@ -1,62 +1,26 @@
 #
 # Makefile for libswo.a
 #
+TARGET   := ..\lib\libswo.a
+SOURCES  := ./
+DEPEND   := depend
+SRCS     := $(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.cpp)))
+OBJS     := $(SRCS:%.cpp=%.o)
 
-TARGET = ..\lib\libswo.a
+INCLUDE_DIRS := -I../include
+CFLAGS   := -Wall -O2 -g $(INCLUDE_DIRS) -DWIN32 -DUNICODE -D_UNICODE
+ARFLAGS  := crsv
 
-SRCS = \
-	application.cpp \
-	form.cpp \
-	dragdrop.cpp \
-	canvas.cpp \
-	rootcontrol.cpp \
-	control.cpp \
-	bitmap.cpp \
-	syscursor.cpp \
-	cursor.cpp \
-	icon.cpp \
-	patternbrush.cpp \
-	hatchbrush.cpp \
-	solidbrush.cpp \
-	stockbrush.cpp \
-	syscolorbrush.cpp \
-	brush.cpp \
-	custompen.cpp \
-	stockpen.cpp \
-	pen.cpp \
-	gdiobject.cpp \
-	menuitem.cpp \
-	menu.cpp \
-	imagelist.cpp \
-	image.cpp \
-	treeview.cpp \
-	eventlistener.cpp \
-	windowclass.cpp \
-	object.cpp \
-	string.cpp
+CPP := cpp
+CX  := g++
+AR  := ar
+RM  := del /F
 
-INCLUDE_DIRS = -I../include
-
-CFLAGS = -Wall -O2 -g $(INCLUDE_DIRS) -DWIN32 -DUNICODE -D_UNICODE
-
-CXXFLAGS = $(CFLAGS)
-
-ARFLAGS = crsv
-
-OBJS = $(SRCS:%.cpp=%.o)
-
-DEPEND = depend
-
-CPP = cpp
-CC = gcc
-AR = ar
-RM = del /F
-
-.c.o:
-	$(CC) $(CFLAGS) -c $<
+.SUFFIXES:
+.SUFFIXES: .cpp .o
 
 .cpp.o:
-	$(CC) $(CXXFLAGS) -c $<
+	$(CX) $(CFLAGS) -c $<
 
 .PHONY: all
 all: $(DEPEND) $(TARGET)
@@ -67,7 +31,7 @@ $(TARGET): $(OBJS)
 .PHONY: clean
 clean:
 	- $(RM) $(TARGET)
-	- $(RM) $(OBJS)
+	- $(RM) *.o
 	- $(RM) $(DEPEND)
 
 $(DEPEND): $(SRCS)
