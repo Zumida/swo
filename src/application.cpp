@@ -1,16 +1,88 @@
 /*
  * application.cpp
  *
- * Last modified: <2013/06/14 06:23:55 +0900> By Zumida
+ * Last modified: <2013/08/25 08:59:10 +0900> By Zumida
  */
 #include "application.hpp"
+#include <windows.h>
 
 using namespace swo;
 
 Application::Application() {
+	// 各フィールドの初期化
+	running = false;
+	terminated = false;
+	result = 0;
 }
 
 Application::~Application() {
+}
+
+void Application::initialize(void) {
+
+	// コマンドライン引数の取得
+	int argc = 0;
+	WCHAR **argv = ::CommandLineToArgvW(::GetCommandLineW(), &argc);
+
+	if (argv != NULL) {
+		for (int i = 0; i < argc; ++i) {
+			arguments.push_back(argv[i]);
+		}
+		::GlobalFree(argv);
+	}
+}
+
+void Application::finalize(void) {
+
+	try {
+		// 登録されたコントロールを破棄
+		while (!controls.empty()) {
+			Control* control = controls.back();
+			controls.pop_back();
+			delete control;
+		}
+
+	} catch (const std::exception &e) {
+		Stderr << "Catch a std::exception! : " << e.what() << std::endl;
+
+	} catch (...) {
+		Stderr << "Catch an unexpected exception!" << std::endl;
+	}
+
+	try {
+		// 登録されたオブジェクトを破棄
+		while (!objects.empty()) {
+			Object* object = objects.back();
+			objects.pop_back();
+			delete object;
+		}
+
+	} catch (const std::exception &e) {
+		Stderr << "Catch a std::exception! : " << e.what() << std::endl;
+
+	} catch (...) {
+		Stderr << "Catch an unexpected exception!" << std::endl;
+	}
+}
+
+void Application::terminate(int result) {
+	this->result = result;
+}
+
+StringList& Application::getArguments(void) {
+	return arguments;
+}
+
+int Application::getResult(void) const {
+	return result;
+}
+
+bool Application::isRunning(void) const {
+	return running;
+}
+
+bool Application::isTerminated(void) const {
+	return terminated;
 }
 
 void Application::add(Object* object) {
@@ -35,11 +107,11 @@ void Application::remove(Object* object) {
 	}
 }
 
-int Application::run(void) {
+void Application::run(void) {
 
 	// メッセージループ
 	MSG msg;
-	for (;;) {
+	while (!isTerminated()) {
 		// 更新予約コントロールを更新
 		for (Controls::iterator it = controls.begin();
 			 it != controls.end(); ) {
@@ -64,21 +136,7 @@ int Application::run(void) {
 		DispatchMessage(&msg);
 	}
 
-	// 登録されたコントロールを破棄
-	while (!controls.empty()) {
-		Control* control = controls.back();
-		controls.pop_back();
-		delete control;
-	}
-
-	// 登録されたオブジェクトを破棄
-	while (!objects.empty()) {
-		Object* object = objects.back();
-		objects.pop_back();
-		delete object;
-	}
-
-	return static_cast<int>(msg.wParam);
+	if (!isTerminated()) this->result = static_cast<int>(msg.wParam);
 }
 
 Application Application::instance;

@@ -1,15 +1,16 @@
 /*
  * object.hpp
  *
- * Last modified: <2013/05/06 22:17:35 +0900> By Zumida
+ * Last modified: <2013/08/21 02:24:53 +0900> By Zumida
  */
 #ifndef OBJECT_HPP_INCLUDED
 #define OBJECT_HPP_INCLUDED
 
+#include "define.hpp"
+#include "string.hpp"
 #include <list>
 #include <windows.h>
 #include <commctrl.h>
-#include "string.hpp"
 
 namespace swo {
 

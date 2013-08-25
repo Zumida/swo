@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/06/03 01:56:32 +0900> By Zumida
+ * Last modified: <2013/08/21 03:27:48 +0900> By Zumida
  */
 #include "define.hpp"
 #include "form.hpp"
@@ -9,6 +9,7 @@
 #include "windowclass.hpp"
 #include "syscursor.hpp"
 #include "syscolorbrush.hpp"
+#include "instance.hpp"
 
 using namespace swo;
 
@@ -127,4 +128,12 @@ void Form::setMenu(const Menu& menu) {
 
 Menu& Form::getMenu(void) {
 	return *menu;
+}
+
+Form& Form::create(void) {
+	return createInstance<Form>();
+}
+
+Form& Form::create(Control& parent) {
+	return createInstance<Form>(parent);
 }

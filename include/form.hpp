@@ -1,7 +1,7 @@
 /*
  * form.hpp
  *
- * Last modified: <2013/06/03 01:58:59 +0900> By Zumida
+ * Last modified: <2013/08/21 03:18:51 +0900> By Zumida
  */
 #ifndef FORM_HPP_INCLUDED
 #define FORM_HPP_INCLUDED
@@ -77,6 +77,9 @@ namespace swo {
 
 		void setActiveWindow(void);
 		void setForegroundWindow(void);
+
+		static Form& create(void);
+		static Form& create(Control& parent);
 	};
 
 };

@@ -10,39 +10,25 @@ However, it is still incomplete.
 
 Usage
 -----
-1. Appicationクラスのインスタンスよりウィジットを生成する。  
-   Generate widget from the instance of an Appication class.  
+1. swo.hpp他、必要なヘッダファイルをインクルードする。  
+   Include required header files.  
 
-2. ウィジットの初期設定を行う。  
-   Perform initial setting of widget.  
+2. Application::main()を用意する。  
+   Prepare Application::main().   
 
-3. Appicationクラスのインスタンスのrun()にてWindowsメッセージを処理する。  
-   Process a Windows message in run() of the Appication class instance.  
+3. Application::main()内でウィジットを生成し初期設定を行う。  
+   Generate widget, and perform initial setting.  
 
 main.cpp
 
-	#include "application.hpp"
+	#include "swo.hpp"
 	#include "form.hpp"
 	
-	using namespace swo;
+	void Application::main(void) {
 	
-	int WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPTSTR pCmdLine, int showCmd) {
-		
-		Application& app = Application::getInstance();
-		
-		Form& form = app.createObject<Form>();
+		Form& form = Form::create();
 		form.show();
-		
-		return app.run();
 	}
-
-	#ifndef wWinMain
-	int main(const int argc, const char* argv[]) {
-		::_tsetlocale(LC_ALL, L"");
-		
-		return _tWinMain(::GetModuleHandle(NULL), NULL, ::GetCommandLine(), SW_SHOW);
-	}
-	#endif
 
 Compile
 -------

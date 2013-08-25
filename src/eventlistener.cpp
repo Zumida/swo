@@ -1,12 +1,14 @@
 /*
  * eventlistener.cpp
  *
- * Last modified: <2013/06/03 02:17:11 +0900> By Zumida
+ * Last modified: <2013/08/25 08:38:32 +0900> By Zumida
  */
+#include "define.hpp"
+#include "eventlistener.hpp"
+#include "application.hpp"
 #include <windows.h>
 #include <windowsx.h>
 #include <limits.h>
-#include "eventlistener.hpp"
 
 #ifndef GET_KEYSTATE_WPARAM
 #define GET_KEYSTATE_WPARAM(wp) (int)(short)LOWORD(wp)
@@ -39,10 +41,6 @@
 
 using namespace swo;
 
-typedef std::map<HWND, EventListener*> WndMap;
-
-static WndMap wndMap;
-
 EventListener::EventListener() {
 }
 
@@ -72,7 +70,6 @@ void EventListener::removeListener(HWND hWnd) {
 
 EventListener* EventListener::findListener(HWND hWnd) {
 	WndMap::iterator it = wndMap.find(hWnd);
-
 	return (it == wndMap.end())? NULL: it->second;
 }
 
@@ -452,9 +449,8 @@ bool EventListener::wndproc(UINT msg, WPARAM wp, LPARAM lp) {
 
 LRESULT CALLBACK EventListener::WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) {
 	EventListener* listener = findListener(hWnd);
-
 	if (listener != NULL && listener->wndproc(msg, wp, lp)) return 0;
-
 	return ::DefWindowProc(hWnd, msg, wp, lp);
 }
 
+WndMap EventListener::wndMap;

@@ -1,16 +1,16 @@
 /*
  * control.hpp
  *
- * Last modified: <2013/06/03 01:46:34 +0900> By Zumida
+ * Last modified: <2013/08/21 02:24:21 +0900> By Zumida
  */
 #ifndef CONTROL_HPP_INCLUDED
 #define CONTROL_HPP_INCLUDED
 
-#include <list>
 #include "object.hpp"
 #include "cursor.hpp"
 #include "brush.hpp"
 #include "rect.hpp"
+#include <list>
 
 namespace swo {
 
