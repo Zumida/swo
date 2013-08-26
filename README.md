@@ -13,10 +13,10 @@ Usage
 1. swo.hpp他、必要なヘッダファイルをインクルードする。  
    Include required header files.  
 
-2. Application::main()を用意する。  
-   Prepare Application::main().   
+2. Application::initialize()を用意する。  
+   Prepare Application::initialize().   
 
-3. Application::main()内でウィジットを生成し初期設定を行う。  
+3. Application::initialize()内でウィジットを生成し初期設定を行う。  
    Generate widget, and perform initial setting.  
 
 main.cpp
@@ -24,7 +24,7 @@ main.cpp
 	#include "swo.hpp"
 	#include "form.hpp"
 	
-	void Application::main(void) {
+	void Application::initialize(void) {
 	
 		Form& form = Form::create();
 		form.show();
