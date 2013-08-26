@@ -1,7 +1,7 @@
 /*
  * eventlistener.cpp
  *
- * Last modified: <2013/08/25 08:38:32 +0900> By Zumida
+ * Last modified: <2013/08/27 00:59:40 +0900> By Zumida
  */
 #include "define.hpp"
 #include "eventlistener.hpp"
@@ -50,27 +50,13 @@ EventListener::~EventListener() {
 void EventListener::setHandle(HWND handle) {
 	HWND current = Control::getHandle();
 	if (current != NULL) {
-		removeListener(current);
+		Application::removeListener(current);
 	}
 
 	Control::setHandle(handle);
 	if (handle != NULL) {
-		addListener(handle, this);
+		Application::addListener(handle, this);
 	}
-}
-
-void EventListener::addListener(const HWND hWnd, const EventListener* listener) {
-	wndMap.insert(std::make_pair(const_cast<HWND>(hWnd),
-								 const_cast<EventListener*>(listener)));
-}
-
-void EventListener::removeListener(HWND hWnd) {
-	wndMap.erase(hWnd);
-}
-
-EventListener* EventListener::findListener(HWND hWnd) {
-	WndMap::iterator it = wndMap.find(hWnd);
-	return (it == wndMap.end())? NULL: it->second;
 }
 
 bool EventListener::wndproc(UINT msg, WPARAM wp, LPARAM lp) {
@@ -446,11 +432,3 @@ bool EventListener::wndproc(UINT msg, WPARAM wp, LPARAM lp) {
 
 	return result;
 }
-
-LRESULT CALLBACK EventListener::WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) {
-	EventListener* listener = findListener(hWnd);
-	if (listener != NULL && listener->wndproc(msg, wp, lp)) return 0;
-	return ::DefWindowProc(hWnd, msg, wp, lp);
-}
-
-WndMap EventListener::wndMap;

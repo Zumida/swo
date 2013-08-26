@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/08/21 03:27:48 +0900> By Zumida
+ * Last modified: <2013/08/27 01:03:02 +0900> By Zumida
  */
 #include "define.hpp"
 #include "form.hpp"
@@ -34,7 +34,7 @@ void Form::initialize(void) {
 		wc.setClassName(WINDOW_CLASSNAME);
 		wc.setCursor(SysCursor::Arrow);
 		wc.setBackground(sb);
-		wc.setWndProc(EventListener::WndProc);
+		wc.setWndProc(Application::WndProc);
 
 		WindowClass::add(wc);
 	}

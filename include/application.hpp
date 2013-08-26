@@ -1,7 +1,7 @@
 /*
  * application.hpp
  *
- * Last modified: <2013/08/25 08:37:21 +0900> By Zumida
+ * Last modified: <2013/08/27 01:04:50 +0900> By Zumida
  */
 #ifndef APPLICATION_HPP_INCLUDED
 #define APPLICATION_HPP_INCLUDED
@@ -9,6 +9,7 @@
 #include "define.hpp"
 #include "stringlist.hpp"
 #include "control.hpp"
+#include "eventlistener.hpp"
 
 namespace swo {
 
@@ -16,28 +17,36 @@ namespace swo {
 	private:
 		static class Application instance;
 
+		enum {
+			BOOT,
+			INITIALIZE,
+			RUN,
+			FINALIZE
+		} status;
+
 		StringList arguments;
 		Objects objects;
 		Controls controls;
 
-		bool running;
 		bool terminated;
 		int result;
+
+		WndMap wndMap;
 
 		Application();
 		~Application();
 
 	public:
 		/*
-		 * NOTE : Application::main()
+		 * NOTE : Application::initialize()
 		 * ライブラリ側では準備をしていない。
 		 * 必ず利用者が準備すること。
 		 * It has not prepared in the library side. 
 		 * A user needs to prepare at any cost.
 		 */
-		void main(void);
-
 		void initialize(void);
+
+		void boot(void);
 		void finalize(void);
 		void terminate(int result=0);
 
@@ -64,8 +73,11 @@ namespace swo {
 		}
 
 		static class Application& getInstance(void);
+		static EventListener* findListener(const HWND hWnd);
+		static void addListener(const HWND hWnd, const class EventListener* listener);
+		static void removeListener(const HWND hWnd);
+		static LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
 	};
-
 };
 
 #endif

@@ -1,7 +1,7 @@
 /*
  * eventlistener.hpp
  *
- * Last modified: <2013/08/25 08:59:54 +0900> By Zumida
+ * Last modified: <2013/08/27 01:11:01 +0900> By Zumida
  */
 #ifndef EVENTLISTENER_HPP_INCLUDED
 #define EVENTLISTENER_HPP_INCLUDED
@@ -16,14 +16,13 @@ namespace swo {
 	typedef std::map<HWND, class EventListener*> WndMap;
 
 	class EventListener : public Control {
-	private:
-		static WndMap wndMap;
+	public:
+		EventListener();
+		~EventListener();
 
-	protected:
 		void setHandle(HWND handle);
 
 		virtual bool wndproc(UINT msg, WPARAM wp, LPARAM lp);
-
 		virtual bool onCreate(void) {return false;}
 		virtual bool onDestroy(void) {return false;}
 		virtual bool onActive(void) {return false;}
@@ -81,17 +80,7 @@ namespace swo {
 		virtual bool onXButtonDoubleClick(int fwButton, int fwKeys, int x, int y) {return false;}
 		virtual bool onMouseHover(int fwKeys, int x, int y) {return false;}
 		virtual bool onMouseLeave(void) {return false;}
-
-	public:
-		EventListener();
-		~EventListener();
-
-		static EventListener* findListener(const HWND hWnd);
-		static void addListener(const HWND hWnd, const class EventListener* listener);
-		static void removeListener(const HWND hWnd);
-		static LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
 	};
-
 };
 
 #endif

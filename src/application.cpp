@@ -1,16 +1,18 @@
 /*
  * application.cpp
  *
- * Last modified: <2013/08/25 08:59:10 +0900> By Zumida
+ * Last modified: <2013/08/27 01:12:27 +0900> By Zumida
  */
 #include "application.hpp"
 #include <windows.h>
 
 using namespace swo;
 
+Application Application::instance;
+
 Application::Application() {
 	// 各フィールドの初期化
-	running = false;
+	status = BOOT;
 	terminated = false;
 	result = 0;
 }
@@ -18,8 +20,7 @@ Application::Application() {
 Application::~Application() {
 }
 
-void Application::initialize(void) {
-
+void Application::boot(void) {
 	// コマンドライン引数の取得
 	int argc = 0;
 	WCHAR **argv = ::CommandLineToArgvW(::GetCommandLineW(), &argc);
@@ -30,9 +31,13 @@ void Application::initialize(void) {
 		}
 		::GlobalFree(argv);
 	}
+
+	status = INITIALIZE;
 }
 
 void Application::finalize(void) {
+
+	status = FINALIZE;
 
 	try {
 		// 登録されたコントロールを破棄
@@ -67,6 +72,8 @@ void Application::finalize(void) {
 
 void Application::terminate(int result) {
 	this->result = result;
+	this->terminated = true;
+	::PostQuitMessage(result);
 }
 
 StringList& Application::getArguments(void) {
@@ -78,7 +85,7 @@ int Application::getResult(void) const {
 }
 
 bool Application::isRunning(void) const {
-	return running;
+	return (status == RUN);
 }
 
 bool Application::isTerminated(void) const {
@@ -108,6 +115,7 @@ void Application::remove(Object* object) {
 }
 
 void Application::run(void) {
+	status = RUN;
 
 	// メッセージループ
 	MSG msg;
@@ -139,8 +147,35 @@ void Application::run(void) {
 	if (!isTerminated()) this->result = static_cast<int>(msg.wParam);
 }
 
-Application Application::instance;
-
 Application& Application::getInstance(void) {
 	return instance;
+}
+
+void Application::addListener(const HWND hWnd, const EventListener* listener) {
+	WndMap& map = getInstance().wndMap;
+
+	map.insert(std::make_pair(const_cast<HWND>(hWnd),
+							  const_cast<EventListener*>(listener)));
+}
+
+void Application::removeListener(HWND hWnd) {
+	getInstance().wndMap.erase(hWnd);
+}
+
+EventListener* Application::findListener(HWND hWnd) {
+	Application& app = getInstance();
+
+	if (app.status != RUN) {
+		return NULL;
+	} else {
+		WndMap& map = app.wndMap;
+		WndMap::iterator it = map.find(hWnd);
+		return (it == map.end())? NULL: it->second;
+	}
+}
+
+LRESULT CALLBACK Application::WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) {
+	EventListener* listener = findListener(hWnd);
+	if (listener != NULL && listener->wndproc(msg, wp, lp)) return 0;
+	return ::DefWindowProc(hWnd, msg, wp, lp);
 }

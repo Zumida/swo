@@ -56,13 +56,19 @@ int WINAPI _tWinMain(
 	Application& app = Application::getInstance();
 
 	try {
+		Stdlog << "Application is booting." << std::endl;
+		app.boot();
+
+		Stdlog << "Application is initializing." << std::endl;
 		app.initialize();
-		app.main();
-		if (!app.isTerminated()) app.run();
+
+		if (!app.isTerminated()) {
+			Stdlog << "Application is running." << std::endl;
+			app.run();
+		}
 
 	} catch (const std::exception &e) {
 		Stderr << "Catch a std::exception! : " << e.what() << std::endl;
-		Stdlog << "log!";
 		app.terminate(-1);
 
 	} catch (...) {
@@ -71,6 +77,7 @@ int WINAPI _tWinMain(
 		app.terminate(-1);
 	}
 
+	Stdlog << "Application is finalizing." << std::endl;
 	app.finalize();
 
 	Stdout.rdbuf(NULL);
