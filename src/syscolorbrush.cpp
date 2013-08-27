@@ -1,9 +1,10 @@
 /*
  * syscolorbrush.cpp
  *
- * Last modified: <2013/05/22 07:12:25 +0900> By Zumida
+ * Last modified: <2013/08/28 01:42:23 +0900> By Zumida
  */
 #include "syscolorbrush.hpp"
+#include "instance.hpp"
 
 using namespace swo;
 
@@ -11,14 +12,10 @@ SysColorBrush::SysColorBrush() {
 	index = 0;
 }
 
-SysColorBrush::SysColorBrush(const int index) {
-	this->index = index;
-}
-
 SysColorBrush::~SysColorBrush() {
 }
 
-Brush& SysColorBrush::set(const int index) {
+SysColorBrush& SysColorBrush::set(const int index) {
 	this->index = index;
 	return *this;
 }
@@ -33,4 +30,8 @@ void SysColorBrush::refresh(void) {
 
 void SysColorBrush::trash(void) {
 	handle = NULL;
+}
+
+SysColorBrush& SysColorBrush::create(const int index) {
+	return Instance::create<SysColorBrush>().set(index);
 }

@@ -1,7 +1,7 @@
 /*
  * windowclass.hpp
  *
- * Last modified: <2013/05/07 07:16:47 +0900> By Zumida
+ * Last modified: <2013/08/28 01:32:40 +0900> By Zumida
  */
 #ifndef WINDOWCLASS_HPP_INCLUDED
 #define WINDOWCLASS_HPP_INCLUDED
@@ -30,16 +30,17 @@ namespace swo {
 		WindowClass();
 		~WindowClass();
 
-		void setClassName(const String& className);
-		void setIcon(const Icon& icon);
-		void setSmallIcon(const Icon& smallIcon);
-		void setCursor(const Cursor& cursor);
-		void setBackground(const Brush& background);
-		void setMenuName(const String& menuName);
-		void setWndProc(const FuncWndProc wndProc);
+		WindowClass& setClassName(const String& className);
+		WindowClass& setIcon(const Icon& icon);
+		WindowClass& setSmallIcon(const Icon& smallIcon);
+		WindowClass& setCursor(const Cursor& cursor);
+		WindowClass& setBackground(const Brush& background);
+		WindowClass& setMenuName(const String& menuName);
+		WindowClass& setWndProc(const FuncWndProc wndProc);
 
 		static void add(class WindowClass& wndClass);
-		static class WindowClass* find(const String& className);
+		static WindowClass* find(const String& className);
+		static WindowClass& create(void);
 	};
 
 };

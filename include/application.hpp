@@ -1,7 +1,7 @@
 /*
  * application.hpp
  *
- * Last modified: <2013/08/27 01:04:50 +0900> By Zumida
+ * Last modified: <2013/08/28 00:57:59 +0900> By Zumida
  */
 #ifndef APPLICATION_HPP_INCLUDED
 #define APPLICATION_HPP_INCLUDED
@@ -59,18 +59,6 @@ namespace swo {
 		void add(Object* object);
 		void remove(Object* object);
 		void run(void);
-
-		template<typename T> T& createObject(void) {
-			T *obj = new T();
-			add(obj);
-			return *obj;
-		}
-
-		template<typename T> T& createObject(Control& parent) {
-			T *obj = new T(&parent);
-			add(obj);
-			return *obj;
-		}
 
 		static class Application& getInstance(void);
 		static EventListener* findListener(const HWND hWnd);

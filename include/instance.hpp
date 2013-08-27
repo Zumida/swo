@@ -1,7 +1,7 @@
 /*
  * instance.hpp
  *
- * Last modified: <2013/08/21 03:27:14 +0900> By Zumida
+ * Last modified: <2013/08/28 01:16:11 +0900> By Zumida
  */
 #ifndef INSTANCE_HPP_INCLUDED
 #define INSTANCE_HPP_INCLUDED
@@ -10,18 +10,29 @@
 
 namespace swo {
 
-	template<typename T> T& createInstance(void) {
-		T *obj = new T();
-		Application::getInstance().add(obj);
-		return *obj;
-	}
+	class Instance {
+	private:
+		Instance();
+		~Instance();
 
-	template<typename T> T& createInstance(Control& parent) {
-		T *obj = new T(&parent);
-		Application::getInstance().add(obj);
-		return *obj;
-	}
+	public:
+		template<typename T> static T& create(void) {
+			T *obj = new T();
+			Application::getInstance().add(obj);
+			return *obj;
+		}
 
+		template<typename T> static T& create(Control& parent) {
+			T *obj = new T(&parent);
+			Application::getInstance().add(obj);
+			return *obj;
+		}
+
+		static void discard(const Object& object) {
+			Object *obj = const_cast<Object*>(&object);
+			Application::getInstance().remove(obj);
+		}
+	};
 };
 
 #endif

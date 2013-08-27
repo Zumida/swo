@@ -1,10 +1,11 @@
 /*
  * windowclass.cpp
  *
- * Last modified: <2013/05/23 06:07:13 +0900> By Zumida
+ * Last modified: <2013/08/28 01:32:32 +0900> By Zumida
  */
 #include <map>
 #include "windowclass.hpp"
+#include "instance.hpp"
 #include "syscolorbrush.hpp"
 
 using namespace swo;
@@ -27,28 +28,34 @@ WindowClass::~WindowClass() {
 	}
 }
 
-void WindowClass::setClassName(const String& className) {
+WindowClass& WindowClass::setClassName(const String& className) {
 	this->className = className;
+	return *this;
 }
 
-void WindowClass::setIcon(const Icon& icon) {
+WindowClass& WindowClass::setIcon(const Icon& icon) {
 	this->icon = const_cast<Icon*>(&icon);
+	return *this;
 }
 
-void WindowClass::setSmallIcon(const Icon& smallIcon) {
+WindowClass& WindowClass::setSmallIcon(const Icon& smallIcon) {
 	this->smallIcon = const_cast<Icon*>(&smallIcon);
+	return *this;
 }
 
-void WindowClass::setCursor(const Cursor& cursor) {
+WindowClass& WindowClass::setCursor(const Cursor& cursor) {
 	this->cursor = const_cast<Cursor*>(&cursor);
+	return *this;
 }
 
-void WindowClass::setBackground(const Brush& background) {
+WindowClass& WindowClass::setBackground(const Brush& background) {
 	this->background = const_cast<Brush*>(&background);
+	return *this;
 }
 
-void WindowClass::setWndProc(const FuncWndProc wndProc) {
+WindowClass& WindowClass::setWndProc(const FuncWndProc wndProc) {
 	this->wndProc = wndProc;
+	return *this;
 }
 
 void WindowClass::add(class WindowClass& wndClass) {
@@ -96,8 +103,11 @@ void WindowClass::add(class WindowClass& wndClass) {
 	}
 }
 
-class WindowClass* WindowClass::find(const String& className) {
+WindowClass* WindowClass::find(const String& className) {
 	WndClassMap::iterator it = wndClassMap.find(className);
-
 	return (it == wndClassMap.end())? NULL: it->second;
+}
+
+WindowClass& WindowClass::create(void) {
+	return Instance::create<WindowClass>();
 }

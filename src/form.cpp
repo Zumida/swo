@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/08/27 01:03:02 +0900> By Zumida
+ * Last modified: <2013/08/28 01:33:46 +0900> By Zumida
  */
 #include "define.hpp"
 #include "form.hpp"
@@ -27,14 +27,12 @@ Form::~Form() {
 
 void Form::initialize(void) {
 	if (WindowClass::find(WINDOW_CLASSNAME) == NULL) {
-		Application& app = Application::getInstance();
-		WindowClass& wc = app.createObject<WindowClass>();
-		Brush& sb = app.createObject<SysColorBrush>().set(COLOR_WINDOW);
+		WindowClass& wc = WindowClass::create();
 
-		wc.setClassName(WINDOW_CLASSNAME);
-		wc.setCursor(SysCursor::Arrow);
-		wc.setBackground(sb);
-		wc.setWndProc(Application::WndProc);
+		wc.setClassName(WINDOW_CLASSNAME)
+			.setCursor(SysCursor::Arrow)
+				.setBackground(SysColorBrush::create(COLOR_WINDOW))
+					.setWndProc(Application::WndProc);
 
 		WindowClass::add(wc);
 	}
@@ -131,9 +129,9 @@ Menu& Form::getMenu(void) {
 }
 
 Form& Form::create(void) {
-	return createInstance<Form>();
+	return Instance::create<Form>();
 }
 
 Form& Form::create(Control& parent) {
-	return createInstance<Form>(parent);
+	return Instance::create<Form>(parent);
 }
