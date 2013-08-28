@@ -1,7 +1,7 @@
 /*
  * application.cpp
  *
- * Last modified: <2013/08/27 01:12:27 +0900> By Zumida
+ * Last modified: <2013/08/28 11:36:06 +0900> By Zumida
  */
 #include "application.hpp"
 #include <windows.h>
@@ -20,6 +20,10 @@ Application::Application() {
 Application::~Application() {
 }
 
+Application& Application::getInstance(void) {
+	return instance;
+}
+
 void Application::boot(void) {
 	// コマンドライン引数の取得
 	int argc = 0;
@@ -33,6 +37,39 @@ void Application::boot(void) {
 	}
 
 	status = INITIALIZE;
+}
+
+void Application::run(void) {
+	status = RUN;
+
+	// メッセージループ
+	MSG msg;
+	while (!isTerminated()) {
+		// 更新予約コントロールを更新
+		for (Controls::iterator it = controls.begin();
+			 it != controls.end(); ) {
+			Control* c = *it;
+			if (c->isTerminated()) {
+				it = controls.erase(it);
+				delete c;
+				continue;
+			}
+			if (c->isUpdated()) {
+				c->refresh();
+			}
+			it++;
+		}
+
+		// メッセージ取得失敗、終了メッセージ受信時はループ終了
+		int result = GetMessage(&msg, NULL, 0, 0);
+		if (result == 0 || result == -1) break;
+
+		// メッセージを処理する
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+
+	if (!isTerminated()) this->result = static_cast<int>(msg.wParam);
 }
 
 void Application::finalize(void) {
@@ -71,8 +108,9 @@ void Application::finalize(void) {
 }
 
 void Application::terminate(int result) {
-	this->result = result;
-	this->terminated = true;
+	Application& app = getInstance();
+	app.result = result;
+	app.terminated = true;
 	::PostQuitMessage(result);
 }
 
@@ -82,6 +120,10 @@ StringList& Application::getArguments(void) {
 
 int Application::getResult(void) const {
 	return result;
+}
+
+Application::Status Application::getStatus(void) const {
+	return status;
 }
 
 bool Application::isRunning(void) const {
@@ -112,43 +154,6 @@ void Application::remove(Object* object) {
 		objects.remove(object);
 		delete object;
 	}
-}
-
-void Application::run(void) {
-	status = RUN;
-
-	// メッセージループ
-	MSG msg;
-	while (!isTerminated()) {
-		// 更新予約コントロールを更新
-		for (Controls::iterator it = controls.begin();
-			 it != controls.end(); ) {
-			Control* c = *it;
-			if (c->isTerminated()) {
-				it = controls.erase(it);
-				delete c;
-				continue;
-			}
-			if (c->isUpdated()) {
-				c->refresh();
-			}
-			it++;
-		}
-
-		// メッセージ取得失敗、終了メッセージ受信時はループ終了
-		int result = GetMessage(&msg, NULL, 0, 0);
-		if (result == 0 || result == -1) break;
-
-		// メッセージを処理する
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
-	}
-
-	if (!isTerminated()) this->result = static_cast<int>(msg.wParam);
-}
-
-Application& Application::getInstance(void) {
-	return instance;
 }
 
 void Application::addListener(const HWND hWnd, const EventListener* listener) {

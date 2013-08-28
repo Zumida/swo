@@ -1,7 +1,7 @@
 /*
  * application.hpp
  *
- * Last modified: <2013/08/28 00:57:59 +0900> By Zumida
+ * Last modified: <2013/08/28 11:31:58 +0900> By Zumida
  */
 #ifndef APPLICATION_HPP_INCLUDED
 #define APPLICATION_HPP_INCLUDED
@@ -14,16 +14,18 @@
 namespace swo {
 
 	class Application : public Object {
-	private:
-		static class Application instance;
-
-		enum {
+	public:
+		enum Status {
 			BOOT,
 			INITIALIZE,
 			RUN,
 			FINALIZE
-		} status;
+		};
 
+	private:
+		static class Application instance;
+
+		Status status;
 		StringList arguments;
 		Objects objects;
 		Controls controls;
@@ -37,6 +39,8 @@ namespace swo {
 		~Application();
 
 	public:
+		static class Application& getInstance(void);
+
 		/*
 		 * NOTE : Application::initialize()
 		 * ライブラリ側では準備をしていない。
@@ -44,25 +48,25 @@ namespace swo {
 		 * It has not prepared in the library side. 
 		 * A user needs to prepare at any cost.
 		 */
-		void initialize(void);
-
 		void boot(void);
+		void initialize(void);
+		void run(void);
 		void finalize(void);
-		void terminate(int result=0);
+
+		static void terminate(int result=0);
 
 		StringList& getArguments(void);
 		int getResult(void) const;
+		Status getStatus(void) const;
 
 		bool isRunning(void) const;
 		bool isTerminated(void) const;
 
 		void add(Object* object);
 		void remove(Object* object);
-		void run(void);
 
-		static class Application& getInstance(void);
 		static EventListener* findListener(const HWND hWnd);
-		static void addListener(const HWND hWnd, const class EventListener* listener);
+		static void addListener(const HWND hWnd, const EventListener* listener);
 		static void removeListener(const HWND hWnd);
 		static LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
 	};
