@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/08/28 01:33:46 +0900> By Zumida
+ * Last modified: <2013/09/02 23:31:39 +0900> By Zumida
  */
 #include "define.hpp"
 #include "form.hpp"
@@ -126,6 +126,52 @@ void Form::setMenu(const Menu& menu) {
 
 Menu& Form::getMenu(void) {
 	return *menu;
+}
+
+void Form::setAcceptFiles(const bool enabled) {
+}
+bool Form::isAcceptFiles(void) const {
+	return false;
+}
+void Form::setAppWindow(const bool enabled) {
+}
+bool Form::isAppWindow(void) const {
+	return false;
+}
+void Form::setControlParent(const bool enabled) {
+}
+bool Form::isControlParent(void) const {
+	return false;
+}
+void Form::setFormType(const FormType formType) {
+}
+Form::FormType Form::getFormType(void) const {
+	return DialogModalFrame;
+}
+void Form::setMdiChild(const bool enabled) {
+}
+bool Form::isMdiChild(void) const {
+	return false;
+}
+void Form::setNoActivate(const bool enabled) {
+}
+bool Form::isNoActivate(void) const {
+	return false;
+}
+void Form::setTopMost(const bool enabled) {
+}
+bool Form::isTopMost(void) {
+	return false;
+}
+void Form::setTransparent(const bool enabled) {
+}
+bool Form::isTransparent(void) {
+	return false;
+}
+
+void Form::setActiveWindow(void) {
+}
+void Form::setForegroundWindow(void) {
 }
 
 Form& Form::create(void) {
