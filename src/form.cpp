@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/09/04 01:52:15 +0900> By Zumida
+ * Last modified: <2013/09/04 02:04:43 +0900> By Zumida
  */
 #include "define.hpp"
 #include "form.hpp"
@@ -135,10 +135,14 @@ Menu& Form::getMenu(void) {
 }
 
 Form& Form::setAcceptFiles(const bool enabled) {
+	if (enabled)
+		exStyle |= WS_EX_ACCEPTFILES;
+	else
+		exStyle &= ~WS_EX_ACCEPTFILES;
 	return *this;
 }
 bool Form::isAcceptFiles(void) const {
-	return false;
+	return ((exStyle & WS_EX_ACCEPTFILES) != 0);
 }
 Form& Form::setAppWindow(const bool enabled) {
 	return *this;
