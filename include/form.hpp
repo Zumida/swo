@@ -1,7 +1,7 @@
 /*
  * form.hpp
  *
- * Last modified: <2013/08/21 03:18:51 +0900> By Zumida
+ * Last modified: <2013/09/04 01:44:15 +0900> By Zumida
  */
 #ifndef FORM_HPP_INCLUDED
 #define FORM_HPP_INCLUDED
@@ -43,40 +43,48 @@ namespace swo {
 		Form(Control* parent);
 		~Form();
 
-		void setClassName(const String& className);
+		Form& setClassName(const String& className);
 		String& getClassName(void);
 
-		void setStyle(const int style);
+		Form& setStyle(const int style);
 		int getStyle(void) const;
-		void setExStyle(const int exStyle);
+		Form& setExStyle(const int exStyle);
 		int getExStyle(void) const;
 
-		void setText(const String& text);
+		Form& setText(const String& text);
 		String& getText(void);
-		void setIcon(const Icon& icon);
+		Form& setIcon(const Icon& icon);
 		Icon& getIcon(void);
-		void setMenu(const Menu& menu);
+		Form& setMenu(const Menu& menu);
 		Menu& getMenu(void);
 
-		void setAcceptFiles(const bool enabled=true);
+		Form& setAcceptFiles(const bool enabled=true);
 		bool isAcceptFiles(void) const;
-		void setAppWindow(const bool enabled=true);
+		Form& setAppWindow(const bool enabled=true);
 		bool isAppWindow(void) const;
-		void setControlParent(const bool enabled=true);
+		Form& setControlParent(const bool enabled=true);
 		bool isControlParent(void) const;
-		void setFormType(const FormType formType);
+		Form& setFormType(const FormType formType);
 		FormType getFormType(void) const;
-		void setMdiChild(const bool enabled=true);
+		Form& setMdiChild(const bool enabled=true);
 		bool isMdiChild(void) const;
-		void setNoActivate(const bool enabled=true);
+		Form& setNoActivate(const bool enabled=true);
 		bool isNoActivate(void) const;
-		void setTopMost(const bool enabled=true);
+		Form& setTopMost(const bool enabled=true);
 		bool isTopMost(void);
-		void setTransparent(const bool enabled=true);
+		Form& setTransparent(const bool enabled=true);
 		bool isTransparent(void);
 
-		void setActiveWindow(void);
-		void setForegroundWindow(void);
+		Form& setActiveWindow(void);
+		Form& setForegroundWindow(void);
+
+		Form& setParent(Control* parent);
+		Form& addChild(Control* child);
+		Form& removeChild(Control* child);
+		Form& setRect(const WindowRect& rect);
+		Form& setBackground(const Brush& brush);
+		Form& setCursor(const Cursor& cursor);
+		Form& setTab(int tab);
 
 		static Form& create(void);
 		static Form& create(Control& parent);

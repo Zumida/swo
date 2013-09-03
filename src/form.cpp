@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/09/02 23:31:39 +0900> By Zumida
+ * Last modified: <2013/09/04 01:52:15 +0900> By Zumida
  */
 #include "define.hpp"
 #include "form.hpp"
@@ -80,98 +80,149 @@ bool Form::onDestroy(void) {
 	}
 }
 
-void Form::setClassName(const String& className) {
+Form& Form::setClassName(const String& className) {
 	this->className = className;
+	return *this;
 }
 
 String& Form::getClassName(void) {
 	return className;
 }
 
-void Form::setStyle(const int style) {
+Form& Form::setStyle(const int style) {
 	this->style = style;
+	return *this;
 }
 
 int Form::getStyle(void) const {
 	return style;
 }
 
-void Form::setExStyle(const int exStyle) {
+Form& Form::setExStyle(const int exStyle) {
 	this->exStyle = exStyle;
+	return *this;
 }
 
 int Form::getExStyle(void) const {
 	return exStyle;
 }
 
-void Form::setText(const String& text) {
+Form& Form::setText(const String& text) {
 	this->text = text;
+	return *this;
 }
 
 String& Form::getText(void) {
 	return text;
 }
 
-void Form::setIcon(const Icon& icon) {
+Form& Form::setIcon(const Icon& icon) {
 	this->icon = const_cast<Icon*>(&icon);
+	return *this;
 }
 
 Icon& Form::getIcon(void) {
 	return *icon;
 }
 
-void Form::setMenu(const Menu& menu) {
+Form& Form::setMenu(const Menu& menu) {
 	this->menu = const_cast<Menu*>(&menu);
+	return *this;
 }
 
 Menu& Form::getMenu(void) {
 	return *menu;
 }
 
-void Form::setAcceptFiles(const bool enabled) {
+Form& Form::setAcceptFiles(const bool enabled) {
+	return *this;
 }
 bool Form::isAcceptFiles(void) const {
 	return false;
 }
-void Form::setAppWindow(const bool enabled) {
+Form& Form::setAppWindow(const bool enabled) {
+	return *this;
 }
 bool Form::isAppWindow(void) const {
 	return false;
 }
-void Form::setControlParent(const bool enabled) {
+Form& Form::setControlParent(const bool enabled) {
+	return *this;
 }
 bool Form::isControlParent(void) const {
 	return false;
 }
-void Form::setFormType(const FormType formType) {
+Form& Form::setFormType(const FormType formType) {
+	return *this;
 }
 Form::FormType Form::getFormType(void) const {
 	return DialogModalFrame;
 }
-void Form::setMdiChild(const bool enabled) {
+Form& Form::setMdiChild(const bool enabled) {
+	return *this;
 }
 bool Form::isMdiChild(void) const {
 	return false;
 }
-void Form::setNoActivate(const bool enabled) {
+Form& Form::setNoActivate(const bool enabled) {
+	return *this;
 }
 bool Form::isNoActivate(void) const {
 	return false;
 }
-void Form::setTopMost(const bool enabled) {
+Form& Form::setTopMost(const bool enabled) {
+	return *this;
 }
 bool Form::isTopMost(void) {
 	return false;
 }
-void Form::setTransparent(const bool enabled) {
+Form& Form::setTransparent(const bool enabled) {
+	return *this;
 }
 bool Form::isTransparent(void) {
 	return false;
 }
 
-void Form::setActiveWindow(void) {
+Form& Form::setActiveWindow(void) {
+	return *this;
 }
-void Form::setForegroundWindow(void) {
+Form& Form::setForegroundWindow(void) {
+	return *this;
+}
+
+Form& Form::setParent(Control* parent) {
+	Control::setParent(parent);
+	return *this;
+}
+
+Form& Form::addChild(Control* child) {
+	Control::addChild(child);
+	return *this;
+}
+
+Form& Form::removeChild(Control* child) {
+	Control::removeChild(child);
+	return *this;
+}
+
+Form& Form::setRect(const WindowRect& rect) {
+	Control::setRect(rect);
+	return *this;
+}
+
+Form& Form::setBackground(const Brush& brush) {
+	Control::setBackground(brush);
+	return *this;
+}
+
+Form& Form::setCursor(const Cursor& cursor) {
+	Control::setCursor(cursor);
+	return *this;
+}
+
+Form& Form::setTab(int tab) {
+	Control::setTab(tab);
+	return *this;
 }
 
 Form& Form::create(void) {
