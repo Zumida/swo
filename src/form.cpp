@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/09/05 00:47:36 +0900> By Zumida
+ * Last modified: <2013/09/05 01:44:31 +0900> By Zumida
  */
 #include "define.hpp"
 #include "form.hpp"
@@ -141,9 +141,11 @@ Form& Form::setAcceptFiles(const bool enabled) {
 		exStyle &= ~WS_EX_ACCEPTFILES;
 	return *this;
 }
+
 bool Form::isAcceptFiles(void) const {
 	return ((exStyle & WS_EX_ACCEPTFILES) != 0);
 }
+
 Form& Form::setAppWindow(const bool enabled) {
 	if (enabled)
 		exStyle |= WS_EX_APPWINDOW;
@@ -151,9 +153,11 @@ Form& Form::setAppWindow(const bool enabled) {
 		exStyle &= ~WS_EX_APPWINDOW;
 	return *this;
 }
+
 bool Form::isAppWindow(void) const {
 	return ((exStyle & WS_EX_APPWINDOW) != 0);
 }
+
 Form& Form::setControlParent(const bool enabled) {
 	if (enabled)
 		exStyle |= WS_EX_CONTROLPARENT;
@@ -161,9 +165,11 @@ Form& Form::setControlParent(const bool enabled) {
 		exStyle &= ~WS_EX_CONTROLPARENT;
 	return *this;
 }
+
 bool Form::isControlParent(void) const {
 	return ((exStyle & WS_EX_CONTROLPARENT) != 0);
 }
+
 Form& Form::setFormType(const FormType formType) {
 	exStyle &= ~(WS_EX_DLGMODALFRAME
 				 |WS_EX_OVERLAPPEDWINDOW
@@ -187,6 +193,7 @@ Form& Form::setFormType(const FormType formType) {
 	}
 	return *this;
 }
+
 Form::FormType Form::getFormType(void) const {
 	FormType formType;
 
@@ -203,35 +210,62 @@ Form::FormType Form::getFormType(void) const {
 
 	return formType;
 }
+
 Form& Form::setMdiChild(const bool enabled) {
+	if (enabled)
+		exStyle |= WS_EX_MDICHILD;
+	else
+		exStyle &= ~WS_EX_MDICHILD;
 	return *this;
 }
+
 bool Form::isMdiChild(void) const {
-	return false;
+	return ((exStyle & WS_EX_MDICHILD) != 0);
 }
+
 Form& Form::setNoActivate(const bool enabled) {
+	if (enabled)
+		exStyle |= WS_EX_NOACTIVATE;
+	else
+		exStyle &= ~WS_EX_NOACTIVATE;
 	return *this;
 }
+
 bool Form::isNoActivate(void) const {
-	return false;
+	return ((exStyle & WS_EX_NOACTIVATE) != 0);
 }
+
 Form& Form::setTopMost(const bool enabled) {
+	if (enabled)
+		exStyle |= WS_EX_TOPMOST;
+	else
+		exStyle &= ~WS_EX_TOPMOST;
 	return *this;
 }
+
 bool Form::isTopMost(void) {
-	return false;
+	return ((exStyle & WS_EX_TOPMOST) != 0);
 }
+
 Form& Form::setTransparent(const bool enabled) {
+	if (enabled)
+		exStyle |= WS_EX_TRANSPARENT;
+	else
+		exStyle &= ~WS_EX_TRANSPARENT;
 	return *this;
 }
+
 bool Form::isTransparent(void) {
-	return false;
+	return ((exStyle & WS_EX_TRANSPARENT) != 0);
 }
 
 Form& Form::setActiveWindow(void) {
+	::SetActiveWindow(getHandle());
 	return *this;
 }
+
 Form& Form::setForegroundWindow(void) {
+	::SetForegroundWindow(getHandle());
 	return *this;
 }
 
