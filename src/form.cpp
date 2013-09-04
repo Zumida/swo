@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/09/04 02:04:43 +0900> By Zumida
+ * Last modified: <2013/09/05 00:47:36 +0900> By Zumida
  */
 #include "define.hpp"
 #include "form.hpp"
@@ -145,22 +145,63 @@ bool Form::isAcceptFiles(void) const {
 	return ((exStyle & WS_EX_ACCEPTFILES) != 0);
 }
 Form& Form::setAppWindow(const bool enabled) {
+	if (enabled)
+		exStyle |= WS_EX_APPWINDOW;
+	else
+		exStyle &= ~WS_EX_APPWINDOW;
 	return *this;
 }
 bool Form::isAppWindow(void) const {
-	return false;
+	return ((exStyle & WS_EX_APPWINDOW) != 0);
 }
 Form& Form::setControlParent(const bool enabled) {
+	if (enabled)
+		exStyle |= WS_EX_CONTROLPARENT;
+	else
+		exStyle &= ~WS_EX_CONTROLPARENT;
 	return *this;
 }
 bool Form::isControlParent(void) const {
-	return false;
+	return ((exStyle & WS_EX_CONTROLPARENT) != 0);
 }
 Form& Form::setFormType(const FormType formType) {
+	exStyle &= ~(WS_EX_DLGMODALFRAME
+				 |WS_EX_OVERLAPPEDWINDOW
+				 |WS_EX_PALETTEWINDOW
+				 |WS_EX_TOOLWINDOW);
+
+	switch (formType) {
+	default:
+	case DialogModalFrame:
+		exStyle |= WS_EX_DLGMODALFRAME;
+		break;
+	case OverLappedWindow:
+		exStyle |= WS_EX_OVERLAPPEDWINDOW;
+		break;
+	case PaletteWindow:
+		exStyle |= WS_EX_PALETTEWINDOW;
+		break;
+	case ToolWindow:
+		exStyle |= WS_EX_TOOLWINDOW;
+		break;
+	}
 	return *this;
 }
 Form::FormType Form::getFormType(void) const {
-	return DialogModalFrame;
+	FormType formType;
+
+	if ((exStyle & WS_EX_DLGMODALFRAME) == WS_EX_DLGMODALFRAME)
+		formType = DialogModalFrame;
+	else if ((exStyle & WS_EX_OVERLAPPEDWINDOW) == WS_EX_OVERLAPPEDWINDOW)
+		formType = OverLappedWindow;
+	else if ((exStyle & WS_EX_PALETTEWINDOW) == WS_EX_PALETTEWINDOW)
+		formType = PaletteWindow;
+	else if ((exStyle & WS_EX_TOOLWINDOW) == WS_EX_TOOLWINDOW)
+		formType = ToolWindow;
+	else
+		formType = DialogModalFrame;
+
+	return formType;
 }
 Form& Form::setMdiChild(const bool enabled) {
 	return *this;
