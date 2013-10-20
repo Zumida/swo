@@ -1,7 +1,7 @@
 /*
  * application.cpp
  *
- * Last modified: <2013/08/28 11:36:06 +0900> By Zumida
+ * Last modified: <2013/10/20 11:07:56 +0900> By Zumida
  */
 #include "application.hpp"
 #include <windows.h>
@@ -54,7 +54,7 @@ void Application::run(void) {
 				delete c;
 				continue;
 			}
-			if (c->isUpdated()) {
+			if (c->getParent() != NULL && c->isUpdated()) {
 				c->refresh();
 			}
 			it++;
