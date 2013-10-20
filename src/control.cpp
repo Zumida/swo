@@ -1,7 +1,7 @@
 /*
  * control.cpp
  *
- * Last modified: <2013/06/03 01:42:56 +0900> By Zumida
+ * Last modified: <2013/10/20 16:19:29 +0900> By Zumida
  */
 #include "control.hpp"
 #include <algorithm>
@@ -17,9 +17,9 @@ Control::Control() {
 	initialize();
 }
 
-Control::Control(Control* parent) {
+Control::Control(Control& parent) {
 	initialize();
-	setParent(parent);
+	setParent(&parent);
 }
 
 /*
@@ -28,17 +28,6 @@ Control::Control(Control* parent) {
  * 内部管理のオブジェクトを解放する。
  */
 Control::~Control() {
-	if (parent != NULL) {
-		parent->removeChild(this);
-		parent = NULL;
-	}
-
-	while (!childs.empty()) {
-		Control* child = childs.back();
-		childs.pop_back();
-		delete child;
-	}
-
 	if (getHandle() != NULL) {
 		::DestroyWindow(getHandle());
 		setHandle(NULL);
@@ -48,7 +37,6 @@ Control::~Control() {
 void Control::initialize(void) {
 	handle      = NULL;
 	parent      = NULL;
-	childs.clear();
 
 	rect.left   = 0;
 	rect.top    = 0;
@@ -61,6 +49,10 @@ void Control::initialize(void) {
 	visible     = false;
 	updated     = true;
 	terminated  = false;
+}
+
+void Control::resetHandle(void) {
+	this->handle = NULL;
 }
 
 void Control::setHandle(HWND handle) {
@@ -90,13 +82,6 @@ void Control::renew(void) {
 		setHandle(NULL);
 	}
 
-	for (Controls::iterator it = childs.begin();
-		 it != childs.end();
-		 it++) {
-
-		(*it)->setHandle(NULL);
-	}
-
 	refresh();
 }
 
@@ -114,14 +99,6 @@ void Control::refresh(void) {
 	}
 
 	setAttributes(handle);
-
-	childs.sort();
-	for (Controls::iterator it = childs.begin();
-		 it != childs.end();
-		 it++) {
-
-		(*it)->refresh();
-	}
 }
 
 void Control::terminate(void) {
@@ -133,23 +110,8 @@ Control* Control::getParent(void) {
 }
 
 void Control::setParent(Control* parent) {
-	if (this->parent != parent) {
-		if (this->parent != NULL) {
-			this->parent->removeChild(this);
-		}
-		this->parent = parent;
-		if (this->parent != NULL) {
-			this->parent->addChild(this);
-		}
-	}
-}
-
-void Control::addChild(Control* child) {
-	childs.push_back(child);
-}
-
-void Control::removeChild(Control* child) {
-	childs.remove(child);
+	this->parent = parent;
+	update();
 }
 
 void Control::show(void) {
@@ -175,6 +137,7 @@ void Control::hide(void) {
 
 void Control::setRect(const WindowRect& rect) {
 	this->rect = rect;
+	update();
 }
 
 WindowRect& Control::getRect(void) {

@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/09/05 01:44:31 +0900> By Zumida
+ * Last modified: <2013/10/20 16:18:25 +0900> By Zumida
  */
 #include "define.hpp"
 #include "form.hpp"
@@ -13,13 +13,12 @@
 
 using namespace swo;
 
-Form::Form() {
+Form::Form() : Container() {
 	initialize();
 }
 
-Form::Form(Control* parent) {
+Form::Form(Control& parent) : Container(parent) {
 	initialize();
-	setParent(parent);
 }
 
 Form::~Form() {
@@ -274,13 +273,13 @@ Form& Form::setParent(Control* parent) {
 	return *this;
 }
 
-Form& Form::addChild(Control* child) {
-	Control::addChild(child);
+Form& Form::addChild(Control& child) {
+	Container::addChild(child);
 	return *this;
 }
 
-Form& Form::removeChild(Control* child) {
-	Control::removeChild(child);
+Form& Form::removeChild(Control& child) {
+	Container::removeChild(child);
 	return *this;
 }
 

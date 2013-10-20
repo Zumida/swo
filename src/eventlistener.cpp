@@ -1,7 +1,7 @@
 /*
  * eventlistener.cpp
  *
- * Last modified: <2013/08/27 00:59:40 +0900> By Zumida
+ * Last modified: <2013/10/20 16:15:53 +0900> By Zumida
  */
 #include "define.hpp"
 #include "eventlistener.hpp"
@@ -42,6 +42,9 @@
 using namespace swo;
 
 EventListener::EventListener() {
+}
+
+EventListener::EventListener(Control& parent) : Control(parent) {
 }
 
 EventListener::~EventListener() {

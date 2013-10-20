@@ -1,7 +1,7 @@
 /*
  * instance.hpp
  *
- * Last modified: <2013/08/28 01:16:11 +0900> By Zumida
+ * Last modified: <2013/10/20 13:50:01 +0900> By Zumida
  */
 #ifndef INSTANCE_HPP_INCLUDED
 #define INSTANCE_HPP_INCLUDED
@@ -23,7 +23,7 @@ namespace swo {
 		}
 
 		template<typename T> static T& create(Control& parent) {
-			T *obj = new T(&parent);
+			T *obj = new T(parent);
 			Application::getInstance().add(obj);
 			return *obj;
 		}

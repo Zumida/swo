@@ -1,7 +1,7 @@
 /*
  * application.hpp
  *
- * Last modified: <2013/08/28 11:31:58 +0900> By Zumida
+ * Last modified: <2013/10/20 11:18:09 +0900> By Zumida
  */
 #ifndef APPLICATION_HPP_INCLUDED
 #define APPLICATION_HPP_INCLUDED
@@ -12,6 +12,8 @@
 #include "eventlistener.hpp"
 
 namespace swo {
+
+	typedef std::list<class Control*> Controls;
 
 	class Application : public Object {
 	public:

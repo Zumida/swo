@@ -1,7 +1,7 @@
 /*
  * eventlistener.hpp
  *
- * Last modified: <2013/08/27 01:11:01 +0900> By Zumida
+ * Last modified: <2013/10/20 16:01:01 +0900> By Zumida
  */
 #ifndef EVENTLISTENER_HPP_INCLUDED
 #define EVENTLISTENER_HPP_INCLUDED
@@ -18,6 +18,7 @@ namespace swo {
 	class EventListener : public Control {
 	public:
 		EventListener();
+		EventListener(Control& parent);
 		~EventListener();
 
 		void setHandle(HWND handle);

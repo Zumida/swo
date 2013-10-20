@@ -1,17 +1,17 @@
 /*
  * form.hpp
  *
- * Last modified: <2013/09/04 01:44:15 +0900> By Zumida
+ * Last modified: <2013/10/20 13:46:50 +0900> By Zumida
  */
 #ifndef FORM_HPP_INCLUDED
 #define FORM_HPP_INCLUDED
 
-#include "eventlistener.hpp"
+#include "container.hpp"
 #include "icon.hpp"
 #include "menu.hpp"
 
 namespace swo {
-	class Form : public EventListener {
+	class Form : public Container {
 	protected:
 		String className;
 		int style;
@@ -40,7 +40,7 @@ namespace swo {
 		};
 
 		Form();
-		Form(Control* parent);
+		Form(Control& parent);
 		~Form();
 
 		Form& setClassName(const String& className);
@@ -79,8 +79,8 @@ namespace swo {
 		Form& setForegroundWindow(void);
 
 		Form& setParent(Control* parent);
-		Form& addChild(Control* child);
-		Form& removeChild(Control* child);
+		Form& addChild(Control& child);
+		Form& removeChild(Control& child);
 		Form& setRect(const WindowRect& rect);
 		Form& setBackground(const Brush& brush);
 		Form& setCursor(const Cursor& cursor);
