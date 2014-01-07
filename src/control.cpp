@@ -1,8 +1,9 @@
 /*
  * control.cpp
  *
- * Last modified: <2013/06/03 01:42:56 +0900> By Zumida
+ * Last modified: <2014/01/07 14:25:21 +0900> By Zumida
  */
+#include "swoconfig.hpp"
 #include "control.hpp"
 #include <algorithm>
 
@@ -28,9 +29,9 @@ Control::Control(Control* parent) {
  * 内部管理のオブジェクトを解放する。
  */
 Control::~Control() {
-	if (parent != NULL) {
+	if (parent != nullptr) {
 		parent->removeChild(this);
-		parent = NULL;
+		parent = nullptr;
 	}
 
 	while (!childs.empty()) {
@@ -39,23 +40,23 @@ Control::~Control() {
 		delete child;
 	}
 
-	if (getHandle() != NULL) {
+	if (getHandle() != nullptr) {
 		::DestroyWindow(getHandle());
-		setHandle(NULL);
+		setHandle(nullptr);
 	}
 }
 
 void Control::initialize(void) {
-	handle      = NULL;
-	parent      = NULL;
+	handle      = nullptr;
+	parent      = nullptr;
 	childs.clear();
 
 	rect.left   = 0;
 	rect.top    = 0;
 	rect.width  = 0;
 	rect.height = 0;
-	background  = NULL;
-	cursor      = NULL;
+	background  = nullptr;
+	cursor      = nullptr;
 
 	tab         = 0;
 	visible     = false;
@@ -75,7 +76,7 @@ void Control::setAttributes(HWND handle) {
 	UINT uFlags = SWP_SHOWWINDOW|SWP_DRAWFRAME|SWP_NOZORDER|SWP_SHOWWINDOW
 		| (visible ? SWP_SHOWWINDOW: SWP_HIDEWINDOW);
 
-	::SetWindowPos(handle, NULL,
+	::SetWindowPos(handle, nullptr,
 				   rect.left, rect.top,
 				   rect.width, rect.height,
 				   uFlags);
@@ -85,16 +86,16 @@ void Control::renew(void) {
 	update();
 
 	HWND handle = getHandle();
-	if (handle != NULL) {
+	if (handle != nullptr) {
 		::DestroyWindow(handle);
-		setHandle(NULL);
+		setHandle(nullptr);
 	}
 
 	for (Controls::iterator it = childs.begin();
 		 it != childs.end();
 		 it++) {
 
-		(*it)->setHandle(NULL);
+		(*it)->setHandle(nullptr);
 	}
 
 	refresh();
@@ -108,7 +109,7 @@ void Control::refresh(void) {
 	updated = false;
 
 	HWND handle = getHandle();
-	if (handle == NULL) {
+	if (handle == nullptr) {
 		handle = createHandle();
 		setHandle(handle);
 	}
@@ -134,11 +135,11 @@ Control* Control::getParent(void) {
 
 void Control::setParent(Control* parent) {
 	if (this->parent != parent) {
-		if (this->parent != NULL) {
+		if (this->parent != nullptr) {
 			this->parent->removeChild(this);
 		}
 		this->parent = parent;
-		if (this->parent != NULL) {
+		if (this->parent != nullptr) {
 			this->parent->addChild(this);
 		}
 	}
@@ -157,7 +158,7 @@ void Control::show(void) {
 	refresh();
 
 	HWND hWnd = getHandle();
-	if (hWnd != NULL) {
+	if (hWnd != nullptr) {
 		ShowWindow(hWnd, SW_SHOW);
 		UpdateWindow(hWnd);
 	}
@@ -167,7 +168,7 @@ void Control::hide(void) {
 	visible = false;
 
 	HWND hWnd = getHandle();
-	if (hWnd != NULL) {
+	if (hWnd != nullptr) {
 		ShowWindow(hWnd, SW_HIDE);
 		UpdateWindow(hWnd);
 	}
@@ -217,5 +218,5 @@ bool Control::isTerminated(void) const {
 }
 
 bool Control::operator < (const Control* control) {
-	return control != NULL && this->tab < control->tab;
+	return control != nullptr && this->tab < control->tab;
 };

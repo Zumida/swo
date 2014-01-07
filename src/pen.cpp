@@ -1,8 +1,9 @@
 /*
  * pen.cpp
  *
- * Last modified: <2013/05/13 18:19:45 +0900> By Zumida
+ * Last modified: <2014/01/07 14:26:33 +0900> By Zumida
  */
+#include "swoconfig.hpp"
 #include "pen.hpp"
 #include "pointer.hpp"
 

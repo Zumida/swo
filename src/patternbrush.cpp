@@ -1,14 +1,15 @@
 /*
  * patternbrush.cpp
  *
- * Last modified: <2013/05/13 18:16:49 +0900> By Zumida
+ * Last modified: <2014/01/07 14:26:29 +0900> By Zumida
  */
+#include "swoconfig.hpp"
 #include "patternbrush.hpp"
 
 using namespace swo;
 
 PatternBrush::PatternBrush() {
-	bmp = NULL;
+	bmp = nullptr;
 }
 
 PatternBrush::PatternBrush(const Bitmap& bmp) {

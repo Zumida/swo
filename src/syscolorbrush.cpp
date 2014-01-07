@@ -1,8 +1,9 @@
 /*
  * syscolorbrush.cpp
  *
- * Last modified: <2013/08/28 01:42:23 +0900> By Zumida
+ * Last modified: <2014/01/07 14:28:56 +0900> By Zumida
  */
+#include "swoconfig.hpp"
 #include "syscolorbrush.hpp"
 #include "instance.hpp"
 
@@ -29,7 +30,7 @@ void SysColorBrush::refresh(void) {
 }
 
 void SysColorBrush::trash(void) {
-	handle = NULL;
+	handle = nullptr;
 }
 
 SysColorBrush& SysColorBrush::create(const int index) {

@@ -1,12 +1,12 @@
 /*
  * point.hpp
  *
- * Last modified: <2013/08/21 02:25:36 +0900> By Zumida
+ * Last modified: <2014/01/07 14:30:39 +0900> By Zumida
  */
 #ifndef POINT_HPP_INCLUDED
 #define POINT_HPP_INCLUDED
 
-#include "define.hpp"
+#include "swoconfig.hpp"
 #include <windef.h>
 
 namespace swo {

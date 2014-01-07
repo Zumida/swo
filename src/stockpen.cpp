@@ -1,8 +1,9 @@
 /*
  * stockpen.cpp
  *
- * Last modified: <2013/05/13 18:20:47 +0900> By Zumida
+ * Last modified: <2014/01/07 14:26:54 +0900> By Zumida
  */
+#include "swoconfig.hpp"
 #include "stockpen.hpp"
 
 using namespace swo;

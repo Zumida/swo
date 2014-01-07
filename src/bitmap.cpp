@@ -1,8 +1,9 @@
 /*
  * bitmap.cpp
  *
- * Last modified: <2013/05/13 17:34:53 +0900> By Zumida
+ * Last modified: <2014/01/07 14:24:01 +0900> By Zumida
  */
+#include "swoconfig.hpp"
 #include "bitmap.hpp"
 #include "pointer.hpp"
 

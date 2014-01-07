@@ -1,19 +1,21 @@
 /*
  * string.cpp
  *
- * Last modified: <2013/04/17 13:52:49 +0900> By Zumida
+ * Last modified: <2014/01/07 17:39:52 +0900> By Zumida
  */
+#include "swoconfig.hpp"
 #include "string.hpp"
 #include <windows.h>
-#include <string.h>
+#include <cstring>
 
 namespace swo {
+	inline namespace string {
 
 	String toString(char *str) {
 		String result;
 
 #if defined(UNICODE) || defined(_UNICODE)
-		int len = ::MultiByteToWideChar(CP_THREAD_ACP, 0, str, -1, NULL, 0);
+		int len = ::MultiByteToWideChar(CP_THREAD_ACP, 0, str, -1, nullptr, 0);
 		WCHAR* wstr = new WCHAR[len];
 
 		::MultiByteToWideChar(CP_THREAD_ACP, 0, str, (int)::strlen(str)+1, wstr, len);
@@ -38,4 +40,5 @@ namespace swo {
 	}
 
 	String empty;
+	};
 };

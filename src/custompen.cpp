@@ -1,8 +1,9 @@
 /*
  * custompen.cpp
  *
- * Last modified: <2013/05/13 18:15:05 +0900> By Zumida
+ * Last modified: <2014/01/07 14:25:30 +0900> By Zumida
  */
+#include "swoconfig.hpp"
 #include "custompen.hpp"
 
 using namespace swo;

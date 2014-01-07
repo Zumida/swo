@@ -1,44 +1,43 @@
+#include "swoconfig.hpp"
+#include "string.hpp"
 #include "swomain.hpp"
 #include "application.hpp"
-#include <stdio.h>
+//#include <cstdio>
 
 using namespace swo;
 
-class DbgStreamBuf : public std::basic_streambuf<TCHAR> {
+class DebugStream : public std::basic_streambuf<TCHAR> {
 private:
 	String tag;
-	String line;
+	String message;
 
 public:
-	DbgStreamBuf() {}
+	DebugStream() {}
+	DebugStream(const String& tag) : tag(tag) {}
 
-	DbgStreamBuf(const String& tag) {
-		this->tag = L"[" + tag + L"] ";
-	}
-
-	~DbgStreamBuf() {
+	~DebugStream() {
 		flush();
 	}
 
 	virtual int_type overflow(int_type c = WEOF) {
 		switch (c) {
 		case '\n':
-			line += c;
+			message += c;
 			//not break;
 		case WEOF:
 			flush();
 			break;
 		default:
-			line += c;
+			message += c;
 			break;
 		}
 		return c;
 	}
 
 	void flush(void) {
-		if (!line.empty()) {
-			::OutputDebugString((tag + line).c_str());
-			line.clear();
+		if (!message.empty()) {
+			::OutputDebugString((L"[" + tag + L"]" + message).c_str());
+			message.clear();
 		}
 	}
 };
@@ -46,9 +45,9 @@ public:
 int WINAPI _tWinMain(
 	HINSTANCE hInst, HINSTANCE hPrevInst, LPTSTR pCmdLine, int showCmd) {
 
-	DbgStreamBuf dout(L"stdout");
-	DbgStreamBuf derr(L"stderr");
-	DbgStreamBuf dlog;
+	DebugStream dout(L"stdout");
+	DebugStream derr(L"stderr");
+	DebugStream dlog;
 	Stdout.rdbuf(&dout);
 	Stderr.rdbuf(&derr);
 	Stdlog.rdbuf(&dlog);
@@ -80,9 +79,9 @@ int WINAPI _tWinMain(
 	Stdlog << "Application is finalizing." << std::endl;
 	app.finalize();
 
-	Stdout.rdbuf(NULL);
-	Stderr.rdbuf(NULL);
-	Stdlog.rdbuf(NULL);
+	Stdout.rdbuf(nullptr);
+	Stderr.rdbuf(nullptr);
+	Stdlog.rdbuf(nullptr);
 
 	return app.getResult();
 }
@@ -90,5 +89,5 @@ int WINAPI _tWinMain(
 int main(const int argc, const char* argv[]) {
 	::_tsetlocale(LC_ALL, L"");
 
-	return _tWinMain(::GetModuleHandle(NULL), NULL, NULL, SW_SHOW);
+	return _tWinMain(::GetModuleHandle(nullptr), nullptr, nullptr, SW_SHOW);
 }

@@ -1,8 +1,9 @@
 /*
  * rootcontrol.cpp
  *
- * Last modified: <2013/04/17 14:02:58 +0900> By Zumida
+ * Last modified: <2014/01/07 14:26:38 +0900> By Zumida
  */
+#include "swoconfig.hpp"
 #include "rootcontrol.hpp"
 
 using namespace swo;

@@ -1,8 +1,9 @@
 /*
  * dragdrop.cpp
  *
- * Last modified: <2013/04/17 14:04:52 +0900> By Zumida
+ * Last modified: <2014/01/07 14:25:34 +0900> By Zumida
  */
+#include "swoconfig.hpp"
 #include "dragdrop.hpp"
 
 using namespace swo;
@@ -10,9 +11,9 @@ using namespace swo;
 DragDrop::DragDrop(HDROP hDrop) {
 	::DragQueryPoint(hDrop, &point);
 
-	UINT n = ::DragQueryFile(hDrop, -1, NULL, 0);
+	UINT n = ::DragQueryFile(hDrop, -1, nullptr, 0);
 	for (UINT i = 0; i < n; i++) {
-		UINT l = ::DragQueryFile(hDrop, i, NULL, 0);
+		UINT l = ::DragQueryFile(hDrop, i, nullptr, 0);
 		TCHAR str[l];
 
 		::DragQueryFile(hDrop, i, str, l);

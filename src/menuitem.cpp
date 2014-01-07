@@ -1,8 +1,9 @@
 /*
  * menuitem.cpp
  *
- * Last modified: <2013/04/17 14:04:00 +0900> By Zumida
+ * Last modified: <2014/01/07 18:03:03 +0900> By Zumida
  */
+#include "swoconfig.hpp"
 #include "menuitem.hpp"
 
 using namespace swo;
@@ -21,21 +22,21 @@ MenuItem::MenuItem() {
 MenuItem::~MenuItem() {
 }
 
-void MenuItem::setType(const MenuItemType type) {
+void MenuItem::setType(const MenuItem::Type type) {
 	mii.fType &=
 		~(MFT_MENUBARBREAK|MFT_MENUBREAK|MFT_RADIOCHECK|MFT_SEPARATOR);
 
 	switch (type) {
-	case MenuBarBreak:
+	case Type::MenuBarBreak:
 		mii.fType |= MFT_MENUBARBREAK;
 		break;
-	case MenuBreak:
+	case Type::MenuBreak:
 		mii.fType |= MFT_MENUBREAK;
 		break;
-	case RadioCheck:
+	case Type::RadioCheck:
 		mii.fType |= MFT_RADIOCHECK;
 		break;
-	case Separator:
+	case Type::Separator:
 		mii.fType |= MFT_SEPARATOR;
 		break;
 	default:
@@ -43,14 +44,14 @@ void MenuItem::setType(const MenuItemType type) {
 	}
 }
 
-MenuItemType MenuItem::getType(void) const {
-	MenuItemType type;
+MenuItem::Type MenuItem::getType(void) const {
+	MenuItem::Type type;
 
-	if (mii.fType & MFT_MENUBARBREAK)    type = MenuBarBreak;
-	else if (mii.fType & MFT_MENUBREAK)  type = MenuBreak;
-	else if (mii.fType & MFT_RADIOCHECK) type = RadioCheck;
-	else if (mii.fType & MFT_SEPARATOR)  type = Separator;
-	else                                 type = Normal;
+	if (mii.fType & MFT_MENUBARBREAK)    type = Type::MenuBarBreak;
+	else if (mii.fType & MFT_MENUBREAK)  type = Type::MenuBreak;
+	else if (mii.fType & MFT_RADIOCHECK) type = Type::RadioCheck;
+	else if (mii.fType & MFT_SEPARATOR)  type = Type::Separator;
+	else                                 type = Type::Normal;
 
 	return type;
 }
@@ -101,7 +102,7 @@ int MenuItem::getId(void) const {
 void MenuItem::setSubMenu(const class Menu& subMenu) {
 	this->subMenu = &subMenu;
 	mii.hSubMenu = subMenu.getHandle();
-	if (mii.hSubMenu != NULL)
+	if (mii.hSubMenu != nullptr)
 		mii.fMask |=  MIIM_SUBMENU;
 	else
 		mii.fMask &= ~MIIM_SUBMENU;
@@ -114,7 +115,7 @@ Menu& MenuItem::getSubMenu(void) const {
 void MenuItem::setCheckedImage(const Bitmap& bmp) {
 	this->checkedImage = &bmp;
 	mii.hbmpChecked = bmp.getHandle();
-	if (mii.hbmpChecked != NULL && mii.hbmpUnchecked != NULL)
+	if (mii.hbmpChecked != nullptr && mii.hbmpUnchecked != nullptr)
 		mii.fMask |=  MIIM_CHECKMARKS;
 	else
 		mii.fMask &= ~MIIM_CHECKMARKS;
@@ -127,7 +128,7 @@ Bitmap& MenuItem::getCheckedImage(const Bitmap& bmp) const {
 void MenuItem::setUncheckedImage(const Bitmap& bmp) {
 	this->uncheckedImage = &bmp;
 	mii.hbmpUnchecked = bmp.getHandle();
-	if (mii.hbmpChecked != NULL && mii.hbmpUnchecked != NULL)
+	if (mii.hbmpChecked != nullptr && mii.hbmpUnchecked != nullptr)
 		mii.fMask |=  MIIM_CHECKMARKS;
 	else
 		mii.fMask &= ~MIIM_CHECKMARKS;
@@ -152,7 +153,7 @@ void MenuItem::setText(const String& text) {
 		mii.dwTypeData = (LPWSTR)this->text.c_str();
 		mii.fMask |=  MIIM_STRING;
 	} else {
-		mii.dwTypeData = NULL;
+		mii.dwTypeData = nullptr;
 		mii.fMask &= ~MIIM_STRING;
 	}
 }
@@ -165,7 +166,7 @@ void MenuItem::setImage(const Bitmap& bmp) {
 #if (_WIN32_WINNT >= 0x0500)
 	image = &bmp;
 	mii.hbmpItem = bmp.getHandle();
-	if (mii.hbmpItem != NULL)
+	if (mii.hbmpItem != nullptr)
 		mii.fMask |=  MIIM_BITMAP;
 	else
 		mii.fMask &= ~MIIM_BITMAP;

@@ -1,12 +1,12 @@
 /*
  * object.hpp
  *
- * Last modified: <2013/08/21 02:24:53 +0900> By Zumida
+ * Last modified: <2014/01/07 17:35:35 +0900> By Zumida
  */
 #ifndef OBJECT_HPP_INCLUDED
 #define OBJECT_HPP_INCLUDED
 
-#include "define.hpp"
+#include "swoconfig.hpp"
 #include "string.hpp"
 #include <list>
 #include <windows.h>

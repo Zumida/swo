@@ -1,14 +1,15 @@
 /*
  * menu.cpp
  *
- * Last modified: <2013/04/17 14:04:05 +0900> By Zumida
+ * Last modified: <2014/01/07 14:26:10 +0900> By Zumida
  */
+#include "swoconfig.hpp"
 #include "menu.hpp"
 
 using namespace swo;
 
 Menu::Menu() {
-	handle = NULL;
+	handle = nullptr;
 }
 
 Menu::~Menu() {
@@ -19,19 +20,19 @@ HMENU Menu::getHandle(void) const {
 }
 
 void Menu::add(const MenuItem& item) {
-	if (handle == NULL) {
+	if (handle == nullptr) {
 		handle = CreateMenu();
 	}
-	if (handle != NULL) {
+	if (handle != nullptr) {
 		InsertMenuItem(handle, item.getId(), FALSE, &item.getInfo());
 	}
 }
 
 void Menu::add(const int index, const MenuItem& item) {
-	if (handle == NULL) {
+	if (handle == nullptr) {
 		handle = CreateMenu();
 	}
-	if (handle != NULL) {
+	if (handle != nullptr) {
 		InsertMenuItem(handle, index, TRUE, &item.getInfo());
 	}
 }

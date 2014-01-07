@@ -1,14 +1,15 @@
 /*
  * gdiobject.cpp
  *
- * Last modified: <2013/05/13 18:02:31 +0900> By Zumida
+ * Last modified: <2014/01/07 14:25:49 +0900> By Zumida
  */
+#include "swoconfig.hpp"
 #include "gdiobject.hpp"
 
 using namespace swo;
 
 GdiObject::GdiObject() {
-	handle = NULL;
+	handle = nullptr;
 }
 
 GdiObject::~GdiObject() {
@@ -16,11 +17,11 @@ GdiObject::~GdiObject() {
 }
 
 HGDIOBJ GdiObject::getHandle(void) {
-	if (handle == NULL) refresh();
+	if (handle == nullptr) refresh();
 	return handle;
 }
 
 void GdiObject::trash(void) {
-	if (handle != NULL) ::DeleteObject(handle);
-	handle = NULL;
+	if (handle != nullptr) ::DeleteObject(handle);
+	handle = nullptr;
 }

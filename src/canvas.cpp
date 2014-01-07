@@ -1,16 +1,14 @@
 /*
  * canvas.cpp
  *
- * Last modified: <2013/04/17 14:05:08 +0900> By Zumida
+ * Last modified: <2014/01/07 17:23:18 +0900> By Zumida
  */
+#include "swoconfig.hpp"
 #include "canvas.hpp"
 
 using namespace swo;
 
-Canvas::Canvas(HWND hWnd) {
-	this->hWnd = hWnd;
-	this->hDc = NULL;
-}
+Canvas::Canvas(HWND hWnd) : hWnd(hWnd), hDc(nullptr) {}
 
 Canvas::~Canvas() {
 	endPaint();
@@ -25,13 +23,13 @@ const Rect& Canvas::getRect(void) const {
 }
 
 void Canvas::beginPaint(void) {
-	hDc = BeginPaint(hWnd , &ps);
+	hDc = ::BeginPaint(hWnd , &ps);
 }
 
 void Canvas::endPaint(void) {
-	if (hDc != NULL) {
-		EndPaint(hWnd , &ps);
-		hDc = NULL;
+	if (hDc != nullptr) {
+		::EndPaint(hWnd , &ps);
+		hDc = nullptr;
 	}
 }
 

@@ -1,9 +1,9 @@
 /*
  * eventlistener.cpp
  *
- * Last modified: <2013/08/27 00:59:40 +0900> By Zumida
+ * Last modified: <2014/01/07 18:04:07 +0900> By Zumida
  */
-#include "define.hpp"
+#include "swoconfig.hpp"
 #include "eventlistener.hpp"
 #include "application.hpp"
 #include <windows.h>
@@ -49,12 +49,12 @@ EventListener::~EventListener() {
 
 void EventListener::setHandle(HWND handle) {
 	HWND current = Control::getHandle();
-	if (current != NULL) {
+	if (current != nullptr) {
 		Application::removeListener(current);
 	}
 
 	Control::setHandle(handle);
-	if (handle != NULL) {
+	if (handle != nullptr) {
 		Application::addListener(handle, this);
 	}
 }
@@ -253,7 +253,7 @@ bool EventListener::wndproc(UINT msg, WPARAM wp, LPARAM lp) {
 	//case WM_NEXTMENU:
 	//case WM_NOTIFY:
 	//case WM_NOTIFYFORMAT:
-	//case WM_NULL:
+	//case WM_nullptr:
 	case WM_PAINT:
 		{
 			Canvas cv(getHandle());
@@ -396,6 +396,7 @@ bool EventListener::wndproc(UINT msg, WPARAM wp, LPARAM lp) {
 		break;
 	//case WM_MOUSEFIRST:
 #if (_WIN32_WINNT >= 0x0500)
+/*
 	case WM_XBUTTONDOWN:
 		result = onXButtonDown(
 			GET_XBUTTON_WPARAM(wp), GET_KEYSTATE_WPARAM(wp),
@@ -411,6 +412,7 @@ bool EventListener::wndproc(UINT msg, WPARAM wp, LPARAM lp) {
 			GET_XBUTTON_WPARAM(wp), GET_KEYSTATE_WPARAM(wp),
 			GET_X_LPARAM(lp), GET_Y_LPARAM(lp));
 		break;
+*/
 	//case WM_MOUSELAST:
 #else
 	//case WM_MOUSELAST:

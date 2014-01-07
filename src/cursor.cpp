@@ -1,8 +1,9 @@
 /*
  * cursor.cpp
  *
- * Last modified: <2013/05/13 17:57:51 +0900> By Zumida
+ * Last modified: <2014/01/07 14:25:25 +0900> By Zumida
  */
+#include "swoconfig.hpp"
 #include "cursor.hpp"
 #include "pointer.hpp"
 

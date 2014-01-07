@@ -1,8 +1,9 @@
 /*
  * solidbrush.cpp
  *
- * Last modified: <2013/05/13 18:20:05 +0900> By Zumida
+ * Last modified: <2014/01/07 14:26:42 +0900> By Zumida
  */
+#include "swoconfig.hpp"
 #include "solidbrush.hpp"
 
 using namespace swo;

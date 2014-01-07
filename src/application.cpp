@@ -1,8 +1,9 @@
 /*
  * application.cpp
  *
- * Last modified: <2013/08/28 11:36:06 +0900> By Zumida
+ * Last modified: <2014/01/07 14:23:42 +0900> By Zumida
  */
+#include "swoconfig.hpp"
 #include "application.hpp"
 #include <windows.h>
 
@@ -26,10 +27,11 @@ Application& Application::getInstance(void) {
 
 void Application::boot(void) {
 	// コマンドライン引数の取得
+
 	int argc = 0;
 	WCHAR **argv = ::CommandLineToArgvW(::GetCommandLineW(), &argc);
 
-	if (argv != NULL) {
+	if (argv != nullptr) {
 		for (int i = 0; i < argc; ++i) {
 			arguments.push_back(argv[i]);
 		}
@@ -61,7 +63,7 @@ void Application::run(void) {
 		}
 
 		// メッセージ取得失敗、終了メッセージ受信時はループ終了
-		int result = GetMessage(&msg, NULL, 0, 0);
+		int result = GetMessage(&msg, nullptr, 0, 0);
 		if (result == 0 || result == -1) break;
 
 		// メッセージを処理する
@@ -137,7 +139,7 @@ bool Application::isTerminated(void) const {
 void Application::add(Object* object) {
 	Control* control = dynamic_cast<Control*>(object);
 
-	if (control != NULL) {
+	if (control != nullptr) {
 		controls.push_back(control);
 	} else {
 		objects.push_back(object);
@@ -147,7 +149,7 @@ void Application::add(Object* object) {
 void Application::remove(Object* object) {
 	Control* control = dynamic_cast<Control*>(object);
 
-	if (control != NULL) {
+	if (control != nullptr) {
 		controls.remove(control);
 		delete control;
 	} else {
@@ -171,16 +173,16 @@ EventListener* Application::findListener(HWND hWnd) {
 	Application& app = getInstance();
 
 	if (app.status != RUN) {
-		return NULL;
+		return nullptr;
 	} else {
 		WndMap& map = app.wndMap;
 		WndMap::iterator it = map.find(hWnd);
-		return (it == map.end())? NULL: it->second;
+		return (it == map.end())? nullptr: it->second;
 	}
 }
 
 LRESULT CALLBACK Application::WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) {
 	EventListener* listener = findListener(hWnd);
-	if (listener != NULL && listener->wndproc(msg, wp, lp)) return 0;
+	if (listener != nullptr && listener->wndproc(msg, wp, lp)) return 0;
 	return ::DefWindowProc(hWnd, msg, wp, lp);
 }

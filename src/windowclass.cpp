@@ -1,12 +1,13 @@
 /*
  * windowclass.cpp
  *
- * Last modified: <2013/08/28 01:32:32 +0900> By Zumida
+ * Last modified: <2014/01/07 14:29:16 +0900> By Zumida
  */
-#include <map>
+#include "swoconfig.hpp"
 #include "windowclass.hpp"
 #include "instance.hpp"
 #include "syscolorbrush.hpp"
+#include <map>
 
 using namespace swo;
 
@@ -15,16 +16,16 @@ typedef std::map<String, class WindowClass*> WndClassMap;
 static WndClassMap wndClassMap;
 
 WindowClass::WindowClass() {
-	icon        = NULL;
-	smallIcon   = NULL;
-	cursor      = NULL;
-	background  = NULL;
-	wndProc     = NULL;
+	icon        = nullptr;
+	smallIcon   = nullptr;
+	cursor      = nullptr;
+	background  = nullptr;
+	wndProc     = nullptr;
 }
 
 WindowClass::~WindowClass() {
 	if (!className.empty()) {
-		UnregisterClass(className.c_str(), ::GetModuleHandle(NULL));
+		UnregisterClass(className.c_str(), ::GetModuleHandle(nullptr));
 	}
 }
 
@@ -67,26 +68,26 @@ void WindowClass::add(class WindowClass& wndClass) {
 	wc.lpfnWndProc = wndClass.wndProc;      // ウィンドウプロシージャ
 	wc.cbClsExtra = 0;                      // 拡張情報１
 	wc.cbWndExtra = 0;                      // 拡張情報２
-	wc.hInstance = ::GetModuleHandle(NULL); // インスタンスハンドル
+	wc.hInstance = ::GetModuleHandle(nullptr); // インスタンスハンドル
 	wc.lpszClassName = wndClass.className.c_str(); // ウィンドウクラス名
 
 	// アイコン
-	if (wndClass.icon != NULL)
+	if (wndClass.icon != nullptr)
 		wc.hIcon = wndClass.icon->getHandle();
 
 	// 小アイコン
-	if (wndClass.smallIcon != NULL)
+	if (wndClass.smallIcon != nullptr)
 		wc.hIconSm = wndClass.smallIcon->getHandle();
-	if (wc.hIconSm == NULL) wc.hIconSm = wc.hIcon;
+	if (wc.hIconSm == nullptr) wc.hIconSm = wc.hIcon;
 
 	// マウスカーソル
-	if (wndClass.cursor != NULL)
+	if (wndClass.cursor != nullptr)
 		wc.hCursor = wndClass.cursor->getHandle();
 
 	// ウィンドウ背景
-	if (wndClass.background != NULL) {
+	if (wndClass.background != nullptr) {
 		SysColorBrush* sb = dynamic_cast<SysColorBrush*>(wndClass.background);
-		if (sb != NULL) {
+		if (sb != nullptr) {
 			wc.hbrBackground = (HBRUSH)(sb->getIndex() + 1);
 		} else {
 			wc.hbrBackground = wndClass.background->getHandle();
@@ -105,7 +106,7 @@ void WindowClass::add(class WindowClass& wndClass) {
 
 WindowClass* WindowClass::find(const String& className) {
 	WndClassMap::iterator it = wndClassMap.find(className);
-	return (it == wndClassMap.end())? NULL: it->second;
+	return (it == wndClassMap.end())? nullptr: it->second;
 }
 
 WindowClass& WindowClass::create(void) {

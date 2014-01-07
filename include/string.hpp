@@ -1,15 +1,14 @@
 /*
  * string.hpp
  *
- * Last modified: <2013/08/23 00:58:58 +0900> By Zumida
+ * Last modified: <2014/01/07 17:39:58 +0900> By Zumida
  */
 #ifndef STRING_HPP_INCLUDED
 #define STRING_HPP_INCLUDED
 
-#include "define.hpp"
-//#include <bits/c++config.h>
-#include <locale.h>
+#include "swoconfig.hpp"
 #include <tchar.h>
+#include <clocale>
 #include <string>
 #include <sstream>
 #include <iostream>
@@ -32,20 +31,21 @@
 #define Stdlog tlog
 
 namespace swo {
+	inline namespace string {
 
-	typedef std::basic_string<TCHAR>        tstring;
-	typedef std::basic_stringstream<TCHAR>  tstringstream;
-	typedef std::basic_ostringstream<TCHAR> tostringstream;
-	typedef std::basic_istringstream<TCHAR> tistringstream;
+		using tstring = std::basic_string<TCHAR>;
+		using tstringstream = std::basic_stringstream<TCHAR>;
+		using tostringstream = std::basic_ostringstream<TCHAR>;
+		using tistringstream = std::basic_istringstream<TCHAR>;
 
-	typedef tstring         String;
-	typedef tstringstream   StringStream;
-	typedef tostringstream  OutputStringStream;
-	typedef tistringstream  InputStringStream;
+		using String = tstring;
+		using StringStream = tstringstream;
+		using OutputStringStream = tostringstream;
+		using InputStringStream = tistringstream;
 
-	extern String toString(char *str);
-	extern String empty;
-
+		extern String toString(char *str);
+		extern String empty;
+	};
 };
 
 #endif

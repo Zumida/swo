@@ -1,8 +1,9 @@
 /*
  * treeview.cpp
  *
- * Last modified: <2013/04/17 13:52:26 +0900> By Zumida
+ * Last modified: <2014/01/07 14:29:04 +0900> By Zumida
  */
+#include "swoconfig.hpp"
 #include "treeview.hpp"
 
 using namespace swo;
@@ -14,9 +15,9 @@ TreeView::~TreeView() {
 }
 
 /*
-GetModuleHandle(NULL);
+GetModuleHandle(nullptr);
  */
 
 HWND TreeView::createHandle(void) {
-	return NULL;
+	return nullptr;
 }

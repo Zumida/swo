@@ -1,8 +1,9 @@
 /*
  * syscursor.cpp
  *
- * Last modified: <2013/05/22 06:50:17 +0900> By Zumida
+ * Last modified: <2014/01/07 14:29:00 +0900> By Zumida
  */
+#include "swoconfig.hpp"
 #include "syscursor.hpp"
 
 using namespace swo;

@@ -1,7 +1,7 @@
 /*
  * menuitem.hpp
  *
- * Last modified: <2013/05/06 22:17:23 +0900> By Zumida
+ * Last modified: <2014/01/07 17:50:43 +0900> By Zumida
  */
 #ifndef MENUITEM_HPP_INCLUDED
 #define MENUITEM_HPP_INCLUDED
@@ -11,14 +11,6 @@
 #include "bitmap.hpp"
 
 namespace swo {
-
-	enum MenuItemType {
-		Normal,
-		MenuBarBreak,
-		MenuBreak,
-		RadioCheck,
-		Separator,
-	};
 
 	enum MenuItemAlign {
 		Left,
@@ -45,8 +37,16 @@ namespace swo {
 		MenuItem();
 		~MenuItem();
 
-		void setType(const MenuItemType type);
-		MenuItemType getType(void) const;
+		enum class Type {
+			Normal,
+			MenuBarBreak,
+			MenuBreak,
+			RadioCheck,
+			Separator,
+		};
+
+		void setType(const Type type);
+		Type getType(void) const;
 
 		void setAlign(const MenuItemAlign align);
 		MenuItemAlign getAlign(void) const;

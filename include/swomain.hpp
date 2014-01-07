@@ -1,12 +1,12 @@
 /*
  * swomain.hpp
  *
- * Last modified: <2013/08/22 21:42:52 +0900> By Zumida
+ * Last modified: <2014/01/07 14:12:44 +0900> By Zumida
  */
 #ifndef SWOMAIN_HPP_INCLUDED
 #define SWOMAIN_HPP_INCLUDED
 
-#include "define.hpp"
+#include "swoconfig.hpp"
 #include <windows.h>
 
 #ifdef __cplusplus

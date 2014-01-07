@@ -1,12 +1,11 @@
 /*
  * application.hpp
  *
- * Last modified: <2013/08/28 11:31:58 +0900> By Zumida
+ * Last modified: <2014/01/07 14:24:29 +0900> By Zumida
  */
 #ifndef APPLICATION_HPP_INCLUDED
 #define APPLICATION_HPP_INCLUDED
 
-#include "define.hpp"
 #include "stringlist.hpp"
 #include "control.hpp"
 #include "eventlistener.hpp"

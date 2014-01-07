@@ -1,15 +1,22 @@
 /*
  * form.cpp
  *
- * Last modified: <2013/09/05 01:44:31 +0900> By Zumida
+ * Last modified: <2014/01/07 14:20:50 +0900> By Zumida
  */
-#include "define.hpp"
+#include "swoconfig.hpp"
 #include "form.hpp"
 #include "application.hpp"
 #include "windowclass.hpp"
 #include "syscursor.hpp"
 #include "syscolorbrush.hpp"
 #include "instance.hpp"
+
+#define WINDOW_WIDTH  (400)		// ウィンドウの幅
+#define WINDOW_HEIGHT (300)		// ウィンドウの高さ
+#define WINDOW_X ((GetSystemMetrics(SM_CXSCREEN) - WINDOW_WIDTH ) / 2)
+#define WINDOW_Y ((GetSystemMetrics(SM_CYSCREEN) - WINDOW_HEIGHT) / 2)
+//#define WINDOW_CLASSNAME _T("SWO Form Class")
+#define WINDOW_CLASSNAME L"SWO Form Class"
 
 using namespace swo;
 
@@ -26,7 +33,7 @@ Form::~Form() {
 }
 
 void Form::initialize(void) {
-	if (WindowClass::find(WINDOW_CLASSNAME) == NULL) {
+	if (WindowClass::find(WINDOW_CLASSNAME) == nullptr) {
 		WindowClass& wc = WindowClass::create();
 
 		wc.setClassName(WINDOW_CLASSNAME)
@@ -42,15 +49,15 @@ void Form::initialize(void) {
 	rect.top    = WINDOW_Y;
 	rect.width  = WINDOW_WIDTH;
 	rect.height = WINDOW_HEIGHT;
-	icon        = NULL;
-	menu        = NULL;
+	icon        = nullptr;
+	menu        = nullptr;
 	style       = WS_OVERLAPPEDWINDOW;
 	exStyle     = WS_EX_LEFT | WS_EX_LTRREADING | WS_EX_RIGHTSCROLLBAR;
 }
 
 HWND Form::createHandle(void) {
-	HWND hparent = (getParent() != NULL)? getParent()->getHandle(): HWND_DESKTOP;
-	HMENU hmenu = (menu != NULL)? menu->getHandle(): NULL;
+	HWND hparent = (getParent() != nullptr)? getParent()->getHandle(): HWND_DESKTOP;
+	HMENU hmenu = (menu != nullptr)? menu->getHandle(): nullptr;
 
 	// ウィンドウを作成する
 	HWND hwnd = CreateWindowEx(
@@ -64,15 +71,15 @@ HWND Form::createHandle(void) {
 		rect.height,             // ウィンドウの高さ
 		hparent,                 // 親ウィンドウのウィンドウハンドル
 		hmenu,                   // メニューハンドル
-		::GetModuleHandle(NULL), // インスタンスハンドル
-		NULL                     // その他の作成データ
+		::GetModuleHandle(nullptr), // インスタンスハンドル
+		nullptr                     // その他の作成データ
 		);
 
 	return hwnd;
 }
 
 bool Form::onDestroy(void) {
-	if (getParent() == NULL) {
+	if (getParent() == nullptr) {
 		::PostQuitMessage(0);
 		return true;
 	} else {
