@@ -1,7 +1,7 @@
 /*
  * object.cpp
  *
- * Last modified: <2014/01/07 19:20:43 +0900> By Zumida
+ * Last modified: <2014/01/08 14:34:32 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "object.hpp"
@@ -28,7 +28,7 @@ String Object::getClassName(void) {
 String Object::toString(void) {
 	StringStream ss;
 
-	ss << this << L"@" << getClassName() << std::endl;
+	ss << this << L"@" << getClassName();
 
 	return ss.str();
 }

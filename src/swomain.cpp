@@ -2,7 +2,6 @@
 #include "string.hpp"
 #include "swomain.hpp"
 #include "application.hpp"
-//#include <cstdio>
 
 using namespace swo;
 
@@ -13,7 +12,7 @@ private:
 
 public:
 	DebugStream() {}
-	DebugStream(const String& tag) : tag(tag) {}
+	DebugStream(const String& tag) : tag(L"<" + tag + L"> ") {}
 
 	~DebugStream() {
 		flush();
@@ -22,11 +21,10 @@ public:
 	virtual int_type overflow(int_type c = WEOF) {
 		switch (c) {
 		case '\n':
-			message += c;
-			//not break;
 		case WEOF:
 			flush();
 			break;
+
 		default:
 			message += c;
 			break;
@@ -36,7 +34,7 @@ public:
 
 	void flush(void) {
 		if (!message.empty()) {
-			::OutputDebugString((L"[" + tag + L"]" + message).c_str());
+			::OutputDebugString((tag + message).c_str());
 			message.clear();
 		}
 	}
@@ -76,12 +74,28 @@ int WINAPI _tWinMain(
 		app.terminate(-1);
 	}
 
-	Stdlog << "Application is finalizing." << std::endl;
-	app.finalize();
+	try {
+		Stdlog << "Application is finalizing." << std::endl;
+		app.finalize();
 
-	Stdout.rdbuf(nullptr);
-	Stderr.rdbuf(nullptr);
-	Stdlog.rdbuf(nullptr);
+	} catch (const std::exception &e) {
+		Stderr << "Catch a std::exception! : " << e.what() << std::endl;
+
+	} catch (...) {
+		Stderr << "Catch an unexpected exception!" << std::endl;
+	}
+
+	try {
+		dout.flush();
+		derr.flush();
+		dlog.flush();
+	} catch (...) {}
+
+	try {
+		Stdout.rdbuf(nullptr);
+		Stderr.rdbuf(nullptr);
+		Stdlog.rdbuf(nullptr);
+	} catch (...) {}
 
 	return app.getResult();
 }
