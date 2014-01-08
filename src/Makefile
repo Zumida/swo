@@ -8,7 +8,6 @@ SRCS     := $(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.cpp)))
 OBJS     := $(SRCS:%.cpp=%.o)
 
 INCLUDE_DIRS := -I../include
-#CXFLAGS  := -std=c++11 -Wall -O2 -g $(INCLUDE_DIRS) -DWIN32 -DUNICODE -D_UNICODE
 CXFLAGS  := -std=c++11 -Wall -O2 -g $(INCLUDE_DIRS)
 ARFLAGS  := crsv
 
