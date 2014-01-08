@@ -42,7 +42,7 @@ Please add an include path and a library path if needed.
 
 License
 -------
-Copyright &copy; 2013 Zumida  
+Copyright &copy; 2014 Zumida  
 Distributed under the [MIT License][mit].  
 
 [MIT]: http://www.opensource.org/licenses/mit-license.php
