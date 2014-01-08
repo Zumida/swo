@@ -1,7 +1,7 @@
 /*
  * application.cpp
  *
- * Last modified: <2014/01/07 14:23:42 +0900> By Zumida
+ * Last modified: <2014/01/08 09:57:09 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "application.hpp"
@@ -56,7 +56,7 @@ void Application::run(void) {
 				delete c;
 				continue;
 			}
-			if (c->isUpdated()) {
+			if (c->getParent() != NULL && c->isUpdated()) {
 				c->refresh();
 			}
 			it++;

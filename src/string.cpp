@@ -1,7 +1,7 @@
 /*
  * string.cpp
  *
- * Last modified: <2014/01/07 17:39:52 +0900> By Zumida
+ * Last modified: <2014/01/07 19:19:49 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "string.hpp"
@@ -11,7 +11,7 @@
 namespace swo {
 	inline namespace string {
 
-	String toString(char *str) {
+	String valueOf(char *str) {
 		String result;
 
 #if defined(UNICODE) || defined(_UNICODE)

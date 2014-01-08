@@ -1,24 +1,24 @@
 /*
  * rect.hpp
  *
- * Last modified: <2013/04/17 12:38:14 +0900> By Zumida
+ * Last modified: <2014/01/08 09:55:21 +0900> By Zumida
  */
 #ifndef RECT_HPP_INCLUDED
 #define RECT_HPP_INCLUDED
 
-#include <windef.h>
+#include <windows.h>
 
 namespace swo {
+	inline namespace util {
+		using Rect = RECT;
 
-	typedef RECT Rect;
-
-	typedef struct WindowRect {
-		int left;
-		int top;
-		int width;
-		int height;
-	} WindowRect;
-
+		struct WindowRect {
+			int left;
+			int top;
+			int width;
+			int height;
+		};
+	};
 };
 
 #endif

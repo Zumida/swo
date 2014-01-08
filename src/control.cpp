@@ -1,7 +1,7 @@
 /*
  * control.cpp
  *
- * Last modified: <2014/01/07 14:25:21 +0900> By Zumida
+ * Last modified: <2014/01/08 09:07:21 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "control.hpp"
@@ -18,9 +18,9 @@ Control::Control() {
 	initialize();
 }
 
-Control::Control(Control* parent) {
+Control::Control(Control& parent) {
 	initialize();
-	setParent(parent);
+	setParent(&parent);
 }
 
 /*
@@ -29,17 +29,6 @@ Control::Control(Control* parent) {
  * 内部管理のオブジェクトを解放する。
  */
 Control::~Control() {
-	if (parent != nullptr) {
-		parent->removeChild(this);
-		parent = nullptr;
-	}
-
-	while (!childs.empty()) {
-		Control* child = childs.back();
-		childs.pop_back();
-		delete child;
-	}
-
 	if (getHandle() != nullptr) {
 		::DestroyWindow(getHandle());
 		setHandle(nullptr);
@@ -49,7 +38,6 @@ Control::~Control() {
 void Control::initialize(void) {
 	handle      = nullptr;
 	parent      = nullptr;
-	childs.clear();
 
 	rect.left   = 0;
 	rect.top    = 0;
@@ -62,6 +50,10 @@ void Control::initialize(void) {
 	visible     = false;
 	updated     = true;
 	terminated  = false;
+}
+
+void Control::resetHandle(void) {
+	this->handle = NULL;
 }
 
 void Control::setHandle(HWND handle) {
@@ -91,13 +83,6 @@ void Control::renew(void) {
 		setHandle(nullptr);
 	}
 
-	for (Controls::iterator it = childs.begin();
-		 it != childs.end();
-		 it++) {
-
-		(*it)->setHandle(nullptr);
-	}
-
 	refresh();
 }
 
@@ -115,14 +100,6 @@ void Control::refresh(void) {
 	}
 
 	setAttributes(handle);
-
-	childs.sort();
-	for (Controls::iterator it = childs.begin();
-		 it != childs.end();
-		 it++) {
-
-		(*it)->refresh();
-	}
 }
 
 void Control::terminate(void) {
@@ -134,23 +111,8 @@ Control* Control::getParent(void) {
 }
 
 void Control::setParent(Control* parent) {
-	if (this->parent != parent) {
-		if (this->parent != nullptr) {
-			this->parent->removeChild(this);
-		}
-		this->parent = parent;
-		if (this->parent != nullptr) {
-			this->parent->addChild(this);
-		}
-	}
-}
-
-void Control::addChild(Control* child) {
-	childs.push_back(child);
-}
-
-void Control::removeChild(Control* child) {
-	childs.remove(child);
+	this->parent = parent;
+	update();
 }
 
 void Control::show(void) {
@@ -159,8 +121,8 @@ void Control::show(void) {
 
 	HWND hWnd = getHandle();
 	if (hWnd != nullptr) {
-		ShowWindow(hWnd, SW_SHOW);
-		UpdateWindow(hWnd);
+		::ShowWindow(hWnd, SW_SHOW);
+		::UpdateWindow(hWnd);
 	}
 }
 
@@ -169,13 +131,14 @@ void Control::hide(void) {
 
 	HWND hWnd = getHandle();
 	if (hWnd != nullptr) {
-		ShowWindow(hWnd, SW_HIDE);
-		UpdateWindow(hWnd);
+		::ShowWindow(hWnd, SW_HIDE);
+		::UpdateWindow(hWnd);
 	}
 }
 
 void Control::setRect(const WindowRect& rect) {
 	this->rect = rect;
+	update();
 }
 
 WindowRect& Control::getRect(void) {

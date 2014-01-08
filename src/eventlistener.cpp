@@ -1,7 +1,7 @@
 /*
  * eventlistener.cpp
  *
- * Last modified: <2014/01/07 18:04:07 +0900> By Zumida
+ * Last modified: <2014/01/07 19:11:39 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "eventlistener.hpp"
@@ -41,11 +41,11 @@
 
 using namespace swo;
 
-EventListener::EventListener() {
-}
+EventListener::EventListener() : Control() {}
 
-EventListener::~EventListener() {
-}
+EventListener::EventListener(Control& parent) : Control(parent) {}
+
+EventListener::~EventListener() {}
 
 void EventListener::setHandle(HWND handle) {
 	HWND current = Control::getHandle();

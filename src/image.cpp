@@ -1,7 +1,7 @@
 /*
  * image.cpp
  *
- * Last modified: <2014/01/07 14:26:02 +0900> By Zumida
+ * Last modified: <2014/01/08 09:15:06 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "image.hpp"

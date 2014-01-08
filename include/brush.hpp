@@ -1,7 +1,7 @@
 /*
  * brush.hpp
  *
- * Last modified: <2013/05/13 18:03:58 +0900> By Zumida
+ * Last modified: <2014/01/08 09:47:11 +0900> By Zumida
  */
 #ifndef BRUSH_HPP_INCLUDED
 #define BRUSH_HPP_INCLUDED

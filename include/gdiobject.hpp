@@ -1,7 +1,7 @@
 /*
  * gdiobject.hpp
  *
- * Last modified: <2013/05/13 18:00:15 +0900> By Zumida
+ * Last modified: <2014/01/08 09:50:01 +0900> By Zumida
  */
 #ifndef GDIOBJECT_HPP_INCLUDED
 #define GDIOBJECT_HPP_INCLUDED

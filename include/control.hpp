@@ -1,7 +1,7 @@
 /*
  * control.hpp
  *
- * Last modified: <2013/08/21 02:24:21 +0900> By Zumida
+ * Last modified: <2013/10/20 16:14:00 +0900> By Zumida
  */
 #ifndef CONTROL_HPP_INCLUDED
 #define CONTROL_HPP_INCLUDED
@@ -10,11 +10,8 @@
 #include "cursor.hpp"
 #include "brush.hpp"
 #include "rect.hpp"
-#include <list>
 
 namespace swo {
-
-	typedef std::list<class Control*> Controls;
 
 	class Control : public Object {
 	private:
@@ -22,7 +19,6 @@ namespace swo {
 
 	protected:
 		Control* parent;
-		Controls childs;
 
 		WindowRect rect;
 		Brush* background;
@@ -41,24 +37,22 @@ namespace swo {
 
 	public:
 		Control();
-		Control(Control* parent);
+		Control(Control& parent);
 		~Control();
 
 		HWND getHandle(void) const;
+		void resetHandle(void);
 
-		void renew(void);
-		void update(void);
-		void refresh(void);
-		void terminate(void);
+		virtual void renew(void);
+		virtual void update(void);
+		virtual void refresh(void);
+		virtual void terminate(void);
 
-		void show(void);
-		void hide(void);
+		virtual void show(void);
+		virtual void hide(void);
 
 		Control* getParent(void);
 		void setParent(Control* parent);
-		Controls* getChilds(void);
-		void addChild(Control* child);
-		void removeChild(Control* child);
 
 		void setRect(const WindowRect& rect);
 		WindowRect& getRect(void);

@@ -1,7 +1,7 @@
 /*
  * dragdrop.hpp
  *
- * Last modified: <2013/04/17 12:40:31 +0900> By Zumida
+ * Last modified: <2014/01/08 09:51:45 +0900> By Zumida
  */
 #ifndef DRAGDROP_HPP_INCLUDED
 #define DRAGDROP_HPP_INCLUDED
@@ -13,7 +13,7 @@
 namespace swo {
 
 	class DragDrop : public Object {
-	private:
+	protected:
 		StringList files;
 		Point point;
 

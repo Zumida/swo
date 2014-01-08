@@ -1,7 +1,7 @@
 /*
  * image.hpp
  *
- * Last modified: <2013/05/06 21:56:11 +0900> By Zumida
+ * Last modified: <2014/01/08 09:52:02 +0900> By Zumida
  */
 #ifndef IMAGE_HPP_INCLUDED
 #define IMAGE_HPP_INCLUDED

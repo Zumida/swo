@@ -1,7 +1,7 @@
 /*
  * object.cpp
  *
- * Last modified: <2014/01/07 17:43:22 +0900> By Zumida
+ * Last modified: <2014/01/07 19:20:43 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "object.hpp"
@@ -21,7 +21,7 @@ String Object::getClassName(void) {
 	const std::type_info & id_p = typeid(*this);
 	int status;
 
-	return string::toString(
+	return swo::string::valueOf(
 		abi::__cxa_demangle(id_p.name(), 0, 0, &status));
 }
 
