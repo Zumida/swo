@@ -38,7 +38,7 @@ Add a libswo.a to specify library.
 必要に応じてインクルードパスとライブラリパスを追加してください。  
 Please add an include path and a library path if needed.  
 
-	g++ -o guitest.exe -I/home/swo/include -DWIN32 -DUNICODE -D_UNICODE main.cpp -L/home/swo/lib -mwindows -static -lswo  
+	g++ -o guitest.exe -std=c++11 -I/home/swo/include main.cpp -L/home/swo/lib -mwindows -static -lswo  
 
 License
 -------
