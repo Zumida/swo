@@ -1,7 +1,7 @@
 /*
  * runner.hpp
  *
- * Last modified: <2014/01/09 18:34:58 +0900> By Zumida
+ * Last modified: <2014/01/10 02:58:30 +0900> By Zumida
  */
 #ifndef RUNNER_HPP_INCLUDED
 #define RUNNER_HPP_INCLUDED
@@ -10,7 +10,11 @@
 
 namespace swo {
 	inline namespace core {
-		struct Runner : public Object {
+		class Runner : public Object {
+		protected:
+			Runner();
+
+		public:
 			virtual void run() = 0;
 		};
 	};

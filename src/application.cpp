@@ -1,7 +1,7 @@
 /*
  * application.cpp
  *
- * Last modified: <2014/01/09 19:05:53 +0900> By Zumida
+ * Last modified: <2014/01/10 02:57:19 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "application.hpp"
@@ -11,31 +11,15 @@
 namespace swo {
 	inline namespace core {
 
-		Application* Application::instance;
+		Application Application::instance;
 
-		Application::Application(Runner* runner)
-		: runner(runner), status(Status::BOOT), terminated(false), result(0) {
-
-			if (runner == nullptr) {
-				throw std::runtime_error("Runner instance is null.");
-			}
-
-			if (instance == nullptr) {
-				instance = this;
-			} else {
-				throw std::runtime_error(
-					"Application instance is not null.");
-			}
-		}
+		Application::Application()
+		: status(Status::BOOT), terminated(false), result(0) {}
 
 		Application::~Application() {}
 
 		Application& Application::getInstance(void) {
-			if (instance == nullptr) {
-				throw std::runtime_error(
-					"Application instance is null.");
-			}
-			return *instance;
+			return instance;
 		}
 
 		void Application::initialize(void) {
@@ -96,17 +80,8 @@ namespace swo {
 
 			status = Status::FINALIZE;
 
-			try {
-				// 登録されたインスタンスを破棄
-				Instance::discard();
-
-			} catch (const std::exception &e) {
-				Stderr << "Catch a std::exception! : "
-					<< e.what() << std::endl;
-
-			} catch (...) {
-				Stderr << "Catch an unexpected exception!" << std::endl;
-			}
+			// 登録されたインスタンスを破棄
+			Instance::discard();
 		}
 
 		void Application::terminate(int result) {
@@ -171,6 +146,22 @@ namespace swo {
 				return 0;
 			else
 				return ::DefWindowProc(hWnd, msg, wp, lp);
+		}
+
+		void Application::setRunner(const Runner* runner) {
+
+			if (runner == nullptr) {
+				throw std::runtime_error("Runner instance is null.");
+			}
+
+			Application& app = getInstance();
+
+			if (app.runner == nullptr) {
+				app.runner = const_cast<Runner*>(runner);
+			} else {
+				throw std::runtime_error(
+					"Application runner instance is not null.");
+			}
 		}
 	};
 };
