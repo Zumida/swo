@@ -1,37 +1,45 @@
 /*
  * instance.hpp
  *
- * Last modified: <2013/10/20 13:50:01 +0900> By Zumida
+ * Last modified: <2014/01/09 19:16:11 +0900> By Zumida
  */
 #ifndef INSTANCE_HPP_INCLUDED
 #define INSTANCE_HPP_INCLUDED
 
-#include "application.hpp"
+#include "swoconfig.hpp"
+#include "control.hpp"
 
 namespace swo {
+	inline namespace core {
 
-	class Instance {
-	private:
-		Instance();
-		~Instance();
+		class Instance {
+		private:
+			static ObjectPtrList objects;
+			static ControlPtrList controls;
 
-	public:
-		template<typename T> static T& create(void) {
-			T *obj = new T();
-			Application::getInstance().add(obj);
-			return *obj;
-		}
+			static void add(Object* object);
+			static void remove(Object* object);
 
-		template<typename T> static T& create(Control& parent) {
-			T *obj = new T(parent);
-			Application::getInstance().add(obj);
-			return *obj;
-		}
+		public:
+			Instance() = delete;
+			~Instance() = delete;
 
-		static void discard(const Object& object) {
-			Object *obj = const_cast<Object*>(&object);
-			Application::getInstance().remove(obj);
-		}
+			template<typename T> static T& create(void) {
+				T *obj = new T();
+				add(obj);
+				return *obj;
+			}
+
+			template<typename T> static T& create(Control& parent) {
+				T *obj = new T(parent);
+				add(obj);
+				return *obj;
+			}
+
+			static void discard(void);
+			static void discard(const Object& object);
+			static ControlPtrList& getControls(void);
+		};
 	};
 };
 

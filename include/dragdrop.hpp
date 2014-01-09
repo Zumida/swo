@@ -1,13 +1,12 @@
 /*
  * dragdrop.hpp
  *
- * Last modified: <2014/01/08 09:51:45 +0900> By Zumida
+ * Last modified: <2014/01/09 12:01:50 +0900> By Zumida
  */
 #ifndef DRAGDROP_HPP_INCLUDED
 #define DRAGDROP_HPP_INCLUDED
 
 #include "object.hpp"
-#include "stringlist.hpp"
 #include "point.hpp"
 
 namespace swo {

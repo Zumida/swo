@@ -1,7 +1,7 @@
 /*
  * object.hpp
  *
- * Last modified: <2014/01/08 09:51:27 +0900> By Zumida
+ * Last modified: <2014/01/09 11:58:31 +0900> By Zumida
  */
 #ifndef OBJECT_HPP_INCLUDED
 #define OBJECT_HPP_INCLUDED
@@ -13,17 +13,19 @@
 #include <windows.h>
 
 namespace swo {
+	inline namespace core {
 
-	class Object {
-	public:
-		Object();
-		virtual ~Object();
+		class Object {
+		public:
+			Object();
+			virtual ~Object();
 
-		String getClassName(void);
-		virtual String toString(void);
+			String getClassName(void);
+			virtual String toString(void);
+		};
+
+		using ObjectPtrList = std::list<Object*>;
 	};
-
-	using Objects = std::list<Object*>;
 };
 
 #endif

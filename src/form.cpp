@@ -1,11 +1,7 @@
 /*
  * form.cpp
  *
-<<<<<<< HEAD
- * Last modified: <2014/01/07 14:20:50 +0900> By Zumida
-=======
- * Last modified: <2013/10/20 16:18:25 +0900> By Zumida
->>>>>>> 45de6c58b8d5722d580d3aeb287fe7d64fc1753f
+ * Last modified: <2014/01/09 17:09:22 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "form.hpp"

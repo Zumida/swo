@@ -1,7 +1,7 @@
 /*
  * string.hpp
  *
- * Last modified: <2014/01/07 19:19:33 +0900> By Zumida
+ * Last modified: <2014/01/09 11:57:07 +0900> By Zumida
  */
 #ifndef STRING_HPP_INCLUDED
 #define STRING_HPP_INCLUDED
@@ -12,6 +12,7 @@
 #include <string>
 #include <sstream>
 #include <iostream>
+#include <list>
 
 #if defined(UNICODE) || defined(_UNICODE)
 # define tout std::wcout
@@ -45,6 +46,8 @@ namespace swo {
 
 		extern String valueOf(char *str);
 		extern String empty;
+
+		using StringList = std::list<String>;
 	};
 };
 
