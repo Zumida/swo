@@ -1,7 +1,7 @@
 /*
  * application.cpp
  *
- * Last modified: <2014/01/10 02:57:19 +0900> By Zumida
+ * Last modified: <2014/01/10 13:49:52 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "application.hpp"
@@ -11,15 +11,27 @@
 namespace swo {
 	inline namespace core {
 
-		Application Application::instance;
+		Application* Application::instance;
 
-		Application::Application()
-		: status(Status::BOOT), terminated(false), result(0) {}
+		Application::Application(const Runner* runner)
+		: runner(const_cast<Runner*>(runner)),
+		status(Status::BOOT), terminated(false), result(0) {
+
+			if (runner == nullptr) {
+				throw std::runtime_error("Runner instance is null.");
+			}
+
+			if (instance == nullptr) {
+				instance = this;
+			} else {
+				throw std::runtime_error("Application instance is not null.");
+			}
+		}
 
 		Application::~Application() {}
 
 		Application& Application::getInstance(void) {
-			return instance;
+			return *instance;
 		}
 
 		void Application::initialize(void) {
@@ -146,22 +158,6 @@ namespace swo {
 				return 0;
 			else
 				return ::DefWindowProc(hWnd, msg, wp, lp);
-		}
-
-		void Application::setRunner(const Runner* runner) {
-
-			if (runner == nullptr) {
-				throw std::runtime_error("Runner instance is null.");
-			}
-
-			Application& app = getInstance();
-
-			if (app.runner == nullptr) {
-				app.runner = const_cast<Runner*>(runner);
-			} else {
-				throw std::runtime_error(
-					"Application runner instance is not null.");
-			}
 		}
 	};
 };

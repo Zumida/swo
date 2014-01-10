@@ -1,7 +1,7 @@
 /*
  * application.hpp
  *
- * Last modified: <2014/01/10 02:13:26 +0900> By Zumida
+ * Last modified: <2014/01/10 14:17:13 +0900> By Zumida
  */
 #ifndef APPLICATION_HPP_INCLUDED
 #define APPLICATION_HPP_INCLUDED
@@ -10,6 +10,10 @@
 #include "object.hpp"
 #include "eventlistener.hpp"
 #include "runner.hpp"
+
+#define MakeApplication(RunnerClassType) \
+	RunnerClassType runner; \
+	Application myapp(&runner);
 
 namespace swo {
 	inline namespace core {
@@ -24,7 +28,7 @@ namespace swo {
 			};
 
 		private:
-			static class Application instance;
+			static class Application *instance;
 
 			Runner* runner;
 			Status status;
@@ -35,11 +39,12 @@ namespace swo {
 
 			WndMap wndMap;
 
-			Application();
-			~Application();
-
 		public:
 			static class Application& getInstance(void);
+
+			Application() = delete;
+			Application(const Runner* runner);
+			~Application();
 
 			void initialize(void);
 			void run(void);
@@ -58,7 +63,6 @@ namespace swo {
 			static void addListener(const HWND hWnd, const EventListener* listener);
 			static void removeListener(const HWND hWnd);
 			static LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
-			static void setRunner(const Runner* runner);
 		};
 	};
 };

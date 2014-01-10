@@ -13,22 +13,27 @@ Usage
 1. swo.hpp他、必要なヘッダファイルをインクルードする。  
    Include required header files.  
 
-2. Application::initialize()を用意する。  
-   Prepare Application::initialize().   
+2. MakeApplication()の引数としてRunnerのサブクラスを用意する。  
+   Prepare a subclass of Runner as an argument MakeApplication().   
 
-3. Application::initialize()内でウィジットを生成し初期設定を行う。  
-   Generate widget, and perform initial setting.  
+3. サブクラスのrun()内に実行する処理を記述する。  
+   Describe the process to be executed in run() of the subclass.  
 
 main.cpp
 
 	#include "swo.hpp"
 	#include "form.hpp"
 	
-	void Application::initialize(void) {
+	using namespace swo;
 	
-		Form& form = Form::create();
-		form.show();
-	}
+	MakeApplication(
+	class MyRunner : public Runner {
+		void run(void) {
+	
+			Form& form = Form::create();
+			form.show();
+		}
+	});
 
 Compile
 -------
