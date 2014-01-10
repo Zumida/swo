@@ -1,7 +1,7 @@
 /*
  * menuitem.cpp
  *
- * Last modified: <2014/01/10 16:33:28 +0900> By Zumida
+ * Last modified: <2014/01/11 00:01:10 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "menuitem.hpp"
@@ -9,19 +9,18 @@
 namespace swo {
 	inline namespace menu {
 
-		MenuItem::MenuItem() :
-		info{sizeof(Info)},
-		subMenu(&Menu::empty),
-		checkedImage(&Bitmap::empty),
-		uncheckedImage(&Bitmap::empty),
-		image(&Bitmap::empty),
-		text(empty) {}
+		MenuItem::MenuItem()
+		: info{sizeof(Info)}, subMenu(&Menu::empty),
+		checkedImage(&Bitmap::empty), uncheckedImage(&Bitmap::empty),
+		image(&Bitmap::empty), text(empty) {}
 
 		MenuItem::~MenuItem() {}
 
 		MenuItem& MenuItem::setType(const MenuItem::Type type) {
-			info.fType &=
-				~(MFT_MENUBARBREAK|MFT_MENUBREAK|MFT_RADIOCHECK|MFT_SEPARATOR);
+			info.fType &= ~(MFT_MENUBARBREAK
+							| MFT_MENUBREAK
+							| MFT_RADIOCHECK
+							| MFT_SEPARATOR);
 
 			switch (type) {
 			case Type::MenuBarBreak:
@@ -157,12 +156,12 @@ namespace swo {
 
 		MenuItem& MenuItem::setText(const String& text) {
 			this->text = text;
-			if (!this->text.empty()) {
-				info.dwTypeData = (LPWSTR)this->text.c_str();
-				info.fMask |=  MIIM_STRING;
-			} else {
+			if (this->text.empty()) {
 				info.dwTypeData = nullptr;
 				info.fMask &= ~MIIM_STRING;
+			} else {
+				info.dwTypeData = (LPWSTR)this->text.c_str();
+				info.fMask |=  MIIM_STRING;
 			}
 			return *this;
 		}
