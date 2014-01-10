@@ -1,182 +1,194 @@
 /*
  * menuitem.cpp
  *
- * Last modified: <2014/01/07 18:03:03 +0900> By Zumida
+ * Last modified: <2014/01/10 16:33:28 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "menuitem.hpp"
 
-using namespace swo;
+namespace swo {
+	inline namespace menu {
 
-MenuItem::MenuItem() {
-	MENUITEMINFO d = {sizeof(MENUITEMINFO)};
-	mii = d;
+		MenuItem::MenuItem() :
+		info{sizeof(Info)},
+		subMenu(&Menu::empty),
+		checkedImage(&Bitmap::empty),
+		uncheckedImage(&Bitmap::empty),
+		image(&Bitmap::empty),
+		text(empty) {}
 
-	subMenu = &Menu::empty;
-	checkedImage = &Bitmap::empty;
-	uncheckedImage = &Bitmap::empty;
-	image = &Bitmap::empty;
-	text = empty;
-}
+		MenuItem::~MenuItem() {}
 
-MenuItem::~MenuItem() {
-}
+		MenuItem& MenuItem::setType(const MenuItem::Type type) {
+			info.fType &=
+				~(MFT_MENUBARBREAK|MFT_MENUBREAK|MFT_RADIOCHECK|MFT_SEPARATOR);
 
-void MenuItem::setType(const MenuItem::Type type) {
-	mii.fType &=
-		~(MFT_MENUBARBREAK|MFT_MENUBREAK|MFT_RADIOCHECK|MFT_SEPARATOR);
+			switch (type) {
+			case Type::MenuBarBreak:
+				info.fType |= MFT_MENUBARBREAK;
+				break;
+			case Type::MenuBreak:
+				info.fType |= MFT_MENUBREAK;
+				break;
+			case Type::RadioCheck:
+				info.fType |= MFT_RADIOCHECK;
+				break;
+			case Type::Separator:
+				info.fType |= MFT_SEPARATOR;
+				break;
+			default:
+				break;
+			}
 
-	switch (type) {
-	case Type::MenuBarBreak:
-		mii.fType |= MFT_MENUBARBREAK;
-		break;
-	case Type::MenuBreak:
-		mii.fType |= MFT_MENUBREAK;
-		break;
-	case Type::RadioCheck:
-		mii.fType |= MFT_RADIOCHECK;
-		break;
-	case Type::Separator:
-		mii.fType |= MFT_SEPARATOR;
-		break;
-	default:
-		break;
-	}
-}
+			return *this;
+		}
 
-MenuItem::Type MenuItem::getType(void) const {
-	MenuItem::Type type;
+		MenuItem::Type MenuItem::getType(void) const {
+			MenuItem::Type type;
 
-	if (mii.fType & MFT_MENUBARBREAK)    type = Type::MenuBarBreak;
-	else if (mii.fType & MFT_MENUBREAK)  type = Type::MenuBreak;
-	else if (mii.fType & MFT_RADIOCHECK) type = Type::RadioCheck;
-	else if (mii.fType & MFT_SEPARATOR)  type = Type::Separator;
-	else                                 type = Type::Normal;
+			if (info.fType & MFT_MENUBARBREAK)    type = Type::MenuBarBreak;
+			else if (info.fType & MFT_MENUBREAK)  type = Type::MenuBreak;
+			else if (info.fType & MFT_RADIOCHECK) type = Type::RadioCheck;
+			else if (info.fType & MFT_SEPARATOR)  type = Type::Separator;
+			else                                  type = Type::Normal;
 
-	return type;
-}
+			return type;
+		}
 
-void MenuItem::setAlign(const MenuItemAlign align) {
-	if (align == Right)
-		mii.fType |= MFT_RIGHTJUSTIFY;
-	else
-		mii.fType &= ~MFT_RIGHTJUSTIFY;
-}
+		MenuItem& MenuItem::setAlign(const MenuItem::Align align) {
+			if (align == Align::Right)
+				info.fType |= MFT_RIGHTJUSTIFY;
+			else
+				info.fType &= ~MFT_RIGHTJUSTIFY;
+			return *this;
+		}
 
-MenuItemAlign MenuItem::getAlign(void) const {
-	return (mii.fType & MFT_RIGHTJUSTIFY)? Right: Left;
-}
+		MenuItem::Align MenuItem::getAlign(void) const {
+			return (info.fType & MFT_RIGHTJUSTIFY)?
+				Align::Right: Align::Left;
+		}
 
-void MenuItem::setState(const MenuItemState& state) {
-	mii.fState &= ~(MFS_CHECKED|MFS_DEFAULT|MFS_DISABLED|MFS_HILITE);
+		MenuItem& MenuItem::setState(const MenuItem::State& state) {
+			info.fState &= ~(MFS_CHECKED|MFS_DEFAULT|MFS_DISABLED|MFS_HILITE);
 
-	if (state.isChecked  ) mii.fState |= MFS_CHECKED;
-	if (state.isDefault  ) mii.fState |= MFS_DEFAULT;
-	if (state.isDisabled ) mii.fState |= MFS_DISABLED;
-	if (state.isHighLight) mii.fState |= MFS_HILITE;
-}
+			if (state.isChecked  ) info.fState |= MFS_CHECKED;
+			if (state.isDefault  ) info.fState |= MFS_DEFAULT;
+			if (state.isDisabled ) info.fState |= MFS_DISABLED;
+			if (state.isHighLight) info.fState |= MFS_HILITE;
 
-MenuItemState MenuItem::getState(void) const {
-	MenuItemState state;
+			return *this;
+		}
 
-	state.isChecked   = (mii.fState & MFS_CHECKED )? true: false;
-	state.isDefault   = (mii.fState & MFS_DEFAULT )? true: false;
-	state.isDisabled  = (mii.fState & MFS_DISABLED)? true: false;
-	state.isHighLight = (mii.fState & MFS_HILITE  )? true: false;
+		MenuItem::State MenuItem::getState(void) const {
+			MenuItem::State state;
 
-	return state;
-}
+			state.isChecked   = (info.fState & MFS_CHECKED )? true: false;
+			state.isDefault   = (info.fState & MFS_DEFAULT )? true: false;
+			state.isDisabled  = (info.fState & MFS_DISABLED)? true: false;
+			state.isHighLight = (info.fState & MFS_HILITE  )? true: false;
 
-void MenuItem::setId(const int id) {
-	mii.wID = id;
-	if (id != 0)
-		mii.fMask |=  MIIM_ID;
-	else
-		mii.fMask &= ~MIIM_ID;
-}
+			return state;
+		}
 
-int MenuItem::getId(void) const {
-	return mii.wID;
-}
+		MenuItem& MenuItem::setId(const int id) {
+			info.wID = id;
+			if (id != 0)
+				info.fMask |=  MIIM_ID;
+			else
+				info.fMask &= ~MIIM_ID;
+			return *this;
+		}
 
-void MenuItem::setSubMenu(const class Menu& subMenu) {
-	this->subMenu = &subMenu;
-	mii.hSubMenu = subMenu.getHandle();
-	if (mii.hSubMenu != nullptr)
-		mii.fMask |=  MIIM_SUBMENU;
-	else
-		mii.fMask &= ~MIIM_SUBMENU;
-}
+		int MenuItem::getId(void) const {
+			return info.wID;
+		}
 
-Menu& MenuItem::getSubMenu(void) const {
-	return *const_cast<Menu*>(subMenu);
-}
+		MenuItem& MenuItem::setSubMenu(const class Menu& subMenu) {
+			this->subMenu = &subMenu;
+			info.hSubMenu = subMenu.getHandle();
+			if (info.hSubMenu != nullptr)
+				info.fMask |=  MIIM_SUBMENU;
+			else
+				info.fMask &= ~MIIM_SUBMENU;
+			return *this;
+		}
 
-void MenuItem::setCheckedImage(const Bitmap& bmp) {
-	this->checkedImage = &bmp;
-	mii.hbmpChecked = bmp.getHandle();
-	if (mii.hbmpChecked != nullptr && mii.hbmpUnchecked != nullptr)
-		mii.fMask |=  MIIM_CHECKMARKS;
-	else
-		mii.fMask &= ~MIIM_CHECKMARKS;
-}
+		Menu& MenuItem::getSubMenu(void) const {
+			return *const_cast<Menu*>(subMenu);
+		}
 
-Bitmap& MenuItem::getCheckedImage(const Bitmap& bmp) const {
-	return *const_cast<Bitmap*>(checkedImage);
-}
+		MenuItem& MenuItem::setCheckedImage(const Bitmap& bmp) {
+			this->checkedImage = &bmp;
+			info.hbmpChecked = bmp.getHandle();
+			if (info.hbmpChecked != nullptr && info.hbmpUnchecked != nullptr)
+				info.fMask |=  MIIM_CHECKMARKS;
+			else
+				info.fMask &= ~MIIM_CHECKMARKS;
+			return *this;
+		}
 
-void MenuItem::setUncheckedImage(const Bitmap& bmp) {
-	this->uncheckedImage = &bmp;
-	mii.hbmpUnchecked = bmp.getHandle();
-	if (mii.hbmpChecked != nullptr && mii.hbmpUnchecked != nullptr)
-		mii.fMask |=  MIIM_CHECKMARKS;
-	else
-		mii.fMask &= ~MIIM_CHECKMARKS;
-}
+		Bitmap& MenuItem::getCheckedImage(const Bitmap& bmp) const {
+			return *const_cast<Bitmap*>(checkedImage);
+		}
 
-Bitmap& MenuItem::getUncheckedImage(const Bitmap& bmp) const {
-	return *const_cast<Bitmap*>(uncheckedImage);
-}
+		MenuItem& MenuItem::setUncheckedImage(const Bitmap& bmp) {
+			this->uncheckedImage = &bmp;
+			info.hbmpUnchecked = bmp.getHandle();
+			if (info.hbmpChecked != nullptr && info.hbmpUnchecked != nullptr)
+				info.fMask |=  MIIM_CHECKMARKS;
+			else
+				info.fMask &= ~MIIM_CHECKMARKS;
+			return *this;
+		}
 
-void MenuItem::setData(const int data) {
-	mii.dwItemData = data;
-	mii.fMask |= MIIM_DATA;
-}
+		Bitmap& MenuItem::getUncheckedImage(const Bitmap& bmp) const {
+			return *const_cast<Bitmap*>(uncheckedImage);
+		}
 
-int MenuItem::getData(void) const {
-	return mii.dwItemData;
-}
+		MenuItem& MenuItem::setData(const int data) {
+			info.dwItemData = data;
+			info.fMask |= MIIM_DATA;
+			return *this;
+		}
 
-void MenuItem::setText(const String& text) {
-	this->text = text;
-	if (!this->text.empty()) {
-		mii.dwTypeData = (LPWSTR)this->text.c_str();
-		mii.fMask |=  MIIM_STRING;
-	} else {
-		mii.dwTypeData = nullptr;
-		mii.fMask &= ~MIIM_STRING;
-	}
-}
+		int MenuItem::getData(void) const {
+			return info.dwItemData;
+		}
 
-const String& MenuItem::getText(void) const {
-	return text;
-}
+		MenuItem& MenuItem::setText(const String& text) {
+			this->text = text;
+			if (!this->text.empty()) {
+				info.dwTypeData = (LPWSTR)this->text.c_str();
+				info.fMask |=  MIIM_STRING;
+			} else {
+				info.dwTypeData = nullptr;
+				info.fMask &= ~MIIM_STRING;
+			}
+			return *this;
+		}
 
-void MenuItem::setImage(const Bitmap& bmp) {
+		const String& MenuItem::getText(void) const {
+			return text;
+		}
+
+		MenuItem& MenuItem::setImage(const Bitmap& bmp) {
 #if (_WIN32_WINNT >= 0x0500)
-	image = &bmp;
-	mii.hbmpItem = bmp.getHandle();
-	if (mii.hbmpItem != nullptr)
-		mii.fMask |=  MIIM_BITMAP;
-	else
-		mii.fMask &= ~MIIM_BITMAP;
+			image = &bmp;
+			info.hbmpItem = bmp.getHandle();
+			if (info.hbmpItem == nullptr)
+				info.fMask &= ~MIIM_BITMAP;
+			else
+				info.fMask |=  MIIM_BITMAP;
 #endif
-}
+			return *this;
+		}
 
-Bitmap& MenuItem::getImage(void) const {
-	return *const_cast<Bitmap*>(image);
-}
+		Bitmap& MenuItem::getImage(void) const {
+			return *const_cast<Bitmap*>(image);
+		}
 
-const MENUITEMINFO& MenuItem::getInfo(void) const {
-	return mii;
-}
+		const MenuItem::Info& MenuItem::getInfo(void) const {
+			return info;
+		}
+	};
+};

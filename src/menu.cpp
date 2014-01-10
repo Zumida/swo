@@ -1,40 +1,43 @@
 /*
  * menu.cpp
  *
- * Last modified: <2014/01/07 14:26:10 +0900> By Zumida
+ * Last modified: <2014/01/10 16:29:16 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "menu.hpp"
 
-using namespace swo;
+namespace swo {
+	inline namespace menu {
 
-Menu::Menu() {
-	handle = nullptr;
-}
+		Menu::Menu() : handle(nullptr) {}
 
-Menu::~Menu() {
-}
+		Menu::~Menu() {}
 
-HMENU Menu::getHandle(void) const {
-	return handle;
-}
+		Menu::Handle Menu::getHandle(void) const {
+			return handle;
+		}
 
-void Menu::add(const MenuItem& item) {
-	if (handle == nullptr) {
-		handle = CreateMenu();
-	}
-	if (handle != nullptr) {
-		InsertMenuItem(handle, item.getId(), FALSE, &item.getInfo());
-	}
-}
+		Menu& Menu::add(const MenuItem& item) {
+			if (handle == nullptr) {
+				handle = ::CreateMenu();
+			}
+			if (handle != nullptr) {
+				::InsertMenuItem(
+					handle, item.getId(), FALSE, &item.getInfo());
+			}
+			return *this;
+		}
 
-void Menu::add(const int index, const MenuItem& item) {
-	if (handle == nullptr) {
-		handle = CreateMenu();
-	}
-	if (handle != nullptr) {
-		InsertMenuItem(handle, index, TRUE, &item.getInfo());
-	}
-}
+		Menu& Menu::add(const int index, const MenuItem& item) {
+			if (handle == nullptr) {
+				handle = ::CreateMenu();
+			}
+			if (handle != nullptr) {
+				::InsertMenuItem(handle, index, TRUE, &item.getInfo());
+			}
+			return *this;
+		}
 
-const Menu Menu::empty;
+		const Menu Menu::empty;
+	};
+};
