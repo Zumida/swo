@@ -1,13 +1,13 @@
 /*
  * logger.cpp
  *
- * Last modified: <2014/01/17 17:37:49 +0900> By Zumida
+ * Last modified: <2014/01/17 23:47:08 +0900> By Zumida
  */
 #include "logger.hpp"
 
 namespace swo {
 	inline namespace log {
-		void Log::debug(const char* file, const int line,
+		void debug(const char* file, const int line,
 						const char* func, const String& msg) {
 
 			Stdlog << L"[DEBUG] "
@@ -15,7 +15,7 @@ namespace swo {
 				<< msg << std::endl;
 		}
 
-		void Log::info(const char* file, const int line,
+		void info(const char* file, const int line,
 					   const char* func, const String& msg) {
 
 			Stdlog << L"[INFO] "
@@ -23,7 +23,7 @@ namespace swo {
 				<< msg << std::endl;
 		}
 
-		void Log::warn(const char* file, const int line,
+		void warn(const char* file, const int line,
 					   const char* func, const String& msg) {
 
 			Stdlog << L"[WARN] "
@@ -31,7 +31,7 @@ namespace swo {
 				<< msg << std::endl;
 		}
 
-		void Log::error(const char* file, const int line,
+		void error(const char* file, const int line,
 						const char* func, const String& msg) {
 
 			Stdlog << L"[ERROR] "
@@ -39,7 +39,7 @@ namespace swo {
 				<< msg << std::endl;
 		}
 
-		void Log::exception(const char* file, const int line,
+		void exception(const char* file, const int line,
 							const char* func, const std::exception& e) {
 
 			Stdlog << L"[EXCEPTION] "
