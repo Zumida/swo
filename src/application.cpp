@@ -1,7 +1,7 @@
 /*
  * application.cpp
  *
- * Last modified: <2014/01/10 13:49:52 +0900> By Zumida
+ * Last modified: <2014/01/17 23:40:36 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "application.hpp"
@@ -55,36 +55,39 @@ namespace swo {
 			// ランナーの実行
 			runner->run();
 
-			// メッセージループ
-			MSG msg;
-			while (!isTerminated()) {
-				// 更新予約コントロールを更新
-				ControlPtrList &controls = Instance::getControls();
-				for (auto it = controls.begin(); it != controls.end(); ) {
+			if (Instance::getControls().size() > 0) {
 
-					Control* c = *it;
-					if (c->isTerminated()) {
-						it = controls.erase(it);
-						delete c;
-						continue;
+				// メッセージループ
+				MSG msg;
+				while (!isTerminated()) {
+					// 更新予約コントロールを更新
+					ControlPtrList &controls = Instance::getControls();
+					for (auto it = controls.begin(); it != controls.end(); ) {
+
+						Control* c = *it;
+						if (c->isTerminated()) {
+							it = controls.erase(it);
+							delete c;
+							continue;
+						}
+						if (c->getParent() != nullptr && c->isUpdated()) {
+							c->refresh();
+						}
+						it++;
 					}
-					if (c->getParent() != nullptr && c->isUpdated()) {
-						c->refresh();
-					}
-					it++;
+
+					// メッセージ取得失敗、終了メッセージ受信時はループ終了
+					int result = GetMessage(&msg, nullptr, 0, 0);
+					if (result == 0 || result == -1) break;
+
+					// メッセージを処理する
+					TranslateMessage(&msg);
+					DispatchMessage(&msg);
 				}
 
-				// メッセージ取得失敗、終了メッセージ受信時はループ終了
-				int result = GetMessage(&msg, nullptr, 0, 0);
-				if (result == 0 || result == -1) break;
-
-				// メッセージを処理する
-				TranslateMessage(&msg);
-				DispatchMessage(&msg);
-			}
-
-			if (!isTerminated()) {
-				this->result = static_cast<int>(msg.wParam);
+				if (!isTerminated()) {
+					this->result = static_cast<int>(msg.wParam);
+				}
 			}
 		}
 
