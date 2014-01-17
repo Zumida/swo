@@ -2,6 +2,7 @@
 #include "string.hpp"
 #include "swomain.hpp"
 #include "application.hpp"
+#include "logger.hpp"
 
 using namespace swo;
 
@@ -53,31 +54,31 @@ int WINAPI _tWinMain(
 	Application& app = Application::getInstance();
 
 	try {
-		Stdlog << "Application is initializing." << std::endl;
+		LOG_I(L"Application is initializing.");
 		app.initialize();
 
-		Stdlog << "Application is running." << std::endl;
+		LOG_I(L"Application is running.");
 		app.run();
 
 	} catch (const std::exception &e) {
-		Stderr << "Catch a std::exception! : " << e.what() << std::endl;
+		LOG_EX(e);
 		app.terminate(-1);
 
 	} catch (...) {
-		Stderr << "Catch an unexpected exception! : "
-			<< "result=" << app.getResult() << std::endl;
+		LOG_E(L"Catch an unexpected exception! : "
+			  L"result=" + app.getResult());
 		app.terminate(-1);
 	}
 
 	try {
-		Stdlog << "Application is finalizing." << std::endl;
+		LOG_I(L"Application is finalizing.");
 		app.finalize();
 
 	} catch (const std::exception &e) {
-		Stderr << "Catch a std::exception! : " << e.what() << std::endl;
+		LOG_EX(e);
 
 	} catch (...) {
-		Stderr << "Catch an unexpected exception!" << std::endl;
+		LOG_E(L"Catch an unexpected exception!");
 	}
 
 	try {
