@@ -1,12 +1,11 @@
 /*
  * string.cpp
  *
- * Last modified: <2014/01/17 18:37:42 +0900> By Zumida
+ * Last modified: <2014/01/18 15:52:58 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "string.hpp"
 #include <windows.h>
-#include <regex>
 
 namespace swo {
 	inline namespace string {
@@ -40,11 +39,6 @@ namespace swo {
 			}
 
 			return s;
-		}
-
-		String basename(const String& path) {
-			String p = replaceAll(path, L"\\", L"/");
-			return p.substr(p.find_last_of(L'/') + 1);
 		}
 
 		String empty;

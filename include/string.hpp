@@ -1,7 +1,7 @@
 /*
  * string.hpp
  *
- * Last modified: <2014/01/17 18:32:21 +0900> By Zumida
+ * Last modified: <2014/01/18 15:52:15 +0900> By Zumida
  */
 #ifndef STRING_HPP_INCLUDED
 #define STRING_HPP_INCLUDED
@@ -47,7 +47,6 @@ namespace swo {
 		extern String valueOf(char *str);
 		extern String replaceAll(const String& str,
 								 const String& find, const String& replace);
-		extern String basename(const String& path);
 		extern String empty;
 
 		using StringList = std::list<String>;
