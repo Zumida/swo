@@ -1,11 +1,12 @@
 /*
  * application.cpp
  *
- * Last modified: <2014/01/17 23:40:36 +0900> By Zumida
+ * Last modified: <2014/01/18 16:32:09 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "application.hpp"
 #include "instance.hpp"
+#include "uri.hpp"
 #include <windows.h>
 
 namespace swo {
@@ -14,7 +15,7 @@ namespace swo {
 		Application* Application::instance;
 
 		Application::Application(const Runner* runner)
-		: runner(const_cast<Runner*>(runner)),
+		: processName(L"Application"), runner(const_cast<Runner*>(runner)),
 		status(Status::BOOT), terminated(false), result(0) {
 
 			if (runner == nullptr) {
@@ -46,6 +47,10 @@ namespace swo {
 					arguments.push_back(argv[i]);
 				}
 				::GlobalFree(argv);
+
+				if (arguments.size() > 0) {
+					processName = swo::uri::filename(arguments.front());
+				}
 			}
 		}
 
@@ -106,6 +111,10 @@ namespace swo {
 			::PostQuitMessage(result);
 		}
 
+		const String& Application::getProcessName(void) const {
+			return processName;
+		}
+
 		StringList& Application::getArguments(void) {
 			return arguments;
 		}
@@ -114,7 +123,7 @@ namespace swo {
 			return result;
 		}
 
-		Application::Status Application::getStatus(void) const {
+		const Application::Status& Application::getStatus(void) const {
 			return status;
 		}
 

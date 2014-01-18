@@ -1,7 +1,7 @@
 /*
  * application.hpp
  *
- * Last modified: <2014/01/10 14:17:13 +0900> By Zumida
+ * Last modified: <2014/01/18 10:46:47 +0900> By Zumida
  */
 #ifndef APPLICATION_HPP_INCLUDED
 #define APPLICATION_HPP_INCLUDED
@@ -30,6 +30,7 @@ namespace swo {
 		private:
 			static class Application *instance;
 
+			String processName;
 			Runner* runner;
 			Status status;
 			StringList arguments;
@@ -52,9 +53,10 @@ namespace swo {
 
 			static void terminate(int result=0);
 
+			const String& getProcessName(void) const;
 			StringList& getArguments(void);
 			int getResult(void) const;
-			Status getStatus(void) const;
+			const Status& getStatus(void) const;
 
 			bool isRunning(void) const;
 			bool isTerminated(void) const;

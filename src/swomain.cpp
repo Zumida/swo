@@ -19,6 +19,10 @@ public:
 		flush();
 	}
 
+	void setTag(const String& tag) {
+		this->tag = tag + L" ";
+	}
+
 	virtual int_type overflow(int_type c = WEOF) {
 		switch (c) {
 		case '\n':
@@ -54,10 +58,11 @@ int WINAPI _tWinMain(
 	Application& app = Application::getInstance();
 
 	try {
-		LOG_I(L"Application is initializing.");
+		LOG_I(app.getProcessName() + L" is initializing.");
 		app.initialize();
+		dlog.setTag(app.getProcessName());
 
-		LOG_I(L"Application is running.");
+		LOG_I(app.getProcessName() + L" is running.");
 		app.run();
 
 	} catch (const std::exception &e) {
@@ -71,7 +76,7 @@ int WINAPI _tWinMain(
 	}
 
 	try {
-		LOG_I(L"Application is finalizing.");
+		LOG_I(app.getProcessName() + L" is finalizing.");
 		app.finalize();
 
 	} catch (const std::exception &e) {
