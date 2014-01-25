@@ -1,15 +1,16 @@
 /*
  * exception.cpp
  *
- * Last modified: <2014/01/24 06:59:20 +0900> By Zumida
+ * Last modified: <2014/01/25 13:48:25 +0900> By Zumida
  */
 #include "exception.hpp"
 #include <typeinfo>
 #include <cxxabi.h>
+#include <sstream>
 
 namespace swo {
-	inline namespace core {
-		Exception::Exception(const String& message, const class Exception* cause=nullptr)
+	inline namespace exception {
+		Exception::Exception(const String& message, const Exception* cause)
 			: message(message), cause(cause) {}
 
 		Exception::~Exception() {}
@@ -26,6 +27,18 @@ namespace swo {
 			const std::type_info & id_p = typeid(*this);
 			int status;
 			return abi::__cxa_demangle(id_p.name(), 0, 0, &status);
+		}
+
+		const String Exception::getDetail() const {
+			StringStream ss;
+
+			ss << what() << L":" << message;
+
+			if (cause != nullptr) {
+				ss << L"\ncause " << cause->getMessage();
+			}
+
+			return ss.str();
 		}
 	};
 };
