@@ -1,7 +1,7 @@
 /*
  * string.cpp
  *
- * Last modified: <2014/01/18 15:52:58 +0900> By Zumida
+ * Last modified: <2014/01/25 01:53:02 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "string.hpp"
@@ -10,7 +10,7 @@
 namespace swo {
 	inline namespace string {
 
-		String valueOf(char *str) {
+		String valueOf(const char *str) {
 			String result;
 
 #if defined(UNICODE) || defined(_UNICODE)
