@@ -28,12 +28,52 @@ main.cpp
 	
 	MakeApplication(
 	class MyRunner : public Runner {
+	public:
 		void run(void) {
 	
 			Form& form = Form::create();
 			form.show();
 		}
 	});
+
+
+ログ出力を活用する場合は、クラス定義をMakeApplication()の外で行います。
+When utilizing a log output, a class definition is performed outside MakeApplication(). 
+
+main.cpp
+
+	#include "swo.hpp"
+	#include "logger.hpp"
+	#include <exception>
+	
+	using namespace swo;
+	
+	class MyRunner : public Runner {
+	
+	public:
+		void run(void) {
+			/*
+			 * 標準出力/標準エラー出力/標準ログ出力は、
+			 * DebugViewまたはgdbにて確認すること！
+			 */
+			LOG_I(L"通常ログ出力");
+	
+			LOG_W(L"警告ログ出力");
+	
+			LOG_E(L"エラーログ出力");
+	
+			LOG_D(L"デバッグログ出力");
+	
+			try {
+				throw std::exception();
+	
+			} catch (std::exception &e) {
+				LOG_EX(e);
+			}
+		}
+	};
+	
+	MakeApplication(MyRunner);
 
 Compile
 -------
