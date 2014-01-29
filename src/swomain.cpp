@@ -65,6 +65,10 @@ int WINAPI _tWinMain(
 		LOG_I(app.getProcessName() + L" is running.");
 		app.run();
 
+	} catch (const swo::exception::Exception &e) {
+		LOG_EX(e);
+		app.terminate(-1);
+
 	} catch (const std::exception &e) {
 		LOG_EX(e);
 		app.terminate(-1);
@@ -78,6 +82,9 @@ int WINAPI _tWinMain(
 	try {
 		LOG_I(app.getProcessName() + L" is finalizing.");
 		app.finalize();
+
+	} catch (const swo::exception::Exception &e) {
+		LOG_EX(e);
 
 	} catch (const std::exception &e) {
 		LOG_EX(e);
