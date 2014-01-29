@@ -37,8 +37,8 @@ main.cpp
 	});
 
 
-ログ出力を活用する場合は、クラス定義をMakeApplication()の外で行います。
-When utilizing a log output, a class definition is performed outside MakeApplication(). 
+ログ出力を活用する場合は、クラス定義をMakeApplication()の外で行います。  
+When utilizing a log output, a class definition is performed outside MakeApplication().   
 
 main.cpp
 
