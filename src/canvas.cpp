@@ -1,7 +1,7 @@
 /*
  * canvas.cpp
  *
- * Last modified: <2014/01/07 17:23:18 +0900> By Zumida
+ * Last modified: <2014/01/30 16:39:17 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "canvas.hpp"
@@ -14,19 +14,19 @@ Canvas::~Canvas() {
 	endPaint();
 }
 
-const HDC Canvas::getDc(void) const {
+const HDC Canvas::getDc() const {
 	return hDc;
 }
 
-const Rect& Canvas::getRect(void) const {
+const Rect& Canvas::getRect() const {
 	return ps.rcPaint;
 }
 
-void Canvas::beginPaint(void) {
+void Canvas::beginPaint() {
 	hDc = ::BeginPaint(hWnd , &ps);
 }
 
-void Canvas::endPaint(void) {
+void Canvas::endPaint() {
 	if (hDc != nullptr) {
 		::EndPaint(hWnd , &ps);
 		hDc = nullptr;

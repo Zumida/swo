@@ -1,7 +1,7 @@
 /*
  * application.cpp
  *
- * Last modified: <2014/01/18 16:32:09 +0900> By Zumida
+ * Last modified: <2014/01/30 16:39:02 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "application.hpp"
@@ -31,11 +31,11 @@ namespace swo {
 
 		Application::~Application() {}
 
-		Application& Application::getInstance(void) {
+		Application& Application::getInstance() {
 			return *instance;
 		}
 
-		void Application::initialize(void) {
+		void Application::initialize() {
 			status = Status::INITIALIZE;
 
 			// コマンドライン引数の取得
@@ -54,7 +54,7 @@ namespace swo {
 			}
 		}
 
-		void Application::run(void) {
+		void Application::run() {
 			status = Status::RUN;
 
 			// ランナーの実行
@@ -96,7 +96,7 @@ namespace swo {
 			}
 		}
 
-		void Application::finalize(void) {
+		void Application::finalize() {
 
 			status = Status::FINALIZE;
 
@@ -111,27 +111,27 @@ namespace swo {
 			::PostQuitMessage(result);
 		}
 
-		const String& Application::getProcessName(void) const {
+		const String& Application::getProcessName() const {
 			return processName;
 		}
 
-		StringList& Application::getArguments(void) {
+		StringList& Application::getArguments() {
 			return arguments;
 		}
 
-		int Application::getResult(void) const {
+		int Application::getResult() const {
 			return result;
 		}
 
-		const Application::Status& Application::getStatus(void) const {
+		const Application::Status& Application::getStatus() const {
 			return status;
 		}
 
-		bool Application::isRunning(void) const {
+		bool Application::isRunning() const {
 			return (status == Status::RUN);
 		}
 
-		bool Application::isTerminated(void) const {
+		bool Application::isTerminated() const {
 			return terminated;
 		}
 

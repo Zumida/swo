@@ -1,7 +1,7 @@
 /*
  * bitmap.hpp
  *
- * Last modified: <2013/05/03 21:18:21 +0900> By Zumida
+ * Last modified: <2014/01/30 16:39:10 +0900> By Zumida
  */
 #ifndef BITMAP_HPP_INCLUDED
 #define BITMAP_HPP_INCLUDED
@@ -17,7 +17,7 @@ namespace swo {
 		~Bitmap();
 
 		Bitmap& set(const String& name);
-		HBITMAP getHandle(void) const;
+		HBITMAP getHandle() const;
 
 		const static class Bitmap empty;
 	};

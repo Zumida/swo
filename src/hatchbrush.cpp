@@ -1,7 +1,7 @@
 /*
  * hatchbrush.cpp
  *
- * Last modified: <2014/01/07 14:25:54 +0900> By Zumida
+ * Last modified: <2014/01/30 16:40:04 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "hatchbrush.hpp"
@@ -27,6 +27,6 @@ Brush& HatchBrush::set(const int style, const COLORREF color) {
 	return *this;
 }
 
-void HatchBrush::refresh(void) {
+void HatchBrush::refresh() {
 	handle = ::CreateHatchBrush(style, color);
 }

@@ -1,7 +1,7 @@
 /*
  * menuitem.cpp
  *
- * Last modified: <2014/01/11 00:01:10 +0900> By Zumida
+ * Last modified: <2014/01/30 16:40:32 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "menuitem.hpp"
@@ -42,7 +42,7 @@ namespace swo {
 			return *this;
 		}
 
-		MenuItem::Type MenuItem::getType(void) const {
+		MenuItem::Type MenuItem::getType() const {
 			MenuItem::Type type;
 
 			if (info.fType & MFT_MENUBARBREAK)    type = Type::MenuBarBreak;
@@ -62,7 +62,7 @@ namespace swo {
 			return *this;
 		}
 
-		MenuItem::Align MenuItem::getAlign(void) const {
+		MenuItem::Align MenuItem::getAlign() const {
 			return (info.fType & MFT_RIGHTJUSTIFY)?
 				Align::Right: Align::Left;
 		}
@@ -78,7 +78,7 @@ namespace swo {
 			return *this;
 		}
 
-		MenuItem::State MenuItem::getState(void) const {
+		MenuItem::State MenuItem::getState() const {
 			MenuItem::State state;
 
 			state.isChecked   = (info.fState & MFS_CHECKED )? true: false;
@@ -98,7 +98,7 @@ namespace swo {
 			return *this;
 		}
 
-		int MenuItem::getId(void) const {
+		int MenuItem::getId() const {
 			return info.wID;
 		}
 
@@ -112,7 +112,7 @@ namespace swo {
 			return *this;
 		}
 
-		Menu& MenuItem::getSubMenu(void) const {
+		Menu& MenuItem::getSubMenu() const {
 			return *const_cast<Menu*>(subMenu);
 		}
 
@@ -150,7 +150,7 @@ namespace swo {
 			return *this;
 		}
 
-		int MenuItem::getData(void) const {
+		int MenuItem::getData() const {
 			return info.dwItemData;
 		}
 
@@ -166,7 +166,7 @@ namespace swo {
 			return *this;
 		}
 
-		const String& MenuItem::getText(void) const {
+		const String& MenuItem::getText() const {
 			return text;
 		}
 
@@ -182,11 +182,11 @@ namespace swo {
 			return *this;
 		}
 
-		Bitmap& MenuItem::getImage(void) const {
+		Bitmap& MenuItem::getImage() const {
 			return *const_cast<Bitmap*>(image);
 		}
 
-		const MenuItem::Info& MenuItem::getInfo(void) const {
+		const MenuItem::Info& MenuItem::getInfo() const {
 			return info;
 		}
 	};

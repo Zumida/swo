@@ -1,7 +1,7 @@
 /*
  * custompen.hpp
  *
- * Last modified: <2013/05/13 18:04:40 +0900> By Zumida
+ * Last modified: <2014/01/30 16:39:44 +0900> By Zumida
  */
 #ifndef CUSTOMPEN_HPP_INCLUDED
 #define CUSTOMPEN_HPP_INCLUDED
@@ -16,7 +16,7 @@ namespace swo {
 		int width;
 		COLORREF color;
 
-		void refresh(void);
+		void refresh();
 
 	public:
 		CustomPen();

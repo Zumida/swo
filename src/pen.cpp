@@ -1,7 +1,7 @@
 /*
  * pen.cpp
  *
- * Last modified: <2014/01/07 14:26:33 +0900> By Zumida
+ * Last modified: <2014/01/30 16:40:50 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "pen.hpp"
@@ -15,6 +15,6 @@ Pen::Pen() {
 Pen::~Pen() {
 }
 
-HPEN Pen::getHandle(void) {
+HPEN Pen::getHandle() {
 	return pointer_cast<HPEN>(GdiObject::getHandle());
 }

@@ -1,7 +1,7 @@
 /*
  * stockbrush.hpp
  *
- * Last modified: <2013/05/13 18:08:52 +0900> By Zumida
+ * Last modified: <2014/01/30 16:41:04 +0900> By Zumida
  */
 #ifndef STOCKBRUSH_HPP_INCLUDED
 #define STOCKBRUSH_HPP_INCLUDED
@@ -14,7 +14,7 @@ namespace swo {
 	protected:
 		int stock;
 
-		void refresh(void);
+		void refresh();
 
 	public:
 		StockBrush();
@@ -22,7 +22,7 @@ namespace swo {
 		~StockBrush();
 
 		Brush& set(const int stock);
-		void trash(void);
+		void trash();
 	};
 
 };

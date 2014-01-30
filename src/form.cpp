@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2014/01/10 15:36:06 +0900> By Zumida
+ * Last modified: <2014/01/30 16:38:55 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "form.hpp"
@@ -31,7 +31,7 @@ namespace swo {
 		Form::~Form() {
 		}
 
-		void Form::initialize(void) {
+		void Form::initialize() {
 			if (WindowClass::find(WINDOW_CLASSNAME) == nullptr) {
 				WindowClass& wc = WindowClass::create();
 
@@ -54,7 +54,7 @@ namespace swo {
 			exStyle     = WS_EX_LEFT | WS_EX_LTRREADING | WS_EX_RIGHTSCROLLBAR;
 		}
 
-		HWND Form::createHandle(void) {
+		HWND Form::createHandle() {
 			HWND hparent = (getParent() != nullptr)? getParent()->getHandle(): HWND_DESKTOP;
 			HMENU hmenu = (menu != nullptr)? menu->getHandle(): nullptr;
 
@@ -77,7 +77,7 @@ namespace swo {
 			return hwnd;
 		}
 
-		bool Form::onDestroy(void) {
+		bool Form::onDestroy() {
 			if (getParent() == nullptr) {
 				::PostQuitMessage(0);
 				return true;
@@ -91,7 +91,7 @@ namespace swo {
 			return *this;
 		}
 
-		String& Form::getClassName(void) {
+		String& Form::getClassName() {
 			return className;
 		}
 
@@ -100,7 +100,7 @@ namespace swo {
 			return *this;
 		}
 
-		int Form::getStyle(void) const {
+		int Form::getStyle() const {
 			return style;
 		}
 
@@ -109,7 +109,7 @@ namespace swo {
 			return *this;
 		}
 
-		int Form::getExStyle(void) const {
+		int Form::getExStyle() const {
 			return exStyle;
 		}
 
@@ -118,7 +118,7 @@ namespace swo {
 			return *this;
 		}
 
-		String& Form::getText(void) {
+		String& Form::getText() {
 			return text;
 		}
 
@@ -127,7 +127,7 @@ namespace swo {
 			return *this;
 		}
 
-		Icon& Form::getIcon(void) {
+		Icon& Form::getIcon() {
 			return *icon;
 		}
 
@@ -136,7 +136,7 @@ namespace swo {
 			return *this;
 		}
 
-		Menu& Form::getMenu(void) {
+		Menu& Form::getMenu() {
 			return *menu;
 		}
 
@@ -148,7 +148,7 @@ namespace swo {
 			return *this;
 		}
 
-		bool Form::isAcceptFiles(void) const {
+		bool Form::isAcceptFiles() const {
 			return ((exStyle & WS_EX_ACCEPTFILES) != 0);
 		}
 
@@ -160,7 +160,7 @@ namespace swo {
 			return *this;
 		}
 
-		bool Form::isAppWindow(void) const {
+		bool Form::isAppWindow() const {
 			return ((exStyle & WS_EX_APPWINDOW) != 0);
 		}
 
@@ -172,7 +172,7 @@ namespace swo {
 			return *this;
 		}
 
-		bool Form::isControlParent(void) const {
+		bool Form::isControlParent() const {
 			return ((exStyle & WS_EX_CONTROLPARENT) != 0);
 		}
 
@@ -200,7 +200,7 @@ namespace swo {
 			return *this;
 		}
 
-		Form::FormType Form::getFormType(void) const {
+		Form::FormType Form::getFormType() const {
 			FormType formType;
 
 			if ((exStyle & WS_EX_DLGMODALFRAME) == WS_EX_DLGMODALFRAME)
@@ -225,7 +225,7 @@ namespace swo {
 			return *this;
 		}
 
-		bool Form::isMdiChild(void) const {
+		bool Form::isMdiChild() const {
 			return ((exStyle & WS_EX_MDICHILD) != 0);
 		}
 
@@ -237,7 +237,7 @@ namespace swo {
 			return *this;
 		}
 
-		bool Form::isNoActivate(void) const {
+		bool Form::isNoActivate() const {
 			return ((exStyle & WS_EX_NOACTIVATE) != 0);
 		}
 
@@ -249,7 +249,7 @@ namespace swo {
 			return *this;
 		}
 
-		bool Form::isTopMost(void) {
+		bool Form::isTopMost() {
 			return ((exStyle & WS_EX_TOPMOST) != 0);
 		}
 
@@ -261,16 +261,16 @@ namespace swo {
 			return *this;
 		}
 
-		bool Form::isTransparent(void) {
+		bool Form::isTransparent() {
 			return ((exStyle & WS_EX_TRANSPARENT) != 0);
 		}
 
-		Form& Form::setActiveWindow(void) {
+		Form& Form::setActiveWindow() {
 			::SetActiveWindow(getHandle());
 			return *this;
 		}
 
-		Form& Form::setForegroundWindow(void) {
+		Form& Form::setForegroundWindow() {
 			::SetForegroundWindow(getHandle());
 			return *this;
 		}
@@ -310,7 +310,7 @@ namespace swo {
 			return *this;
 		}
 
-		Form& Form::create(void) {
+		Form& Form::create() {
 			return Instance::create<Form>();
 		}
 

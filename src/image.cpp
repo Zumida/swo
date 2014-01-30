@@ -1,7 +1,7 @@
 /*
  * image.cpp
  *
- * Last modified: <2014/01/08 09:15:06 +0900> By Zumida
+ * Last modified: <2014/01/30 16:40:15 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "image.hpp"
@@ -36,6 +36,6 @@ void Image::load(const TCHAR* id, const int type) {
 		0, 0, LR_DEFAULTSIZE | LR_SHARED);
 }
 
-HANDLE Image::getHandle(void) const {
+HANDLE Image::getHandle() const {
 	return handle;
 }

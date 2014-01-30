@@ -1,7 +1,7 @@
 /*
  * custompen.cpp
  *
- * Last modified: <2014/01/07 14:25:30 +0900> By Zumida
+ * Last modified: <2014/01/30 16:39:42 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "custompen.hpp"
@@ -23,7 +23,7 @@ CustomPen::CustomPen(const int style, const int width, const COLORREF color) {
 CustomPen::~CustomPen() {
 }
 
-void CustomPen::refresh(void) {
+void CustomPen::refresh() {
 	handle = ::CreatePen(style, width, color);
 }
 

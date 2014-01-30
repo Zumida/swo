@@ -1,7 +1,7 @@
 /*
  * windowclass.hpp
  *
- * Last modified: <2013/08/28 01:32:40 +0900> By Zumida
+ * Last modified: <2014/01/30 16:41:28 +0900> By Zumida
  */
 #ifndef WINDOWCLASS_HPP_INCLUDED
 #define WINDOWCLASS_HPP_INCLUDED
@@ -40,7 +40,7 @@ namespace swo {
 
 		static void add(class WindowClass& wndClass);
 		static WindowClass* find(const String& className);
-		static WindowClass& create(void);
+		static WindowClass& create();
 	};
 
 };

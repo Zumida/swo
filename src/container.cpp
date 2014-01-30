@@ -1,7 +1,7 @@
 /*
  * container.cpp
  *
- * Last modified: <2014/01/09 15:23:31 +0900> By Zumida
+ * Last modified: <2014/01/30 16:39:22 +0900> By Zumida
  */
 #include "container.hpp"
 
@@ -30,7 +30,7 @@ namespace swo {
 			child.setParent(nullptr);
 		}
 
-		void Container::renew(void) {
+		void Container::renew() {
 			update();
 
 			HWND handle = getHandle();
@@ -46,7 +46,7 @@ namespace swo {
 			refresh();
 		}
 
-		void Container::refresh(void) {
+		void Container::refresh() {
 			Control::refresh();
 
 			childs.sort();

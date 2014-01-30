@@ -1,7 +1,7 @@
 /*
  * bitmap.cpp
  *
- * Last modified: <2014/01/07 14:24:01 +0900> By Zumida
+ * Last modified: <2014/01/30 16:39:07 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "bitmap.hpp"
@@ -24,7 +24,7 @@ Bitmap& Bitmap::set(const String& name) {
 	return *this;
 }
 
-HBITMAP Bitmap::getHandle(void) const {
+HBITMAP Bitmap::getHandle() const {
 	return pointer_cast<HBITMAP>(handle);
 }
 

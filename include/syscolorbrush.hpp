@@ -1,7 +1,7 @@
 /*
  * syscolorbrush.hpp
  *
- * Last modified: <2013/08/28 02:21:34 +0900> By Zumida
+ * Last modified: <2014/01/30 16:41:15 +0900> By Zumida
  */
 #ifndef SYSCOLORBRUSH_HPP_INCLUDED
 #define SYSCOLORBRUSH_HPP_INCLUDED
@@ -14,15 +14,15 @@ namespace swo {
 	protected:
 		int index;
 
-		void refresh(void);
+		void refresh();
 
 	public:
 		SysColorBrush();
 		~SysColorBrush();
 
 		SysColorBrush& set(const int index);
-		int getIndex(void) const;
-		void trash(void);
+		int getIndex() const;
+		void trash();
 
 		static SysColorBrush& create(const int index);
 	};

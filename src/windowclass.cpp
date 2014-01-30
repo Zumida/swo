@@ -1,7 +1,7 @@
 /*
  * windowclass.cpp
  *
- * Last modified: <2014/01/07 14:29:16 +0900> By Zumida
+ * Last modified: <2014/01/30 16:41:25 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "windowclass.hpp"
@@ -109,6 +109,6 @@ WindowClass* WindowClass::find(const String& className) {
 	return (it == wndClassMap.end())? nullptr: it->second;
 }
 
-WindowClass& WindowClass::create(void) {
+WindowClass& WindowClass::create() {
 	return Instance::create<WindowClass>();
 }

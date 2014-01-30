@@ -1,7 +1,7 @@
 /*
  * pen.hpp
  *
- * Last modified: <2013/05/13 18:07:23 +0900> By Zumida
+ * Last modified: <2014/01/30 16:40:53 +0900> By Zumida
  */
 #ifndef PEN_HPP_INCLUDED
 #define PEN_HPP_INCLUDED
@@ -15,7 +15,7 @@ namespace swo {
 		Pen();
 		~Pen();
 
-		HPEN getHandle(void);
+		HPEN getHandle();
 	};
 
 };

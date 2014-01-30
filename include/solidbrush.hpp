@@ -1,7 +1,7 @@
 /*
  * solidbrush.hpp
  *
- * Last modified: <2013/05/13 18:07:53 +0900> By Zumida
+ * Last modified: <2014/01/30 16:40:59 +0900> By Zumida
  */
 #ifndef SOLIDBRUSH_HPP_INCLUDED
 #define SOLIDBRUSH_HPP_INCLUDED
@@ -14,7 +14,7 @@ namespace swo {
 	protected:
 		COLORREF color;
 
-		void refresh(void);
+		void refresh();
 
 	public:
 		SolidBrush();

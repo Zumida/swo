@@ -1,7 +1,7 @@
 /*
  * stockbrush.cpp
  *
- * Last modified: <2014/01/07 14:26:46 +0900> By Zumida
+ * Last modified: <2014/01/30 16:41:01 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "stockbrush.hpp"
@@ -24,10 +24,10 @@ Brush& StockBrush::set(int stock) {
 	return *this;
 }
 
-void StockBrush::refresh(void) {
+void StockBrush::refresh() {
 	handle = ::GetStockObject(stock);
 }
 
-void StockBrush::trash(void) {
+void StockBrush::trash() {
 	handle = nullptr;
 }

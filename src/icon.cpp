@@ -1,7 +1,7 @@
 /*
  * icon.cpp
  *
- * Last modified: <2014/01/07 14:25:57 +0900> By Zumida
+ * Last modified: <2014/01/30 16:40:09 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "icon.hpp"
@@ -24,6 +24,6 @@ Icon& Icon::set(const String& name) {
 	return *this;
 }
 
-HICON Icon::getHandle(void) const {
+HICON Icon::getHandle() const {
 	return pointer_cast<HICON>(handle);
 }

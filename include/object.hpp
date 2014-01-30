@@ -1,7 +1,7 @@
 /*
  * object.hpp
  *
- * Last modified: <2014/01/09 11:58:31 +0900> By Zumida
+ * Last modified: <2014/01/30 16:40:42 +0900> By Zumida
  */
 #ifndef OBJECT_HPP_INCLUDED
 #define OBJECT_HPP_INCLUDED
@@ -20,8 +20,8 @@ namespace swo {
 			Object();
 			virtual ~Object();
 
-			String getClassName(void);
-			virtual String toString(void);
+			String getClassName();
+			virtual String toString();
 		};
 
 		using ObjectPtrList = std::list<Object*>;

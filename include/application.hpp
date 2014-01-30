@@ -1,7 +1,7 @@
 /*
  * application.hpp
  *
- * Last modified: <2014/01/18 10:46:47 +0900> By Zumida
+ * Last modified: <2014/01/30 16:39:04 +0900> By Zumida
  */
 #ifndef APPLICATION_HPP_INCLUDED
 #define APPLICATION_HPP_INCLUDED
@@ -41,25 +41,25 @@ namespace swo {
 			WndMap wndMap;
 
 		public:
-			static class Application& getInstance(void);
+			static class Application& getInstance();
 
 			Application() = delete;
 			Application(const Runner* runner);
 			~Application();
 
-			void initialize(void);
-			void run(void);
-			void finalize(void);
+			void initialize();
+			void run();
+			void finalize();
 
 			static void terminate(int result=0);
 
-			const String& getProcessName(void) const;
-			StringList& getArguments(void);
-			int getResult(void) const;
-			const Status& getStatus(void) const;
+			const String& getProcessName() const;
+			StringList& getArguments();
+			int getResult() const;
+			const Status& getStatus() const;
 
-			bool isRunning(void) const;
-			bool isTerminated(void) const;
+			bool isRunning() const;
+			bool isTerminated() const;
 
 			static EventListener* findListener(const HWND hWnd);
 			static void addListener(const HWND hWnd, const EventListener* listener);

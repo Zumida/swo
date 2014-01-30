@@ -1,7 +1,7 @@
 /*
  * treeview.hpp
  *
- * Last modified: <2013/05/07 07:16:34 +0900> By Zumida
+ * Last modified: <2014/01/30 16:41:22 +0900> By Zumida
  */
 #ifndef TREEVIEW_HPP_INCLUDED
 #define TREEVIEW_HPP_INCLUDED
@@ -14,7 +14,7 @@ namespace swo {
 	protected:
 		bool vscroll;
 		bool hscroll;
-		HWND createHandle(void);
+		HWND createHandle();
 
 	public:
 		TreeView();

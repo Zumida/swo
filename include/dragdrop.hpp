@@ -1,7 +1,7 @@
 /*
  * dragdrop.hpp
  *
- * Last modified: <2014/01/09 12:01:50 +0900> By Zumida
+ * Last modified: <2014/01/30 16:39:49 +0900> By Zumida
  */
 #ifndef DRAGDROP_HPP_INCLUDED
 #define DRAGDROP_HPP_INCLUDED
@@ -20,8 +20,8 @@ namespace swo {
 		DragDrop(HDROP hDrop);
 		~DragDrop();
 
-		const StringList& getFiles(void) const;
-		const Point& getPoint(void) const;
+		const StringList& getFiles() const;
+		const Point& getPoint() const;
 	};
 
 };

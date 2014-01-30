@@ -1,7 +1,7 @@
 /*
  * object.cpp
  *
- * Last modified: <2014/01/09 13:32:25 +0900> By Zumida
+ * Last modified: <2014/01/30 16:40:39 +0900> By Zumida
  */
 #include "object.hpp"
 
@@ -15,7 +15,7 @@ namespace swo {
 
 		Object::~Object() {}
 
-		String Object::getClassName(void) {
+		String Object::getClassName() {
 			const std::type_info & id_p = typeid(*this);
 			int status;
 
@@ -23,7 +23,7 @@ namespace swo {
 				abi::__cxa_demangle(id_p.name(), 0, 0, &status));
 		}
 
-		String Object::toString(void) {
+		String Object::toString() {
 			StringStream ss;
 
 			ss << this << L"@" << getClassName();

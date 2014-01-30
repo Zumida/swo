@@ -1,7 +1,7 @@
 /*
  * menuitem.hpp
  *
- * Last modified: <2014/01/10 16:29:44 +0900> By Zumida
+ * Last modified: <2014/01/30 16:40:35 +0900> By Zumida
  */
 #ifndef MENUITEM_HPP_INCLUDED
 #define MENUITEM_HPP_INCLUDED
@@ -50,19 +50,19 @@ namespace swo {
 			~MenuItem();
 
 			MenuItem& setType(const Type type);
-			Type getType(void) const;
+			Type getType() const;
 
 			MenuItem& setAlign(const Align align);
-			Align getAlign(void) const;
+			Align getAlign() const;
 
 			MenuItem& setState(const State& state);
-			State getState(void) const;
+			State getState() const;
 
 			MenuItem& setId(const int id);
-			int getId(void) const;
+			int getId() const;
 
 			MenuItem& setSubMenu(const class Menu& subMenu);
-			class Menu& getSubMenu(void) const;
+			class Menu& getSubMenu() const;
 
 			MenuItem& setCheckedImage(const Bitmap& bmp);
 			Bitmap& getCheckedImage(const Bitmap& bmp) const;
@@ -71,15 +71,15 @@ namespace swo {
 			Bitmap& getUncheckedImage(const Bitmap& bmp) const;
 
 			MenuItem& setData(const int data);
-			int getData(void) const;
+			int getData() const;
 
 			MenuItem& setText(const String& text);
-			const String& getText(void) const;
+			const String& getText() const;
 
 			MenuItem& setImage(const Bitmap& bmp);
-			Bitmap& getImage(void) const;
+			Bitmap& getImage() const;
 
-			const Info& getInfo(void) const;
+			const Info& getInfo() const;
 		};
 	};
 };

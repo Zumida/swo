@@ -1,7 +1,7 @@
 /*
  * hatchbrush.hpp
  *
- * Last modified: <2013/05/13 18:05:13 +0900> By Zumida
+ * Last modified: <2014/01/30 16:40:06 +0900> By Zumida
  */
 #ifndef HATCHBRUSH_HPP_INCLUDED
 #define HATCHBRUSH_HPP_INCLUDED
@@ -15,7 +15,7 @@ namespace swo {
 		int style;
 		COLORREF color;
 
-		void refresh(void);
+		void refresh();
 
 	public:
 		HatchBrush();

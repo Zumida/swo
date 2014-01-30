@@ -1,7 +1,7 @@
 /*
  * stockpen.cpp
  *
- * Last modified: <2014/01/07 14:26:54 +0900> By Zumida
+ * Last modified: <2014/01/30 16:41:06 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "stockpen.hpp"
@@ -24,6 +24,6 @@ Pen& StockPen::set(int stock) {
 	return *this;
 }
 
-void StockPen::refresh(void) {
+void StockPen::refresh() {
 	handle = ::GetStockObject(stock);
 }

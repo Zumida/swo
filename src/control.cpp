@@ -1,7 +1,7 @@
 /*
  * control.cpp
  *
- * Last modified: <2014/01/09 15:02:49 +0900> By Zumida
+ * Last modified: <2014/01/30 16:39:28 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "control.hpp"
@@ -36,7 +36,7 @@ namespace swo {
 			}
 		}
 
-		void Control::initialize(void) {
+		void Control::initialize() {
 			handle      = nullptr;
 			parent      = nullptr;
 
@@ -53,7 +53,7 @@ namespace swo {
 			terminated  = false;
 		}
 
-		void Control::resetHandle(void) {
+		void Control::resetHandle() {
 			this->handle = nullptr;
 		}
 
@@ -61,7 +61,7 @@ namespace swo {
 			this->handle = handle;
 		}
 
-		HWND Control::getHandle(void) const {
+		HWND Control::getHandle() const {
 			return handle;
 		}
 
@@ -78,7 +78,7 @@ namespace swo {
 						   uFlags);
 		}
 
-		void Control::renew(void) {
+		void Control::renew() {
 			update();
 
 			HWND handle = getHandle();
@@ -90,11 +90,11 @@ namespace swo {
 			refresh();
 		}
 
-		void Control::update(void) {
+		void Control::update() {
 			updated = true;
 		}
 
-		void Control::refresh(void) {
+		void Control::refresh() {
 			updated = false;
 
 			HWND handle = getHandle();
@@ -106,11 +106,11 @@ namespace swo {
 			setAttributes(handle);
 		}
 
-		void Control::terminate(void) {
+		void Control::terminate() {
 			terminated = true;
 		}
 
-		Control* Control::getParent(void) {
+		Control* Control::getParent() {
 			return parent;
 		}
 
@@ -119,7 +119,7 @@ namespace swo {
 			update();
 		}
 
-		void Control::show(void) {
+		void Control::show() {
 			visible = true;
 			refresh();
 
@@ -130,7 +130,7 @@ namespace swo {
 			}
 		}
 
-		void Control::hide(void) {
+		void Control::hide() {
 			visible = false;
 
 			HWND hWnd = getHandle();
@@ -145,7 +145,7 @@ namespace swo {
 			update();
 		}
 
-		WindowRect& Control::getRect(void) {
+		WindowRect& Control::getRect() {
 			return rect;
 		}
 
@@ -154,7 +154,7 @@ namespace swo {
 			update();
 		}
 
-		Brush& Control::getBackground(void) {
+		Brush& Control::getBackground() {
 			return *background;
 		}
 
@@ -163,7 +163,7 @@ namespace swo {
 			update();
 		}
 
-		Cursor& Control::getCursor(void) {
+		Cursor& Control::getCursor() {
 			return *cursor;
 		}
 
@@ -172,15 +172,15 @@ namespace swo {
 			update();
 		}
 
-		int Control::getTab(void) const {
+		int Control::getTab() const {
 			return tab;
 		}
 
-		bool Control::isUpdated(void) const {
+		bool Control::isUpdated() const {
 			return updated;
 		}
 
-		bool Control::isTerminated(void) const {
+		bool Control::isTerminated() const {
 			return terminated;
 		}
 

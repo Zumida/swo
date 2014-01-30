@@ -1,7 +1,7 @@
 /*
  * control.hpp
  *
- * Last modified: <2014/01/09 12:33:54 +0900> By Zumida
+ * Last modified: <2014/01/30 16:39:31 +0900> By Zumida
  */
 #ifndef CONTROL_HPP_INCLUDED
 #define CONTROL_HPP_INCLUDED
@@ -31,9 +31,9 @@ namespace swo {
 			bool updated;
 			bool terminated;
 
-			void initialize(void);
+			void initialize();
 
-			virtual HWND createHandle(void) = 0;
+			virtual HWND createHandle() = 0;
 			virtual void setHandle(HWND handle);
 			virtual void setAttributes(HWND handle);
 
@@ -42,32 +42,32 @@ namespace swo {
 			Control(Control& parent);
 			~Control();
 
-			HWND getHandle(void) const;
-			void resetHandle(void);
+			HWND getHandle() const;
+			void resetHandle();
 
-			virtual void renew(void);
-			virtual void update(void);
-			virtual void refresh(void);
-			virtual void terminate(void);
+			virtual void renew();
+			virtual void update();
+			virtual void refresh();
+			virtual void terminate();
 
-			virtual void show(void);
-			virtual void hide(void);
+			virtual void show();
+			virtual void hide();
 
-			Control* getParent(void);
+			Control* getParent();
 			void setParent(Control* parent);
 
 			void setRect(const WindowRect& rect);
-			WindowRect& getRect(void);
+			WindowRect& getRect();
 			void setBackground(const Brush& brush);
-			Brush& getBackground(void);
+			Brush& getBackground();
 			void setCursor(const Cursor& cursor);
-			Cursor& getCursor(void);
+			Cursor& getCursor();
 
 			void setTab(int tab);
-			int getTab(void) const;
+			int getTab() const;
 
-			bool isUpdated(void) const;
-			bool isTerminated(void) const;
+			bool isUpdated() const;
+			bool isTerminated() const;
 
 			bool operator < (const Control* control);
 		};

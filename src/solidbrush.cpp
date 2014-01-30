@@ -1,7 +1,7 @@
 /*
  * solidbrush.cpp
  *
- * Last modified: <2014/01/07 14:26:42 +0900> By Zumida
+ * Last modified: <2014/01/30 16:40:57 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "solidbrush.hpp"
@@ -24,6 +24,6 @@ Brush& SolidBrush::set(COLORREF color) {
 	return *this;
 }
 
-void SolidBrush::refresh(void) {
+void SolidBrush::refresh() {
 	handle = ::CreateSolidBrush(color);
 }

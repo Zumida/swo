@@ -1,7 +1,7 @@
 /*
  * container.hpp
  *
- * Last modified: <2014/01/09 14:08:12 +0900> By Zumida
+ * Last modified: <2014/01/30 16:39:25 +0900> By Zumida
  */
 #ifndef CONTAINER_HPP_INCLUDED
 #define CONTAINER_HPP_INCLUDED
@@ -19,12 +19,12 @@ namespace swo {
 			Container(Control& parent);
 			~Container();
 
-			ControlPtrList& getChilds(void);
+			ControlPtrList& getChilds();
 			void addChild(Control& child);
 			void removeChild(Control& child);
 
-			void renew(void);
-			void refresh(void);
+			void renew();
+			void refresh();
 		};
 	};
 };

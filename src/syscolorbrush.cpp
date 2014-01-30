@@ -1,7 +1,7 @@
 /*
  * syscolorbrush.cpp
  *
- * Last modified: <2014/01/07 14:28:56 +0900> By Zumida
+ * Last modified: <2014/01/30 16:41:13 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "syscolorbrush.hpp"
@@ -21,15 +21,15 @@ SysColorBrush& SysColorBrush::set(const int index) {
 	return *this;
 }
 
-int SysColorBrush::getIndex(void) const {
+int SysColorBrush::getIndex() const {
 	return index;
 }
 
-void SysColorBrush::refresh(void) {
+void SysColorBrush::refresh() {
 	handle = ::GetSysColorBrush(index);
 }
 
-void SysColorBrush::trash(void) {
+void SysColorBrush::trash() {
 	handle = nullptr;
 }
 

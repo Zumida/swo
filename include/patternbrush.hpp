@@ -1,7 +1,7 @@
 /*
  * patternbrush.hpp
  *
- * Last modified: <2013/05/13 18:06:58 +0900> By Zumida
+ * Last modified: <2014/01/30 16:40:47 +0900> By Zumida
  */
 #ifndef PATTERNBRUSH_HPP_INCLUDED
 #define PATTERNBRUSH_HPP_INCLUDED
@@ -15,7 +15,7 @@ namespace swo {
 	protected:
 		Bitmap* bmp;
 
-		void refresh(void);
+		void refresh();
 
 	public:
 		PatternBrush();

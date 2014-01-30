@@ -1,7 +1,7 @@
 /*
  * instance.hpp
  *
- * Last modified: <2014/01/09 19:16:11 +0900> By Zumida
+ * Last modified: <2014/01/30 16:40:22 +0900> By Zumida
  */
 #ifndef INSTANCE_HPP_INCLUDED
 #define INSTANCE_HPP_INCLUDED
@@ -24,7 +24,7 @@ namespace swo {
 			Instance() = delete;
 			~Instance() = delete;
 
-			template<typename T> static T& create(void) {
+			template<typename T> static T& create() {
 				T *obj = new T();
 				add(obj);
 				return *obj;
@@ -36,9 +36,9 @@ namespace swo {
 				return *obj;
 			}
 
-			static void discard(void);
+			static void discard();
 			static void discard(const Object& object);
-			static ControlPtrList& getControls(void);
+			static ControlPtrList& getControls();
 		};
 	};
 };

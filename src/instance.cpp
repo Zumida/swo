@@ -1,7 +1,7 @@
 /*
  * instance.cpp
  *
- * Last modified: <2014/01/09 19:04:34 +0900> By Zumida
+ * Last modified: <2014/01/30 16:40:20 +0900> By Zumida
  */
 #include "instance.hpp"
 
@@ -32,7 +32,7 @@ namespace swo {
 			}
 		}
 
-		void Instance::discard(void) {
+		void Instance::discard() {
 			// 登録されたコントロールを破棄
 			while (!controls.empty()) {
 				Control* control = controls.back();
@@ -71,7 +71,7 @@ namespace swo {
 			remove(obj);
 		}
 
-		ControlPtrList& Instance::getControls(void) {
+		ControlPtrList& Instance::getControls() {
 			return controls;
 		}
 	};

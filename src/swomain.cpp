@@ -37,7 +37,7 @@ public:
 		return c;
 	}
 
-	void flush(void) {
+	void flush() {
 		if (!message.empty()) {
 			::OutputDebugString((tag + message).c_str());
 			message.clear();

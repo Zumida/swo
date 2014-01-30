@@ -1,7 +1,7 @@
 /*
  * menu.hpp
  *
- * Last modified: <2014/01/10 15:59:55 +0900> By Zumida
+ * Last modified: <2014/01/30 16:40:29 +0900> By Zumida
  */
 #ifndef MENU_HPP_INCLUDED
 #define MENU_HPP_INCLUDED
@@ -23,7 +23,7 @@ namespace swo {
 			Menu();
 			~Menu();
 
-			Handle getHandle(void) const;
+			Handle getHandle() const;
 			Menu& add(const class MenuItem& item);
 			Menu& add(const int index, const class MenuItem& item);
 

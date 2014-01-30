@@ -1,7 +1,7 @@
 /*
  * cursor.cpp
  *
- * Last modified: <2014/01/07 14:25:25 +0900> By Zumida
+ * Last modified: <2014/01/30 16:39:34 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "cursor.hpp"
@@ -24,6 +24,6 @@ Cursor& Cursor::set(const String& name) {
 	return *this;
 }
 
-HCURSOR Cursor::getHandle(void) const {
+HCURSOR Cursor::getHandle() const {
 	return pointer_cast<HCURSOR>(handle);
 }

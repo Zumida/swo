@@ -1,7 +1,7 @@
 /*
  * stockpen.hpp
  *
- * Last modified: <2013/05/13 18:09:17 +0900> By Zumida
+ * Last modified: <2014/01/30 16:41:08 +0900> By Zumida
  */
 #ifndef STOCKPEN_HPP_INCLUDED
 #define STOCKPEN_HPP_INCLUDED
@@ -14,7 +14,7 @@ namespace swo {
 	protected:
 		int stock;
 
-		void refresh(void);
+		void refresh();
 
 	public:
 		StockPen();

@@ -1,7 +1,7 @@
 /*
  * dragdrop.cpp
  *
- * Last modified: <2014/01/07 14:25:34 +0900> By Zumida
+ * Last modified: <2014/01/30 16:39:46 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "dragdrop.hpp"
@@ -26,11 +26,11 @@ DragDrop::DragDrop(HDROP hDrop) {
 DragDrop::~DragDrop() {
 }
 
-const StringList& DragDrop::getFiles(void) const {
+const StringList& DragDrop::getFiles() const {
 	return files;
 }
 
-const Point& DragDrop::getPoint(void) const {
+const Point& DragDrop::getPoint() const {
 	return point;
 }
 

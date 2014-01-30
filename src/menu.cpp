@@ -1,7 +1,7 @@
 /*
  * menu.cpp
  *
- * Last modified: <2014/01/10 16:29:16 +0900> By Zumida
+ * Last modified: <2014/01/30 16:40:27 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "menu.hpp"
@@ -13,7 +13,7 @@ namespace swo {
 
 		Menu::~Menu() {}
 
-		Menu::Handle Menu::getHandle(void) const {
+		Menu::Handle Menu::getHandle() const {
 			return handle;
 		}
 
