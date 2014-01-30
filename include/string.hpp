@@ -1,7 +1,7 @@
 /*
  * string.hpp
  *
- * Last modified: <2014/01/25 01:52:32 +0900> By Zumida
+ * Last modified: <2014/01/30 17:27:32 +0900> By Zumida
  */
 #ifndef STRING_HPP_INCLUDED
 #define STRING_HPP_INCLUDED
@@ -45,6 +45,8 @@ namespace swo {
 		using InputStringStream = tistringstream;
 
 		extern String valueOf(const char *str);
+		extern String valueOf(const int value);
+		extern String valueOf(const double value);
 		extern String replaceAll(const String& str,
 								 const String& find, const String& replace);
 		extern String empty;

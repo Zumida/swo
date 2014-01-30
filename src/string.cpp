@@ -1,7 +1,7 @@
 /*
  * string.cpp
  *
- * Last modified: <2014/01/25 01:53:02 +0900> By Zumida
+ * Last modified: <2014/01/30 17:29:48 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "string.hpp"
@@ -25,6 +25,18 @@ namespace swo {
 #endif
 
 			return result;
+		}
+
+		String valueOf(const int value) {
+			StringStream ss;
+			ss << value;
+			return ss.str();
+		}
+
+		String valueOf(const double value) {
+			StringStream ss;
+			ss << value;
+			return ss.str();
 		}
 
 		String replaceAll(const String& str,
