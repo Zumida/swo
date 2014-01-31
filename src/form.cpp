@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2014/01/30 16:38:55 +0900> By Zumida
+ * Last modified: <2014/01/31 15:25:57 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "form.hpp"
@@ -11,51 +11,55 @@
 #include "syscolorbrush.hpp"
 #include "instance.hpp"
 
-#define WINDOW_WIDTH  (400)		// ウィンドウの幅
-#define WINDOW_HEIGHT (300)		// ウィンドウの高さ
-#define WINDOW_X ((GetSystemMetrics(SM_CXSCREEN) - WINDOW_WIDTH ) / 2)
-#define WINDOW_Y ((GetSystemMetrics(SM_CYSCREEN) - WINDOW_HEIGHT) / 2)
-#define WINDOW_CLASSNAME L"SWO Form Class"
+#define FORM_WIDTH  (400)		// ウィンドウの幅
+#define FORM_HEIGHT (300)		// ウィンドウの高さ
+#define FORM_X ((GetSystemMetrics(SM_CXSCREEN) - FORM_WIDTH ) / 2)
+#define FORM_Y ((GetSystemMetrics(SM_CYSCREEN) - FORM_HEIGHT) / 2)
+#define FORM_CLASSNAME L"SWO Form Class"
+#define FORM_TEXT      L"SWO Form"
 
 namespace swo {
 	inline namespace container {
 
-		Form::Form() : Container() {
-			initialize();
+		Form::Form()
+			: Container(),
+		className(FORM_CLASSNAME),
+		style(WS_OVERLAPPEDWINDOW),
+		exStyle(WS_EX_LEFT | WS_EX_LTRREADING | WS_EX_RIGHTSCROLLBAR),
+		text(FORM_TEXT), icon(nullptr), menu(nullptr) {
+			rect.left   = FORM_X;
+			rect.top    = FORM_Y;
+			rect.width  = FORM_WIDTH;
+			rect.height = FORM_HEIGHT;
 		}
 
-		Form::Form(Control& parent) : Container(parent) {
-			initialize();
+		Form::Form(Control& parent)
+			: Container(parent),
+		style(WS_OVERLAPPEDWINDOW),
+		exStyle(WS_EX_LEFT | WS_EX_LTRREADING | WS_EX_RIGHTSCROLLBAR),
+		text(FORM_TEXT), icon(nullptr), menu(nullptr) {
+			rect.left   = FORM_X;
+			rect.top    = FORM_Y;
+			rect.width  = FORM_WIDTH;
+			rect.height = FORM_HEIGHT;
 		}
 
-		Form::~Form() {
-		}
+		Form::~Form() {}
 
-		void Form::initialize() {
-			if (WindowClass::find(WINDOW_CLASSNAME) == nullptr) {
+		HWND Form::createHandle() {
+			if (className == FORM_CLASSNAME
+				&& WindowClass::find(FORM_CLASSNAME) == nullptr) {
+
 				WindowClass& wc = WindowClass::create();
-
-				wc.setClassName(WINDOW_CLASSNAME)
+				wc.setClassName(className.c_str())
 					.setCursor(SysCursor::Arrow)
 						.setBackground(SysColorBrush::create(COLOR_WINDOW))
 							.setWndProc(Application::WndProc);
-
 				WindowClass::add(wc);
 			}
 
-			className   = WINDOW_CLASSNAME;
-			rect.left   = WINDOW_X;
-			rect.top    = WINDOW_Y;
-			rect.width  = WINDOW_WIDTH;
-			rect.height = WINDOW_HEIGHT;
-			icon        = nullptr;
-			menu        = nullptr;
-			style       = WS_OVERLAPPEDWINDOW;
-			exStyle     = WS_EX_LEFT | WS_EX_LTRREADING | WS_EX_RIGHTSCROLLBAR;
-		}
-
-		HWND Form::createHandle() {
-			HWND hparent = (getParent() != nullptr)? getParent()->getHandle(): HWND_DESKTOP;
+			HWND hparent = (getParent() != nullptr)?
+				getParent()->getHandle(): HWND_DESKTOP;
 			HMENU hmenu = (menu != nullptr)? menu->getHandle(): nullptr;
 
 			// ウィンドウを作成する
@@ -72,7 +76,7 @@ namespace swo {
 				hmenu,                   // メニューハンドル
 				::GetModuleHandle(nullptr), // インスタンスハンドル
 				nullptr                     // その他の作成データ
-				);
+			);
 
 			return hwnd;
 		}
@@ -203,16 +207,25 @@ namespace swo {
 		Form::FormType Form::getFormType() const {
 			FormType formType;
 
-			if ((exStyle & WS_EX_DLGMODALFRAME) == WS_EX_DLGMODALFRAME)
+			if ((exStyle & WS_EX_DLGMODALFRAME)
+				== WS_EX_DLGMODALFRAME) {
 				formType = DialogModalFrame;
-			else if ((exStyle & WS_EX_OVERLAPPEDWINDOW) == WS_EX_OVERLAPPEDWINDOW)
+
+			} else if ((exStyle & WS_EX_OVERLAPPEDWINDOW)
+					   == WS_EX_OVERLAPPEDWINDOW) {
 				formType = OverLappedWindow;
-			else if ((exStyle & WS_EX_PALETTEWINDOW) == WS_EX_PALETTEWINDOW)
+
+			} else if ((exStyle & WS_EX_PALETTEWINDOW)
+					   == WS_EX_PALETTEWINDOW) {
 				formType = PaletteWindow;
-			else if ((exStyle & WS_EX_TOOLWINDOW) == WS_EX_TOOLWINDOW)
+
+			} else if ((exStyle & WS_EX_TOOLWINDOW)
+					   == WS_EX_TOOLWINDOW) {
 				formType = ToolWindow;
-			else
+
+			} else {
 				formType = DialogModalFrame;
+			}
 
 			return formType;
 		}

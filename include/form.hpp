@@ -1,7 +1,7 @@
 /*
  * form.hpp
  *
- * Last modified: <2014/01/30 16:38:53 +0900> By Zumida
+ * Last modified: <2014/01/31 15:15:30 +0900> By Zumida
  */
 #ifndef FORM_HPP_INCLUDED
 #define FORM_HPP_INCLUDED
@@ -22,7 +22,6 @@ namespace swo {
 			Icon* icon;
 			Menu* menu;
 
-			void initialize();
 			HWND createHandle();
 			bool onDestroy();
 
