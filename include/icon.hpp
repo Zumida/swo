@@ -1,7 +1,7 @@
 /*
  * icon.hpp
  *
- * Last modified: <2014/01/30 16:40:11 +0900> By Zumida
+ * Last modified: <2014/01/31 16:41:06 +0900> By Zumida
  */
 #ifndef ICON_HPP_INCLUDED
 #define ICON_HPP_INCLUDED
@@ -9,32 +9,33 @@
 #include "image.hpp"
 
 namespace swo {
+	inline namespace image {
 
-	class Icon : public Image {
-	public:
-		Icon();
-		Icon(const String& name);
-		~Icon();
+		class Icon : public Image {
+		public:
+			Icon();
+			Icon(const String& name);
+			~Icon();
 
-		Icon& set(const String& name);
-		HICON getHandle() const;
+			Icon& set(const String& name);
+			const HICON getHandle() const;
 
-		const static class Icon appStarting;
-		const static class Icon arrow;
-		const static class Icon cross;
-		const static class Icon hand;
-		const static class Icon help;
-		const static class Icon ibeam;
-		const static class Icon no;
-		const static class Icon sizeAll;
-		const static class Icon sizeNESW;
-		const static class Icon sizeNS;
-		const static class Icon sizeNWSE;
-		const static class Icon sizeWE;
-		const static class Icon uparrow;
-		const static class Icon wait;
+			const static class Icon appStarting;
+			const static class Icon arrow;
+			const static class Icon cross;
+			const static class Icon hand;
+			const static class Icon help;
+			const static class Icon ibeam;
+			const static class Icon no;
+			const static class Icon sizeAll;
+			const static class Icon sizeNESW;
+			const static class Icon sizeNS;
+			const static class Icon sizeNWSE;
+			const static class Icon sizeWE;
+			const static class Icon uparrow;
+			const static class Icon wait;
+		};
 	};
-
 };
 
 #endif
