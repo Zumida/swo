@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2014/01/31 15:25:57 +0900> By Zumida
+ * Last modified: <2014/01/31 17:25:26 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "form.hpp"
@@ -48,19 +48,22 @@ namespace swo {
 
 		HWND Form::createHandle() {
 			if (className == FORM_CLASSNAME
-				&& WindowClass::find(FORM_CLASSNAME) == nullptr) {
+				&& WindowClass::find(className) == nullptr) {
 
-				WindowClass& wc = WindowClass::create();
-				wc.setClassName(className.c_str())
+				WindowClass::add(
+					WindowClass::create()
+					.setClassName(className.c_str())
 					.setCursor(SysCursor::Arrow)
-						.setBackground(SysColorBrush::create(COLOR_WINDOW))
-							.setWndProc(Application::WndProc);
-				WindowClass::add(wc);
+					.setBackground(SysColorBrush::create(COLOR_WINDOW))
+					.setWndProc(Application::WndProc)
+				);
 			}
 
 			HWND hparent = (getParent() != nullptr)?
 				getParent()->getHandle(): HWND_DESKTOP;
-			HMENU hmenu = (menu != nullptr)? menu->getHandle(): nullptr;
+
+			HMENU hmenu = (menu != nullptr)?
+				menu->getHandle(): nullptr;
 
 			// ウィンドウを作成する
 			HWND hwnd = CreateWindowEx(
@@ -81,6 +84,19 @@ namespace swo {
 			return hwnd;
 		}
 
+		void Form::setAttributes(HWND handle) {
+			Control::setAttributes(handle);
+			if (icon != nullptr) {
+				::SendMessage(handle, WM_SETICON, ICON_BIG,
+							  (LPARAM)(icon->getHandle()));
+			}
+			if (smallIcon != nullptr) {
+				::SendMessage(handle, WM_SETICON, ICON_SMALL,
+							  (LPARAM)(smallIcon->getHandle()));
+			}
+			::SetWindowText(handle, text.c_str());
+		}
+
 		bool Form::onDestroy() {
 			if (getParent() == nullptr) {
 				::PostQuitMessage(0);
@@ -95,7 +111,7 @@ namespace swo {
 			return *this;
 		}
 
-		String& Form::getClassName() {
+		const String& Form::getClassName() const{
 			return className;
 		}
 
@@ -119,28 +135,41 @@ namespace swo {
 
 		Form& Form::setText(const String& text) {
 			this->text = text;
+			update();
 			return *this;
 		}
 
-		String& Form::getText() {
+		const String& Form::getText() const {
 			return text;
 		}
 
 		Form& Form::setIcon(const Icon& icon) {
 			this->icon = const_cast<Icon*>(&icon);
+			update();
 			return *this;
 		}
 
-		Icon& Form::getIcon() {
+		const Icon& Form::getIcon() const {
+			return *icon;
+		}
+
+		Form& Form::setSmallIcon(const Icon& icon) {
+			this->icon = const_cast<Icon*>(&icon);
+			update();
+			return *this;
+		}
+
+		const Icon& Form::getSmallIcon() const {
 			return *icon;
 		}
 
 		Form& Form::setMenu(const Menu& menu) {
 			this->menu = const_cast<Menu*>(&menu);
+			update();
 			return *this;
 		}
 
-		Menu& Form::getMenu() {
+		const Menu& Form::getMenu() const {
 			return *menu;
 		}
 

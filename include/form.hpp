@@ -1,7 +1,7 @@
 /*
  * form.hpp
  *
- * Last modified: <2014/01/31 15:15:30 +0900> By Zumida
+ * Last modified: <2014/01/31 16:31:07 +0900> By Zumida
  */
 #ifndef FORM_HPP_INCLUDED
 #define FORM_HPP_INCLUDED
@@ -20,9 +20,11 @@ namespace swo {
 			int exStyle;
 			String text;
 			Icon* icon;
+			Icon* smallIcon;
 			Menu* menu;
 
 			HWND createHandle();
+			void setAttributes(HWND handle);
 			bool onDestroy();
 
 		public:
@@ -45,7 +47,7 @@ namespace swo {
 			~Form();
 
 			Form& setClassName(const String& className);
-			String& getClassName();
+			const String& getClassName() const;
 
 			Form& setStyle(const int style);
 			int getStyle() const;
@@ -53,11 +55,13 @@ namespace swo {
 			int getExStyle() const;
 
 			Form& setText(const String& text);
-			String& getText();
+			const String& getText() const;
 			Form& setIcon(const Icon& icon);
-			Icon& getIcon();
+			const Icon& getIcon() const;
+			Form& setSmallIcon(const Icon& icon);
+			const Icon& getSmallIcon() const;
 			Form& setMenu(const Menu& menu);
-			Menu& getMenu();
+			const Menu& getMenu() const;
 
 			Form& setAcceptFiles(const bool enabled=true);
 			bool isAcceptFiles() const;
