@@ -1,7 +1,7 @@
 /*
  * application.hpp
  *
- * Last modified: <2014/01/30 16:39:04 +0900> By Zumida
+ * Last modified: <2014/02/17 22:30:19 +0900> By Zumida
  */
 #ifndef APPLICATION_HPP_INCLUDED
 #define APPLICATION_HPP_INCLUDED
@@ -39,6 +39,7 @@ namespace swo {
 			int result;
 
 			WndMap wndMap;
+			HINSTANCE handle;
 
 		public:
 			static class Application& getInstance();
@@ -47,12 +48,13 @@ namespace swo {
 			Application(const Runner* runner);
 			~Application();
 
-			void initialize();
+			void initialize(HINSTANCE handle);
 			void run();
 			void finalize();
 
 			static void terminate(int result=0);
 
+			const HINSTANCE getHandle() const;
 			const String& getProcessName() const;
 			StringList& getArguments();
 			int getResult() const;

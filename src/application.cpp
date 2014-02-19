@@ -1,7 +1,7 @@
 /*
  * application.cpp
  *
- * Last modified: <2014/01/30 16:39:02 +0900> By Zumida
+ * Last modified: <2014/02/17 23:29:31 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "application.hpp"
@@ -35,8 +35,9 @@ namespace swo {
 			return *instance;
 		}
 
-		void Application::initialize() {
+		void Application::initialize(HINSTANCE handle) {
 			status = Status::INITIALIZE;
+			this->handle = handle;
 
 			// コマンドライン引数の取得
 			int argc = 0;
@@ -109,6 +110,10 @@ namespace swo {
 			app.result = result;
 			app.terminated = true;
 			::PostQuitMessage(result);
+		}
+
+		const HINSTANCE Application::getHandle() const {
+			return handle;
 		}
 
 		const String& Application::getProcessName() const {

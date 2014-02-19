@@ -59,7 +59,7 @@ int WINAPI _tWinMain(
 
 	try {
 		LOG_I(app.getProcessName() + L" is initializing.");
-		app.initialize();
+		app.initialize(hInst);
 		dlog.setTag(app.getProcessName());
 
 		LOG_I(app.getProcessName() + L" is running.");
