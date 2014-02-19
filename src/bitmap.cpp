@@ -1,31 +1,35 @@
 /*
  * bitmap.cpp
  *
- * Last modified: <2014/01/30 16:39:07 +0900> By Zumida
+ * Last modified: <2014/02/17 23:25:21 +0900> By Zumida
  */
 #include "swoconfig.hpp"
+#include "application.hpp"
 #include "bitmap.hpp"
 #include "pointer.hpp"
 
-using namespace swo;
+namespace swo {
+	inline namespace image {
 
-Bitmap::Bitmap() {
-}
+		Bitmap::Bitmap() {
+		}
 
-Bitmap::Bitmap(const String& name) {
-	Image::load(name, IMAGE_BITMAP);
-}
+		Bitmap::Bitmap(const String& name) {
+			Image::load(Application::getInstance().getHandle(), name, IMAGE_BITMAP);
+		}
 
-Bitmap::~Bitmap() {
-}
+		Bitmap::~Bitmap() {
+		}
 
-Bitmap& Bitmap::set(const String& name) {
-	Image::load(name, IMAGE_BITMAP);
-	return *this;
-}
+		Bitmap& Bitmap::set(const String& name) {
+			Image::load(Application::getInstance().getHandle(), name, IMAGE_BITMAP);
+			return *this;
+		}
 
-HBITMAP Bitmap::getHandle() const {
-	return pointer_cast<HBITMAP>(handle);
-}
+		HBITMAP Bitmap::getHandle() const {
+			return pointer_cast<HBITMAP>(handle);
+		}
 
-const Bitmap Bitmap::empty;
+		const Bitmap Bitmap::empty;
+	};
+};

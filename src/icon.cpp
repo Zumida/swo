@@ -1,9 +1,10 @@
 /*
  * icon.cpp
  *
- * Last modified: <2014/01/31 16:57:59 +0900> By Zumida
+ * Last modified: <2014/02/18 00:50:58 +0900> By Zumida
  */
 #include "swoconfig.hpp"
+#include "application.hpp"
 #include "icon.hpp"
 #include "pointer.hpp"
 
@@ -13,13 +14,13 @@ namespace swo {
 		Icon::Icon() {}
 
 		Icon::Icon(const String& name) {
-			Image::load(name, IMAGE_ICON);
+			Image::load(Application::getInstance().getHandle(), name, IMAGE_ICON);
 		}
 
 		Icon::~Icon() {}
 
 		Icon& Icon::set(const String& name) {
-			Image::load(name, IMAGE_ICON);
+			Image::load(Application::getInstance().getHandle(), name, IMAGE_ICON);
 			return *this;
 		}
 
