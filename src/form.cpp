@@ -1,7 +1,7 @@
 /*
  * form.cpp
  *
- * Last modified: <2014/01/31 17:25:26 +0900> By Zumida
+ * Last modified: <2014/02/19 20:37:52 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "form.hpp"
@@ -26,7 +26,7 @@ namespace swo {
 		className(FORM_CLASSNAME),
 		style(WS_OVERLAPPEDWINDOW),
 		exStyle(WS_EX_LEFT | WS_EX_LTRREADING | WS_EX_RIGHTSCROLLBAR),
-		text(FORM_TEXT), icon(nullptr), menu(nullptr) {
+		text(FORM_TEXT), icon(nullptr), smallIcon(nullptr), menu(nullptr) {
 			rect.left   = FORM_X;
 			rect.top    = FORM_Y;
 			rect.width  = FORM_WIDTH;
@@ -37,7 +37,7 @@ namespace swo {
 			: Container(parent),
 		style(WS_OVERLAPPEDWINDOW),
 		exStyle(WS_EX_LEFT | WS_EX_LTRREADING | WS_EX_RIGHTSCROLLBAR),
-		text(FORM_TEXT), icon(nullptr), menu(nullptr) {
+		text(FORM_TEXT), icon(nullptr), smallIcon(nullptr), menu(nullptr) {
 			rect.left   = FORM_X;
 			rect.top    = FORM_Y;
 			rect.width  = FORM_WIDTH;
