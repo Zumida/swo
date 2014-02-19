@@ -1,7 +1,7 @@
 /*
  * image.cpp
  *
- * Last modified: <2014/01/31 16:50:23 +0900> By Zumida
+ * Last modified: <2014/02/18 01:19:28 +0900> By Zumida
  */
 #include "swoconfig.hpp"
 #include "image.hpp"
@@ -18,17 +18,24 @@ namespace swo {
 
 		Image::~Image() {}
 
-		void Image::load(const String& name, const int type) {
+		void Image::load(const HINSTANCE hInstance, int id, const int type) {
 			this->type   = type;
-			this->handle = LoadImage(
-				nullptr, MAKEINTRESOURCE(name.c_str()), type,
+			this->handle = ::LoadImage(
+				hInstance, MAKEINTRESOURCE(id), type,
 				0, 0, LR_DEFAULTSIZE | LR_SHARED);
 		}
 
-		void Image::load(const TCHAR* id, const int type) {
+		void Image::load(const HINSTANCE hInstance, const String& name, const int type) {
 			this->type   = type;
-			this->handle = LoadImage(
-				nullptr, id, type,
+			this->handle = ::LoadImage(
+				hInstance, name.c_str(), type,
+				0, 0, LR_DEFAULTSIZE | LR_SHARED);
+		}
+
+		void Image::load(const HINSTANCE hInstance, const TCHAR* idc, const int type) {
+			this->type   = type;
+			this->handle = ::LoadImage(
+				hInstance, idc, type,
 				0, 0, LR_DEFAULTSIZE | LR_SHARED);
 		}
 
